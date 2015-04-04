@@ -1,0 +1,397 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<h1>게시판</h1>
+<ul>
+    <li>
+        <ul>
+            <li><a href="list.jsp?boardCd=free&curPage=1">자유게시판</a></li>
+            <li><a href="list.jsp?boardCd=qna&curPage=1">QnA게시판</a></li>
+            <li><a href="list.jsp?boardCd=data&curPage=1">자료실</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="net.java_school.user.*"%>
+<%@page import="java.net.URLEncoder"%>
+<%   
+User user = (User) session.getAttribute("user");
+if (user == null) {
+    //로그인 후 되돌아갈 URL를 구한다.
+    String uri = request.getRequestURI();
+    String query = request.getQueryString();
+    String url = uri;
+    if (query != null) url += "?" + query;
+    //로그인 페이지로 리다이렉트
+    String contextPath= request.getContextPath();
+    url = URLEncoder.encode(url, "UTF-8");
+    response.sendRedirect(contextPath + "/users/login.jsp?url=" + url);
+    return;
+}
+%>
+
+
+<div id="form-group" style="display: none">
+    <form id="listForm" action="list.jsp" method="get">
+    <p>
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="viewForm" action="view.jsp" method="get">
+    <p>
+        <input type="hidden" name="articleNo" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="writeForm" action="write_form.jsp" method="post">
+    <p>
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+</div>
+
+
+function goList(curPage) {
+    var form = document.getElementById("listForm");
+    form.curPage.value = curPage;
+    form.submit();
+}
+
+function goView(articleNo) {
+    var form = document.getElementById("viewForm");
+    form.articleNo.value = articleNo;
+    form.submit();
+}
+
+function goWrite() {
+    var form = document.getElementById("writeForm");
+    form.submit();
+}
+
+
+<script type="text/javascript">
+//<![CDATA[
+           
+function check() {
+    //var form = document.getElementById("writeForm");
+    //유효성 검사로직 추가
+    return true;
+}
+
+function goList() {
+    var form = document.getElementById("listForm");
+    form.submit();
+}
+
+function goView() {
+    var form = document.getElementById("viewForm");
+    form.submit();
+}
+//]]>                    
+</script>
+
+<div id="form-group" style="display: none">
+    <form id="viewForm" action="view.jsp" method="get">
+    <p>
+        <input type="hidden" name="articleNo" value="5" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="listForm" action="list.jsp" method="get">
+    <p>
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>   
+</div>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+새 게시글을 등록하는 페이지로 모델 2에서는 삭제해야 할 페이지다.
+-구현-
+로그인이 되어 있지 않으면
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "Not Login"); return;
+로그인 체크를 통과하면
+boardCd, title, content, attachFile 파라미터를 가지고 새글을 인서트한다.
+form 이 enctype="multipart/form-data" 인 경우 request.getParameter()로 파라미터의 값을 얻을 수 없다.
+프로그래밍을 손쉽게 하기 위해 외부 라이브러리를 이용한다.(아파치 commons.fileupload 또는 cos)
+새글을 등록한 후 목록의 첫번째 페이지로 되돌아가야 한다.
+*/
+response.sendRedirect("list.jsp?boardCd=free&curPage=1");
+%>
+
+
+/*
+새 게시글을 등록하는 페이지로 모델 2에서는 삭제해야 할 페이지다.
+-구현-
+로그인이 되어 있지 않으면
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "Not Login"); return;
+로그인 체크를 통과하면
+boardCd, title, content, attachFile 파라미터를 가지고 새글을 인서트한다.
+
+form의 enctype 속성이 "multipart/form-data"인 경우 request.getParameter();로 파라미터의 값을 얻을 수 없다.
+이 경우 프로그래밍을 손쉽게 하기 위해 아파치 commons-fileupload 또는 cos와 같은 외부 라이브러리를 이용한다.
+
+새글을 등록한 후 목록의 첫번째 페이지로 되돌아가야 한다.
+*/
+response.sendRedirect("list.jsp?boardCd=free&curPage=1");
+
+
+function goList(curPage) {
+    var form = document.getElementById("listForm");
+    form.curPage.value = curPage;
+    form.submit();
+}
+
+function goView(articleNo) {
+    var form = document.getElementById("viewForm");
+    form.articleNo.value = articleNo;
+    form.submit();
+}
+
+function goWrite() {
+    var form = document.getElementById("writeForm");
+    form.submit();
+}
+
+function goModify() {
+    var form = document.getElementById("modifyForm");
+    form.submit();
+}
+
+function goDelete() {
+    var check = confirm("정말로 삭제하시겠습니까?");
+    if (check) {
+        var form = document.getElementById("delForm");
+        form.submit();
+    }
+}
+
+function deleteAttachFile(attachFileNo) {
+    var check = confirm("첨부파일을 정말로 삭제하시겠습니까?");
+    if (check) {
+        var form = document.getElementById("deleteAttachFileForm");
+        form.attachFileNo.value = attachFileNo;
+        form.submit();
+    }
+}
+
+function deleteComment(commentNo) {
+    var check = confirm("댓글을 정말로 삭제하시겠습니까?");
+    if (check) {
+        var form = document.getElementById("deleteCommentForm");
+        form.commentNo.value = commentNo;
+        form.submit();
+    }
+}
+
+
+<div id="form-group" style="display: none">
+    <form id="listForm" action="list.jsp" method="get">
+    <p>
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="viewForm" action="view.jsp" method="get">
+    <p>
+        <input type="hidden" name="articleNo" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="writeForm" action="write_form.jsp" method="post">
+    <p>
+        <input type="hidden" name="articleNo" value="5" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="12" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="modifyForm" action="modify_form.jsp" method="post">
+    <p>
+        <input type="hidden" name="articleNo" value="5" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="delForm" action="del_proc.jsp" method="post">
+    <p>
+        <input type="hidden" name="articleNo" value="5" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>
+    <form id="deleteCommentForm" action="deleteComments_proc.jsp" method="post">
+    <p>
+        <input type="hidden" name="commentNo" />
+        <input type="hidden" name="articleNo" value="12" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>   
+    <form id="deleteAttachFileForm" action="deleteAttachFile_proc.jsp" method="post">
+    <p>
+        <input type="hidden" name="attachFileNo" />
+        <input type="hidden" name="articleNo" value="23" />
+        <input type="hidden" name="boardCd" value="free" />
+        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="searchWord" value="무궁화꽃" />
+    </p>
+    </form>       
+</div>
+
+
+--내일부터 
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+새로운 댓글을 인서트하는 페이지로 모델 2에서는 삭제해야 할 페이지이다.
+-구현-
+로그인이 되어 있지 않으면 
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "Not Login"); return;
+로그인 체크를 통과하면 
+먼저 요청의 캐릭터셋을 UTF-8로 설정한다.
+boardCd, articleNo, curPage, searchWord, memo 파라미터를 받아서 댓글을 인서트한다.
+댓글을 인서트한 후 상세보기를 돌아가기 위해선
+검색어 searchWord를 URLEncoder의 encode 메소드로 UTF-8로 인코딩해야 한다.
+*/
+response.sendRedirect("view.jsp?articleNo=5&boardCd=free&curPage=1&searchWord=무궁화꽃");
+%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+댓글 업데이트를 실행하는 페이지로 모델 2에서는 삭제해야 할 페이지이다.
+-구현-
+작성자인지를 검사하여 작성자가 아니면
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "Authentication Failed"); return;
+작성자 체크를 통과하면
+요청의 캐릭터셋을 UTF-8로 설정한다.
+commentNo, boardCd, articleNo, curPage, searchWord, memo 파라미터를 받아서
+댓글을 업데이트한다.
+댓글을 업데이트 처리한 후 상세보기를 돌아가기 위해선
+검색어 searchWord를 URLEncoder의 encode 메소드로 UTF-8로 인코딩해야 한다.
+*/
+response.sendRedirect("view.jsp?articleNo=5&boardCd=free&curPage=1&searchWord=무궁화꽃");
+%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+댓글 삭제를 실행하는 페이지로 모델 2에서는 삭제해야 할 페이지이다.
+
+-구현-
+작성자인지를 검사하여 작성자가 아니면
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "작성자가 아닙니다"); return;
+요청의 캐릭터셋을 UTF-8로 설정해야 한다.
+요청에서 참조해야 하는 파라미터는
+commentNo, boardCd, articleNo, curPage, searchWord 이다.
+댓글을 삭제 후 상세보기를 돌아가기 위해선
+searchWord를 URLEncoder의 encode 메소드로 UTF-8로 인코딩한다.
+*/
+response.sendRedirect("view.jsp?articleNo=5&boardCd=free&curPage=1&searchWord=무궁화꽃");
+%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+첨부파일 삭제를 실행하는 페이지로 모델 2에서는 삭제해야 할 페이지이다.
+
+-구현-
+작성자인지를 검사하여 작성자가 아니면
+response.sendError(HttpServletResponse.SC_FORBIDDEN, "작성자가 아닙니다"); return;
+요청의 캐릭터셋을 UTF-8로 설정해야 한다.
+요청에서 참조해야 하는 파라미터는
+attachFileNo,articleNo,boardCd,curPage,searchWord 이다.
+첨부파일를 삭제 후 상세보기를 돌아가기 위해선
+searchWord를 URLEncoder의 encode 메소드로 UTF-8로 인코딩한다.
+*/
+response.sendRedirect("view.jsp?articleNo=5&boardCd=free&curPage=1&searchWord=무궁화꽃");
+%>
+
+
+
+
+
+           
+
