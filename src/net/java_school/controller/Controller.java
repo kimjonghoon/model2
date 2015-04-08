@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
-import net.java_school.board.action.AddCommentsAction;
+import net.java_school.board.action.AddCommentAction;
 import net.java_school.board.action.DeleteAction;
 import net.java_school.board.action.DeleteAttachFileAction;
-import net.java_school.board.action.DeleteCommentsAction;
+import net.java_school.board.action.DeleteCommentAction;
 import net.java_school.board.action.ListAction;
 import net.java_school.board.action.ModifyAction;
 import net.java_school.board.action.ModifyFormAction;
-import net.java_school.board.action.UpdateCommentsAction;
+import net.java_school.board.action.UpdateCommentAction;
 import net.java_school.board.action.ViewAction;
 import net.java_school.board.action.WriteAction;
 import net.java_school.board.action.WriteFormAction;
@@ -69,14 +69,14 @@ public class Controller extends HttpServlet {
             } else if (command.equals("/bbs/write_proc.do")) {
                 action = new WriteAction();
                 forward = action.execute(req, resp);
-            } else if (command.equals("/bbs/addComments_proc.do")) {
-                action = new AddCommentsAction();
+            } else if (command.equals("/bbs/addComment_proc.do")) {
+                action = new AddCommentAction();
                 forward = action.execute(req, resp);
             } else if (command.equals("/bbs/updateComments_proc.do")) {
-                action = new UpdateCommentsAction();
+                action = new UpdateCommentAction();
                 forward = action.execute(req, resp);
             } else if (command.equals("/bbs/deleteComments_proc.do")) {
-                action = new DeleteCommentsAction();
+                action = new DeleteCommentAction();
                 forward = action.execute(req, resp);
             } else if (command.equals("/bbs/deleteAttachFile_proc.do")) {
                 action = new DeleteAttachFileAction();

@@ -15,34 +15,31 @@ import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
 import net.java_school.user.User;
 
-public class AddCommentsAction implements Action {
+public class DeleteCommentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-
+		
 		ActionForward forward = new ActionForward();
 		
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
 		
-		if (user == null) {
-			throw new AuthenticationException(WebContants.NOT_LOGIN);
+		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
+		
+		BoardService service = new BoardService();
+		Comment comment = service.getComment(commentNo);
+		if (user == null || !user.getEmail().equals(comment.getEmail())) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
-
+		
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
 		int curPage = Integer.parseInt(req.getParameter("curPage"));
 		String searchWord = req.getParameter("searchWord");
-		String memo = req.getParameter("memo");
 		
-		Comment comment = new Comment();
-		comment.setArticleNo(articleNo);
-		comment.setEmail(user.getEmail());
-		comment.setMemo(memo);
-		
-		BoardService service = new BoardService();
-		service.addComment(comment);
+		service.removeComment(commentNo);
 		
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&curPage=" + curPage + "&searchWord=" + searchWord);

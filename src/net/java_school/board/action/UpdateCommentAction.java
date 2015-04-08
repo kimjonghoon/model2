@@ -15,7 +15,7 @@ import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
 import net.java_school.user.User;
 
-public class UpdateCommentsAction implements Action {
+public class UpdateCommentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
