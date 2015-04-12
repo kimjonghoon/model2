@@ -2,7 +2,7 @@ package net.java_school.board.action;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,7 +52,7 @@ public class ListAction implements Action {
 		
 		service.setPagingHelper(pagingHelper);
 		
-		ArrayList<Article> list = service.getArticleList(boardCd, searchWord);
+		List<Article> list = service.getArticleList(boardCd, searchWord);
 		int listItemNo = service.getListItemNo();
 		int prevPage = service.getPrevPage();
 		int firstPage = service.getFirstPage();

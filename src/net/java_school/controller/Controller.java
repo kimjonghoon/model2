@@ -72,10 +72,10 @@ public class Controller extends HttpServlet {
             } else if (command.equals("/bbs/addComment_proc.do")) {
                 action = new AddCommentAction();
                 forward = action.execute(req, resp);
-            } else if (command.equals("/bbs/updateComments_proc.do")) {
+            } else if (command.equals("/bbs/updateComment_proc.do")) {
                 action = new UpdateCommentAction();
                 forward = action.execute(req, resp);
-            } else if (command.equals("/bbs/deleteComments_proc.do")) {
+            } else if (command.equals("/bbs/deleteComment_proc.do")) {
                 action = new DeleteCommentAction();
                 forward = action.execute(req, resp);
             } else if (command.equals("/bbs/deleteAttachFile_proc.do")) {

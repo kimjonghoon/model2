@@ -16,3 +16,38 @@ Message : ORA-01461: can bind a LONG value only for insert into a LONG column
 Oracle Error Code : 1461
 sql : INSERT INTO comments (commentno, articleno, email, memo, regdate) VALUES (SEQ_COMMENTS.nextval, ?, ?, ?, sysdate)
 
+[2015-04-10 15:15:04,234]DEBUG [http-bio-8080-exec-12] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:15:17,207]DEBUG [http-bio-8080-exec-12] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:15:29,947]DEBUG [http-bio-8080-exec-13] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:20:39,221]DEBUG [http-bio-8080-exec-15] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:23:03,894]DEBUG [http-bio-8080-exec-14] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:25:02,700]DEBUG [http-bio-8080-exec-17] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+
+[2015-04-10 15:26:37,956]DEBUG [http-bio-8080-exec-13] (UserDao.java:130) - SQLState : 08000
+Message : 소켓에서 읽을 데이터가 없습니다
+Oracle Error Code : 17410
+sql : SELECT email, passwd, name, mobile FROM member WHERE email = ? AND passwd = ?
+

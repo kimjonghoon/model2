@@ -2,8 +2,8 @@ package net.java_school.board.action;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,11 +60,11 @@ public class ViewAction implements Action {
 		service.increaseHit(articleNo);
 		
 		Article article = service.getArticle(articleNo);
-		ArrayList<AttachFile> attachFileList = service.getAttachFileList(articleNo);
+		List<AttachFile> attachFileList = service.getAttachFileList(articleNo);
 		Article nextArticle = service.getNextArticle(articleNo, boardCd, searchWord);
 		Article prevArticle = service.getPrevArticle(articleNo, boardCd, searchWord);
-		ArrayList<Article> list = service.getArticleList(boardCd, searchWord);
-		ArrayList<Comment> commentList = service.getCommentList(articleNo);
+		List<Article> list = service.getArticleList(boardCd, searchWord);
+		List<Comment> commentList = service.getCommentList(articleNo);
 		String boardNm = service.getBoardNm(boardCd);
 		
 		String title = article.getTitle();
