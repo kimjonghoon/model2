@@ -47,9 +47,9 @@ function goWrite() {
     
     <div id="container">
 		<div id="content" style="min-height: 800px;">
-			<div id="url-navi">BBS</div>
-
+			
 <!-- 본문 시작 -->
+<div id="url-navi">BBS</div>
 <h1>${boardNm }</h1>
 <div id="bbs">
 	<table>

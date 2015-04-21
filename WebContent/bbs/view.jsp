@@ -294,7 +294,7 @@ function deleteComment(commentNo) {
         
 </div>
 
-<div id="form-group" style="display: none">
+<div id="form-group">
     <form id="listForm" action="list.do" method="get">
     <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
