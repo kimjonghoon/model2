@@ -15,9 +15,9 @@
 
 4. Create {TOMCAT_HOME}/Catalina/localhost/model2.xml
 
-		&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-		&lt;Context docBase="{** your path **}/model2/WebContent" reloadable="true" &gt;
-			&lt;Resource
+		<?xml version="1.0" encoding="UTF-8"?>
+		<Context docBase="{** your path **}/model2/WebContent" reloadable="true">
+			<Resource
 				name="jdbc/jsppjt"
 				auth="Container"
 				type="javax.sql.DataSource"
@@ -26,8 +26,8 @@
 				driverClassName="oracle.jdbc.driver.OracleDriver"
 				url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
 				maxActive="8"
-				maxIdle="4" /&gt;
-		&lt;/Context&gt;
+				maxIdle="4" />
+		</Context>
 	                                                                             
 you have to edit {** your path **}/model2/WebContent
 
