@@ -17,7 +17,6 @@
 
 	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 	&lt;Context docBase="{** your path **}/model2/WebContent" reloadable="true" &gt;
-
 		&lt;Resource
 			name="jdbc/jsppjt"
 			auth="Container"
@@ -28,7 +27,6 @@
 			url="jdbc:oracle:thin:@127.0.0.1:1521:XE" 
 			maxActive="8"
 			maxIdle="4" /&gt;
-			
 	&lt;/Context&gt;
 	                                                                             
 you have to edit {** your path **}/model2/WebContent
