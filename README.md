@@ -17,7 +17,7 @@
   
 	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 	&lt;Context
-	    docBase="{your path}/model2/WebContent"
+	    docBase="{** your path **}/model2/WebContent"
 	    reloadable="true"&gt;
 		&lt;Resource
 			name="jdbc/jsppjt"
@@ -31,7 +31,7 @@
 			maxIdle="4" /&gt;
 	&lt;/Context&gt;                                                                             
 
-you have to {your path}/model2/WebContent
+you have to edit {** your path **}/model2/WebContent
 
 5. copy ojdbc6.jar to {TOMCAT_HOME}/lib/
 
@@ -39,6 +39,6 @@ you have to {your path}/model2/WebContent
 	>> refer to http://www.java-school.net/jsp-pjt/database-design
 
 7. Have to edit in model2/src/log4j.xml 
->> &lt;param name="File" value="{** Full path of your log file **}"/&gt;
+	>> &lt;param name="File" value="{** Full path of your log file **}"/&gt;
 
 8. Tomcat restart and visit http://localhost:port/model2
