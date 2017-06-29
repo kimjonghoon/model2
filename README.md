@@ -24,7 +24,7 @@
 			username="java"
 			password="school"
 			driverClassName="oracle.jdbc.driver.OracleDriver"
-			url="jdbc:oracle:thin:@127.0.0.1:1521:XE" 
+			url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
 			maxActive="8"
 			maxIdle="4" /&gt;
 	&lt;/Context&gt;
