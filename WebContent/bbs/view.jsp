@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="게시판 상세보기" />
 <meta name="Description" content="게시판 상세보기" />
 <title>BBS</title>
@@ -138,7 +137,7 @@ function deleteComment(commentNo) {
 	</c:if>    
     <p id="comment${comment.commentNo }">${comment.memo }</p>
     <div class="modify-comment">
-        <form id="modifyCommentForm${comment.commentNo }" action="updateComment_proc.do" method="post" style="display: none;">
+        <form id="modifyCommentForm${comment.commentNo }" action="updateComment.do" method="post" style="display: none;">
         <p>
             <input type="hidden" name="commentNo" value="${comment.commentNo }" />
             <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -159,7 +158,7 @@ function deleteComment(commentNo) {
 </c:forEach>
 <!--  덧글 반복 끝 -->
 
-<form id="addCommentForm" action="addComment_proc.do" method="post">
+<form id="addCommentForm" action="addComment.do" method="post">
 	<p style="margin: 0;padding: 0">
 		<input type="hidden" name="articleNo" value="${param.articleNo }" />
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -310,7 +309,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="writeForm" action="write_form.do" method="get">
+    <form id="writeForm" action="write.do" method="get">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -318,7 +317,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="modifyForm" action="modify_form.do" method="get">
+    <form id="modifyForm" action="modify.do" method="get">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -326,7 +325,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="delForm" action="del_proc.do" method="post">
+    <form id="delForm" action="del.do" method="post">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -334,7 +333,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="deleteCommentForm" action="deleteComment_proc.do" method="post">
+    <form id="deleteCommentForm" action="deleteComment.do" method="post">
     <p>
         <input type="hidden" name="commentNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -343,7 +342,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>   
-    <form id="deleteAttachFileForm" action="deleteAttachFile_proc.do" method="post">
+    <form id="deleteAttachFileForm" action="deleteAttachFile.do" method="post">
     <p>
         <input type="hidden" name="attachFileNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />

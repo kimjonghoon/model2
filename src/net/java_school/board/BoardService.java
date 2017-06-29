@@ -67,7 +67,7 @@ public class BoardService {
         dao.deleteFile(attachFileNo);
     }
     
-    //게시판 이름 조회(목록list.jsp,상세보기view.jsp,글쓰기write_form.jsp,글수정modify_form.jsp)
+    //게시판 이름 조회(목록list.jsp,상세보기view.jsp,글쓰기write.jsp,글수정modify.jsp)
     public String getBoardNm(String boardCd) {
         return dao.selectOneBoardName(boardCd);
     }

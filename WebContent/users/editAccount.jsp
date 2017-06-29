@@ -1,25 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/loginCheck.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="내 정보 수정" />
 <meta name="Description" content="내 정보 수정" />
 <title>내 정보 수정</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" />
 <script type="text/javascript">
-//<![CDATA[ 
-
 function check() {
     //var form = document.getElementById("editAccountForm");
     //TODO 유효성 검사 
     return true;
 }
-
-//]]> 
 </script>
 </head>
 <body>
@@ -44,7 +39,7 @@ function check() {
 비밀번호외의 자신의 계정 정보를 수정할 수 있습니다.<br />
 비밀번호는 <a href="changePasswd.do">비밀번호 변경</a>메뉴를 이용하세요.<br />
 </p>
-<form id="editAccountForm" action="editAccount_proc.do" method="post" onsubmit="return check()">
+<form id="editAccountForm" action="editAccount.do" method="post" onsubmit="return check()">
 <table>
 <tr>
 	<td>이름</td>

@@ -19,7 +19,6 @@ public class LoginAction implements Action {
 			HttpServletResponse resp) throws IOException {
 		
 		String url = req.getParameter("url");
-		
 		String email = req.getParameter("email");
 		String passwd = req.getParameter("passwd");
 		

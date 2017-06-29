@@ -1,25 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="로그인" />
 <meta name="Description" content="로그인" />
 <title>로그인</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" />
 <script type="text/javascript">
-//<![CDATA[
-
 function check() {
 	//var form = document.getElementById("loginForm");
 	//TODO 유효성 검사 
 	return true;
 }
-
-//]]>
 </script>
 </head>
 <body>
@@ -44,7 +39,7 @@ function check() {
 	<p style="color: red;">로그인에 실패했습니다.</p>
 </c:if>
 
-<form id="loginForm" action="login_proc.do" method="post" onsubmit="return check()">
+<form id="loginForm" action="login.do" method="post" onsubmit="return check()">
 <p style="margin: 0; padding: 0;">
 <input type="hidden" name="url" value="${param.url }" />
 </p>

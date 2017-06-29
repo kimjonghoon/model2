@@ -43,7 +43,7 @@ public class WriteFormAction implements Action {
 		
 		req.setAttribute("boardNm", boardNm);
 		
-		forward.setView("/bbs/write_form.jsp");
+		forward.setView("/bbs/write.jsp");
 		
 		return forward;
 	}

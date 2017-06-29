@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="비밀번호 변경" />
 <meta name="Description" content="비밀번호 변경" />
 <title>비밀번호 변경</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" />
 <script type="text/javascript">
-//<![CDATA[ 
-
 function check() {
     var form = document.getElementById("changePassworddForm");
     if (form.passwd.value == form.confirm.value) {
@@ -22,8 +19,6 @@ function check() {
     	return false;
     }
 }
-
-//]]> 
 </script>
 </head>
 <body>
@@ -40,13 +35,12 @@ function check() {
     
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
-		
-<!-- 본문 시작 -->
+
 <div id="url-navi">회원</div>
 <h1>비밀번호 변경</h1>
 ${user.name }<br />
 ${user.mobile }<br />
-<form id="changePassworddForm" action="changePasswd_proc.do" method="post" onsubmit="return check()">
+<form id="changePassworddForm" action="changePasswd.do" method="post" onsubmit="return check()">
 <table>
 <tr>
 	<td>현재 비밀번호</td>
@@ -65,8 +59,7 @@ ${user.mobile }<br />
 </tr>
 </table>
 </form>
-<!-- 본문 끝 -->
-		
+
 		</div>
     </div>
     

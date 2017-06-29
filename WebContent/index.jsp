@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="net.java_school.user.User" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="메인페이지" />
 <meta name="Description" content="메인페이지" />
 <title>메인 페이지</title>
@@ -22,13 +21,13 @@
 User loginUser = (User) session.getAttribute("user");
 if (loginUser == null) {
 %>
-			<input type="button" value="로그인" onclick="location.href='./users/login.jsp'" />
-			<input type="button" value="회원가입" onclick="location.href='./users/signUp.jsp'" />
+			<input type="button" value="로그인" onclick="location.href='./users/login.do'" />
+			<input type="button" value="회원가입" onclick="location.href='./users/signUp.do'" />
 <%
 } else {
 %>
-			<input type="button" value="로그아웃" onclick="location.href='./users/logout_proc.jsp'" />
-			<input type="button" value="내정보수정" onclick="location.href='./users/editAccount.jsp'" />
+			<input type="button" value="로그아웃" onclick="location.href='./users/logout.do'" />
+			<input type="button" value="내정보수정" onclick="location.href='./users/editAccount.do'" />
 <%
 }
 %>

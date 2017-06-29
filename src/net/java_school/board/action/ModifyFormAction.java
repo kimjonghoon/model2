@@ -43,7 +43,7 @@ public class ModifyFormAction implements Action {
 		req.setAttribute("content", content);
 		req.setAttribute("boardNm", boardNm);
 		
-		forward.setView("/bbs/modify_form.jsp");
+		forward.setView("/bbs/modify.jsp");
 		
 		return forward;
 	}

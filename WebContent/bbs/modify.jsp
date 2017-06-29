@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <meta name="Keywords" content="게시판 수정하기 폼" />
 <meta name="Description" content="게시판 수정하기 폼" />
 <title>BBS</title>
@@ -46,7 +45,7 @@ function goView() {
 <h1>${boardNm }</h1>
 <div id="bbs">
 <h2>수정</h2>
-<form id="modifyForm" action="modify_proc.do" method="post" enctype="multipart/form-data" onsubmit="return check()">
+<form id="modifyForm" action="modify.do" method="post" enctype="multipart/form-data" onsubmit="return check()">
 <p style="margin: 0;padding: 0;">
 <input type="hidden" name="articleNo" value="${param.articleNo }" />
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
