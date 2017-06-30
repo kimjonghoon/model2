@@ -12,9 +12,9 @@
 <script type="text/javascript">
 //<![CDATA[
 
-function goList(curPage) {
+function goList(page) {
     var form = document.getElementById("listForm");
-    form.curPage.value = curPage;
+    form.page.value = page;
     form.submit();
 }
 
@@ -85,7 +85,7 @@ function goWrite() {
 		</c:if>
 		<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 			<c:choose>
-				<c:when test="${param.curPage == i }">
+				<c:when test="${param.page == i }">
 				<span class="bbs-strong">${i }</span>
 				</c:when>
 				<c:otherwise>
@@ -106,7 +106,7 @@ function goWrite() {
 		<form action="list.do" method="get">
 			<p style="margin: 0;padding: 0;">
 				<input type="hidden" name="boardCd" value="${param.boardCd }" />
-				<input type="hidden" name="curPage" value="1" />
+				<input type="hidden" name="page" value="1" />
 				<input type="text" name="searchWord" size="15" maxlength="30" />
 				<input type="submit" value="검색" />
 			</p>
@@ -137,7 +137,7 @@ function goWrite() {
     <form id="listForm" action="list.do" method="get">
     <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" />
+        <input type="hidden" name="page" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -145,14 +145,14 @@ function goWrite() {
     <p>
         <input type="hidden" name="articleNo" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
     <form id="writeForm" action="write.do" method="get">
     <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>

@@ -69,7 +69,7 @@ public class WriteAction implements Action {
 		BoardService service = new BoardService();
 		service.addArticle(article, attachFile);
 		
-		forward.setView("list.do?boardCd=" + boardCd + "&curPage=1");
+		forward.setView("list.do?boardCd=" + boardCd + "&page=1");
 		forward.setRedirect(true);
 		
 		return forward;

@@ -37,14 +37,14 @@ public class DeleteAttachFileAction implements Action {
 
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
-		int curPage = Integer.parseInt(req.getParameter("curPage"));
+		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
 		
 		service.removeAttachFile(attachFileNo);
 		
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		
-		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&curPage=" + curPage + "&searchWord=" + searchWord);
+		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
 		
 		return forward;

@@ -39,7 +39,7 @@ public class LoginAction implements Action {
 				forward.setView(url);
 				forward.setRedirect(true);
 			} else {
-				forward.setView(contextPath + "/bbs/list.do?boardCd=free&curPage=1");
+				forward.setView(contextPath + "/bbs/list.do?boardCd=free&page=1");
 				forward.setRedirect(true);
 			}
 		}

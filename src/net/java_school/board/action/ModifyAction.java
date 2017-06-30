@@ -45,7 +45,7 @@ public class ModifyAction implements Action {
 		}
 		
 		String boardCd = multi.getParameter("boardCd");
-		int curPage = Integer.parseInt(multi.getParameter("curPage"));
+		int page = Integer.parseInt(multi.getParameter("page"));
 		String searchWord = multi.getParameter("searchWord");
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		
@@ -77,7 +77,7 @@ public class ModifyAction implements Action {
 		
 		service.modifyArticle(article, attachFile);
 		
-		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&curPage=" + curPage + "&searchWord=" + searchWord);
+		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
 		
 		return forward;

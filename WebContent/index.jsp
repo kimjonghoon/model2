@@ -43,7 +43,7 @@ if (loginUser == null) {
             <li><a href="jsp-project/">JSP Project</a></li>
             <li><a href="spring/">Spring</a></li>
             <li><a href="javascript/">JavaScript</a></li>
-            <li><a href="bbs/list.do?boardCd=free&amp;curPage=1">BBS</a></li>
+            <li><a href="bbs/list.do?boardCd=free&amp;page=1">BBS</a></li>
         </ul>
     </div>
     

@@ -34,9 +34,9 @@ function modifyCommentToggle(articleNo) {
 	form.style.display = form_display;
 }
 
-function goList(curPage) {
+function goList(page) {
     var form = document.getElementById("listForm");
-    form.curPage.value = curPage;
+    form.page.value = page;
     form.submit();
 }
 
@@ -142,7 +142,7 @@ function deleteComment(commentNo) {
             <input type="hidden" name="commentNo" value="${comment.commentNo }" />
             <input type="hidden" name="boardCd" value="${param.boardCd }" />
             <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="curPage" value="${param.curPage }" />
+            <input type="hidden" name="page" value="${param.page }" />
             <input type="hidden" name="searchWord" value="${param.searchWord }" />
         </p>
         <div class="fr">
@@ -162,7 +162,7 @@ function deleteComment(commentNo) {
 	<p style="margin: 0;padding: 0">
 		<input type="hidden" name="articleNo" value="${param.articleNo }" />
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
-		<input type="hidden" name="curPage" value="${param.curPage }" />
+		<input type="hidden" name="page" value="${param.page }" />
 		<input type="hidden" name="searchWord" value="${param.searchWord }" />
 	</p>
     <div id="addComment">
@@ -196,7 +196,7 @@ function deleteComment(commentNo) {
 		<c:if test="${prevArticle != null }">        
         <input type="button" value="이전글" onclick="goView('${prevArticle.articleNo}')" />
 		</c:if>        
-        <input type="button" value="목록" onclick="goList('${param.curPage }')" />
+        <input type="button" value="목록" onclick="goList('${param.page }')" />
         <input type="button" value="새글쓰기" onclick="goWrite()" />
     </div>
 </div>
@@ -244,7 +244,7 @@ function deleteComment(commentNo) {
 	
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
-			<c:when test="${param.curPage == i }">
+			<c:when test="${param.page == i }">
 				<span class="bbs-strong">${i }</span>
 			</c:when>	
 			<c:otherwise>	
@@ -266,7 +266,7 @@ function deleteComment(commentNo) {
 	<form action="list.do" method="get">
 	<p style="margin: 0;padding: 0;">
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
-		<input type="hidden" name="curPage" value="1" />
+		<input type="hidden" name="page" value="1" />
 		<input type="text" name="searchWord" size="15" maxlength="30" />
 		<input type="submit" value="검색" />
 	</p>
@@ -297,7 +297,7 @@ function deleteComment(commentNo) {
     <form id="listForm" action="list.do" method="get">
     <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" />
+        <input type="hidden" name="page" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -305,7 +305,7 @@ function deleteComment(commentNo) {
     <p>
         <input type="hidden" name="articleNo" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -313,7 +313,7 @@ function deleteComment(commentNo) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -321,7 +321,7 @@ function deleteComment(commentNo) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -329,7 +329,7 @@ function deleteComment(commentNo) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -338,7 +338,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="commentNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>   
@@ -347,7 +347,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="attachFileNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>       

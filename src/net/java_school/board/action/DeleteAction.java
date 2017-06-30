@@ -38,12 +38,12 @@ public class DeleteAction implements Action {
 		service.removeArticle(articleNo);
 		
 		String boardCd = req.getParameter("boardCd");
-		String curPage = req.getParameter("curPage");
+		String page = req.getParameter("page");
 		String searchWord = req.getParameter("searchWord");
 		
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		
-		forward.setView("list.do?boardCd=" + boardCd + "&curPage=" + curPage + "&searchWord=" + searchWord);
+		forward.setView("list.do?boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
 		
 		return forward;

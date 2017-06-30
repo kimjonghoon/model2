@@ -62,7 +62,7 @@ if (loginUser == null) {
             <li><a href="<%=contextPath %>/jsp-project/">JSP Project</a></li>
             <li><a href="<%=contextPath %>/spring/">Spring</a></li>
             <li><a href="<%=contextPath %>/javascript/">JavaScript</a></li>
-            <li><a href="<%=contextPath %>/bbs/list.do?boardCd=free&amp;curPage=1">BBS</a></li>
+            <li><a href="<%=contextPath %>/bbs/list.do?boardCd=free&amp;page=1">BBS</a></li>
         </ul>
     </div>
     

@@ -44,7 +44,7 @@ public class ViewAction implements Action {
 		
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
-		int curPage = Integer.parseInt(req.getParameter("curPage"));
+		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
 		
 		BoardService service = new BoardService();
@@ -53,7 +53,7 @@ public class ViewAction implements Action {
 		int numPerPage = 10;
 		int pagePerBlock = 10;
 		PagingHelper pagingHelper = 
-				new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+				new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 		
 		service.setPagingHelper(pagingHelper);
 		

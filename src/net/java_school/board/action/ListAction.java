@@ -40,7 +40,7 @@ public class ListAction implements Action {
 		}
 		
 		String boardCd = req.getParameter("boardCd");
-		int curPage = Integer.parseInt(req.getParameter("curPage"));
+		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
 		
 		BoardService service = new BoardService();
@@ -48,7 +48,7 @@ public class ListAction implements Action {
 		int totalRecord = service.getTotalRecord(boardCd, searchWord);
 		int numPerPage = 10;
 		int pagePerBlock = 10;
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+		PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 		
 		service.setPagingHelper(pagingHelper);
 		
