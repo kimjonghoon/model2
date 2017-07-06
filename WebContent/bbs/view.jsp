@@ -186,7 +186,7 @@ function deleteComment(commentNo) {
 </c:forEach>
 <!--  comments end -->
 
-<div id="next-prev">
+<div class="next-prev">
     <c:if test="${nextArticle != null }">
     <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
     </c:if>
