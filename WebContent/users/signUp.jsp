@@ -30,9 +30,11 @@ function check() {
     
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
-<!-- 본문 시작 -->
+
 <div id="url-navi">회원</div>
-<h1>회원가입</h1>
+
+<h2>회원가입</h2>
+
 <form id="signUpForm" action="signUp.do" method="post" onsubmit="return check()">
 <table>
 <tr>
@@ -65,13 +67,12 @@ function check() {
 	<input type="submit" value="확인" />
 </div>
 </form>
-<!-- 본문 끝 -->
 		
 		</div>
     </div>
     
     <div id="sidebar">
-		<%@ include file="notLoginUsers-menu.jsp" %>
+		<%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">

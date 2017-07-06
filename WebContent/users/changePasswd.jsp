@@ -37,10 +37,14 @@ function check() {
 		<div id="content" style="min-height: 800px;">
 
 <div id="url-navi">회원</div>
-<h1>비밀번호 변경</h1>
+
+<h2>비밀번호 변경</h2>
+
 ${user.name }<br />
 ${user.mobile }<br />
+
 <form id="changePassworddForm" action="changePasswd.do" method="post" onsubmit="return check()">
+
 <table>
 <tr>
 	<td>현재 비밀번호</td>
@@ -64,7 +68,7 @@ ${user.mobile }<br />
     </div>
     
     <div id="sidebar">
-		<%@ include file="loginUsers-menu.jsp" %>
+		<%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">

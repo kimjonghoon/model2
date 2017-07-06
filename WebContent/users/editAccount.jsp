@@ -32,9 +32,9 @@ function check() {
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 		
-<!-- 본문 시작 -->
 <div id="url-navi">회원</div>
-<h1>내 정보 수정</h1>
+
+<h2>내 정보 수정</h2>
 <p>
 비밀번호외의 자신의 계정 정보를 수정할 수 있습니다.<br />
 비밀번호는 <a href="changePasswd.do">비밀번호 변경</a>메뉴를 이용하세요.<br />
@@ -58,13 +58,12 @@ function check() {
 </tr>
 </table>
 </form>
-<!-- 본문 끝 -->
 		
 		</div>
     </div>
     
     <div id="sidebar">
-		<%@ include file="loginUsers-menu.jsp" %>
+		<%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">

@@ -10,8 +10,6 @@
 <title>BBS</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" />
 <script type="text/javascript">
-//<![CDATA[
-
 function modifyCommentToggle(articleNo) {
 	var p_id = "comment" + articleNo;
 	var p = document.getElementById(p_id);
@@ -81,8 +79,6 @@ function deleteComment(commentNo) {
         form.submit();
     }
 }
-
-//]]>
 </script>
 </head>
 <body>
@@ -100,89 +96,11 @@ function deleteComment(commentNo) {
     <div id="container">
             <div id="content" style="min-height: 800px;">
 
-<!-- 본문 시작 -->
 <div id="url-navi">BBS</div>
-<h1>${boardNm }</h1>
-<div id="bbs">
-<table>
-<tr>
-    <th style="width: 37px;text-align: left;vertical-align: top;">TITLE</th>
-    <th style="text-align: left;color: #555;">${title }</th>
-</tr>
-</table>
-<div id="gul-content">
-    <span id="date-writer-hit">edited ${regdate } by ${name } hit ${hit }</span>
-    <p>${content }</p>
-    <p id="file-list" style="text-align: right">
-    	<c:forEach var="file" items="${attachFileList }" varStatus="status">
-	    	<a href="${uploadPath }${file.filename }">${file.filename }</a>
-			<c:if test="${user.email == file.email }">
-	    	<a href="javascript:deleteAttachFile('${file.attachFileNo }')">x</a>
-			</c:if>
-			<br />    	
-		</c:forEach>
-    </p>
-</div>
 
-<!--  덧글 반복 시작 -->
-<c:forEach var="comment" items="${commentList }" varStatus="status">
-<div class="comments">
-    <span class="writer">${comment.name }</span>
-    <span class="date">${comment.regdate }</span>
-	<c:if test="${user.email == comment.email }">    
-    <span class="modify-del">
-        <a href="javascript:modifyCommentToggle('${comment.commentNo }')">수정</a>
-         | <a href="javascript:deleteComment('${comment.commentNo }')">삭제</a>
-    </span>
-	</c:if>    
-    <p id="comment${comment.commentNo }">${comment.memo }</p>
-    <div class="modify-comment">
-        <form id="modifyCommentForm${comment.commentNo }" action="updateComment.do" method="post" style="display: none;">
-        <p>
-            <input type="hidden" name="commentNo" value="${comment.commentNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        </p>
-        <div class="fr">
-                <a href="javascript:document.forms.modifyCommentForm${comment.commentNo }.submit()">수정하기</a>
-                | <a href="javascript:modifyCommentToggle('${comment.commentNo }')">취소</a>
-        </div>
-        <div>
-            <textarea class="modify-comment-ta" name="memo" rows="7" cols="50">${comment.memo }</textarea>
-        </div>
-        </form>
-    </div>
-</div>
-</c:forEach>
-<!--  덧글 반복 끝 -->
+<h2>${boardNm }</h2>
 
-<form id="addCommentForm" action="addComment.do" method="post">
-	<p style="margin: 0;padding: 0">
-		<input type="hidden" name="articleNo" value="${param.articleNo }" />
-		<input type="hidden" name="boardCd" value="${param.boardCd }" />
-		<input type="hidden" name="page" value="${param.page }" />
-		<input type="hidden" name="searchWord" value="${param.searchWord }" />
-	</p>
-    <div id="addComment">
-        <textarea name="memo" rows="7" cols="50"></textarea>
-    </div>
-    <div style="text-align: right;">
-        <input type="submit" value="덧글남기기" />
-    </div>
-</form>
-
-<div id="next-prev">
-    <c:if test="${nextArticle != null }">
-    <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
-    </c:if>
-    <c:if test="${prevArticle != null }">
-    <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
-    </c:if>
-</div>
-
-<div id="view-menu">
+<div class="view-menu" style="margin-bottom: 5px;">
     <c:if test="${user.email == email }">
     <div class="fl">
         <input type="button" value="수정" onclick="goModify()" />
@@ -201,8 +119,103 @@ function deleteComment(commentNo) {
     </div>
 </div>
 
-<!-- 목록 -->
-<table>
+<table class="bbs-table">
+<tr>
+    <th style="width: 37px;text-align: left;vertical-align: top;">TITLE</th>
+    <th style="text-align: left;color: #555;">${title }</th>
+</tr>
+</table>
+<div id="detail">
+    <span id="date-writer-hit">edited ${regdate } by ${name } hit ${hit }</span>
+    <p>${content }</p>
+    <p id="file-list" style="text-align: right">
+    	<c:forEach var="file" items="${attachFileList }" varStatus="status">
+	    	<a href="${uploadPath }${file.filename }">${file.filename }</a>
+			<c:if test="${user.email == file.email }">
+	    	<a href="javascript:deleteAttachFile('${file.attachFileNo }')">x</a>
+			</c:if>
+			<br />    	
+		</c:forEach>
+    </p>
+</div>
+
+<form id="addCommentForm" action="addComment.do" method="post">
+<p style="margin: 0;padding: 0">
+	<input type="hidden" name="articleNo" value="${param.articleNo }" />
+	<input type="hidden" name="boardCd" value="${param.boardCd }" />
+	<input type="hidden" name="page" value="${param.page }" />
+	<input type="hidden" name="searchWord" value="${param.searchWord }" />
+</p>
+   <div id="addComment">
+       <textarea name="memo" rows="7" cols="50"></textarea>
+   </div>
+   <div style="text-align: right;">
+       <input type="submit" value="덧글남기기" />
+   </div>
+</form>
+
+<!-- comments begin -->
+<c:forEach var="comment" items="${commentList }" varStatus="status">
+<div class="comments">
+    <span class="writer">${comment.name }</span>
+    <span class="date">${comment.regdate }</span>
+	<c:if test="${user.email == comment.email }">    
+    <span class="modify-del">
+        <a href="javascript:modifyCommentToggle('${comment.commentNo }')">수정</a>
+         | <a href="javascript:deleteComment('${comment.commentNo }')">삭제</a>
+    </span>
+	</c:if>    
+    <p id="comment${comment.commentNo }" class="view-comment">${comment.memo }</p>
+    <form class="modify-comment" id="modifyCommentForm${comment.commentNo }" action="updateComment.do" method="post" style="display: none;">
+    <p>
+        <input type="hidden" name="commentNo" value="${comment.commentNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    </p>
+    <div class="fr">
+            <a href="javascript:document.forms.modifyCommentForm${comment.commentNo }.submit()">수정하기</a>
+            | <a href="javascript:modifyCommentToggle('${comment.commentNo }')">취소</a>
+    </div>
+    <div>
+        <textarea class="modify-comment-ta" name="memo" rows="7" cols="50">${comment.memo }</textarea>
+    </div>
+    </form>
+</div>
+</c:forEach>
+<!--  comments end -->
+
+<div id="next-prev">
+    <c:if test="${nextArticle != null }">
+    <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
+    </c:if>
+    <c:if test="${prevArticle != null }">
+    <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
+    </c:if>
+</div>
+
+<div class="view-menu">
+    <c:if test="${user.email == email }">
+    <div class="fl">
+        <input type="button" value="수정" onclick="goModify()" />
+        <input type="button" value="삭제" onclick="goDelete()" />
+    </div>
+    </c:if>        
+    <div class="fr">
+		<c:if test="${nextArticle != null }">    
+        <input type="button" value="다음글" onclick="goView('${nextArticle.articleNo }')" />
+		</c:if>
+		<c:if test="${prevArticle != null }">        
+        <input type="button" value="이전글" onclick="goView('${prevArticle.articleNo}')" />
+		</c:if>        
+        <input type="button" value="목록" onclick="goList('${param.page }')" />
+        <input type="button" value="새글쓰기" onclick="goWrite()" />
+    </div>
+</div>
+
+<!-- BBS List in detailed Article -->
+<table id="list-table" class="bbs-table">
 <tr>
 	<th style="width: 60px;">NO</th>
 	<th>TITLE</th>
@@ -273,9 +286,6 @@ function deleteComment(commentNo) {
 	</form>
 </div>
 
-</div><!-- bbs 끝 -->
-<!-- 본문 끝 -->
-
 		</div><!-- content 끝 -->
 	</div><!-- container 끝 -->
     
@@ -290,7 +300,6 @@ function deleteComment(commentNo) {
     <div id="footer">
 		<%@ include file="../inc/footer.jsp" %>
     </div>
-        
 </div>
 
 <div id="form-group">

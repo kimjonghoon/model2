@@ -10,25 +10,19 @@
 <title>BBS</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" />
 <script type="text/javascript">
-//<![CDATA[
-           
 function check() {
     //var form = document.getElementById("writeForm");
     //유효성 검사로직 추가 
     return true;
 }
-
 function goList() {
     var form = document.getElementById("listForm");
     form.submit();
 }
-
 function goView() {
     var form = document.getElementById("viewForm");
     form.submit();
 }
-
-//]]>                    
 </script>
 </head>
 <body>
@@ -46,16 +40,18 @@ function goView() {
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 
-<!--  본문 시작 -->
 <div id="url-navi">BBS</div>
-<h1>${boardNm }</h1>
-<div id="bbs">
-<h2>글쓰기</h2>
+
+<h2>${boardNm }</h2>
+
+<h3>글쓰기</h3>
+
 <form id="writeForm" action="write.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
-<p style="margin: 0;padding: 0;">
+<input type="hidden" name="articleNo" value="${param.articleNo }" />
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
-</p>
-<table id="write-form">
+<input type="hidden" name="page" value="${param.page }" />
+<input type="hidden" name="searchWord" value="${param.searchWord }" />
+<table id="write-form" class="bbs-table">
 <tr>
     <td>제목</td>
     <td><input type="text" name="title" style="width: 90%"/></td>
@@ -78,8 +74,6 @@ function goView() {
 	</c:if>
 </div>
 </form>
-</div>
-<!-- 본문 끝 -->
 		
 		</div>
     </div>

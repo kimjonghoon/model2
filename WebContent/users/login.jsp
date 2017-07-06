@@ -32,9 +32,10 @@ function check() {
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 
-<!-- 본문 시작 -->
 <div id="url-navi">회원</div>
-<h1>로그인</h1>
+
+<h2>로그인</h2>
+
 <c:if test="${not empty param.msg }">
 	<p style="color: red;">로그인에 실패했습니다.</p>
 </c:if>
@@ -58,13 +59,12 @@ function check() {
     <input type="button" value="회원가입" onclick="location.href='signUp.do'" />
 </div>
 </form>
-<!-- 본문 끝 -->
 		
 		</div>
     </div>
     
 	<div id="sidebar">
-		<%@ include file="notLoginUsers-menu.jsp" %>
+		<%@ include file="user-menu.jsp" %>
 	</div>
     
 	<div id="extra">

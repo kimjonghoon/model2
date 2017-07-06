@@ -24,11 +24,10 @@
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 		
-<!-- 본문 시작 -->
 <div id="url-navi">회원</div>
-<h1>회원 탈퇴 확인</h1>
-회원님의 모든 정보가 삭제되었습니다.<br />
-<!-- 본문 끝 -->
+
+<h2>회원 탈퇴 확인</h2>
+회원님의 모든 정보가 삭제되었습니다.
 		
 		</div>
     </div>

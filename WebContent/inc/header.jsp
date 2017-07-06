@@ -5,12 +5,12 @@
 <div id="memberMenu" style="float: right;position: relative; top: 7px;">
 <c:choose>
 	<c:when test="${empty user }">
-	<input type="button" value="로그인" onclick="location.href='../users/login.do'" />
-	<input type="button" value="회원가입" onclick="location.href='../users/signUp.do'" />
+		<input type="button" value="로그인" onclick="location.href='../users/login.do'" />
+		<input type="button" value="회원가입" onclick="location.href='../users/signUp.do'" />
 	</c:when>
 	<c:otherwise>
-	<input type="button" value="로그아웃" onclick="location.href='../users/logout_proc.do'" />
-	<input type="button" value="내정보수정" onclick="location.href='../users/editAccount.do'" />
+		<input type="button" value="로그아웃" onclick="location.href='../users/logout_proc.do'" />
+		<input type="button" value="내정보수정" onclick="location.href='../users/editAccount.do'" />
 	</c:otherwise>
 </c:choose>	
 </div>

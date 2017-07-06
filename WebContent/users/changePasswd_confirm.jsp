@@ -24,18 +24,18 @@
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 		
-<!-- 본문 시작 -->
 <div id="url-navi">회원</div>
-<h1>비밀번호가 변경되었습니다.</h1>
+
+<h2>비밀번호가 변경되었습니다.</h2>
+
 변경된 비밀번호로 다시 로그인하실 수 있습니다.<br />
 <input type="button" value="로그인" onclick="javascript:location.href='login.do'" />
-<!-- 본문 끝 -->
 		
 		</div>
     </div>
     
     <div id="sidebar">
-		<%@ include file="loginUsers-menu.jsp" %>
+		<%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">

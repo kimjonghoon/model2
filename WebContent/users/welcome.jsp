@@ -24,12 +24,12 @@
 	<div id="container">
 		<div id="content" style="min-height: 800px;">
 		
-<!-- 본문 시작 -->
 <div id="url-navi">회원</div>
-<h1>환영합니다.</h1>
+
+<h2>환영합니다.</h2>
+
 회원가입시 입력한 Email이 아이디로 사용됩니다.<br />
 <input type="button" value="로그인" onclick="javascript:location.href='login.do'" />
-<!-- 본문 끝 -->
 		
 		</div>
     </div>
