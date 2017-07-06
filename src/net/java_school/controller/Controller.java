@@ -126,7 +126,7 @@ public class Controller extends HttpServlet {
 			} else if (command.equals("/users/login.do") && req.getMethod().equals("POST")) {
 				action = new LoginAction();
 				forward = action.execute(req, resp);
-			} else if (command.equals("/users/logout.do") && req.getMethod().equals("POST")) {
+			} else if (command.equals("/users/logout.do") && req.getMethod().equals("GET")) {
 				action = new LogoutAction();
 				forward = action.execute(req, resp);
 			}

@@ -48,19 +48,18 @@ if (loginUser == null) {
     </div>
     
 	<div id="container">
-		<div id="content" style="min-height: 800px;">
+		<div id="content">
 			<div id="url-navi">Main</div>
 
-<!-- 본문 시작 -->
-<h1>수정</h1>
-<h2>JSP Project 전반적인 내용 수정 2014.9.26</h2>
+<h2>수정</h2>
+
+<h3>JSP Project 전반적인 내용 수정 2014.9.26</h3>
 프로토타입을 만든 후에 진행하는 것으로 내용 수정<br />
 프로토타입에 로그인 구현<br />
 
-<h2>CSS Layout 수정 2014.9.26</h2>
+<h3>CSS Layout 수정 2014.9.26</h3>
 카테고리 정리<br />
 스타일시트 파일 체계적으로 갱신<br />
-<!--  본문 끝 -->
 		
 		</div>
     </div>

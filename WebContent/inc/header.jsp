@@ -9,7 +9,7 @@
 		<input type="button" value="회원가입" onclick="location.href='../users/signUp.do'" />
 	</c:when>
 	<c:otherwise>
-		<input type="button" value="로그아웃" onclick="location.href='../users/logout_proc.do'" />
+		<input type="button" value="로그아웃" onclick="location.href='../users/logout.do'" />
 		<input type="button" value="내정보수정" onclick="location.href='../users/editAccount.do'" />
 	</c:otherwise>
 </c:choose>	

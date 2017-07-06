@@ -24,11 +24,11 @@
     </div>
     
 	<div id="container">
-		<div id="content" style="min-height: 800px;">
+		<div id="content">
 			<div id="url-navi">Java Home</div>
 
-<!-- 본문 시작 -->
-<h1>JDK 설치</h1>
+<h2>JDK 설치</h2>
+
 <p>
 www.oracle.com을 방문하여 JDK를 다운로드한다.<br />
 설치는 다음 버튼을 클릭하는 것만으로 완료 할 수 있다.<br />  
@@ -37,7 +37,8 @@ PATH의 기존 설정 값 맨뒤에 윈도우 환경변수의 구분자 ;를 추
 이때 기존값은 지우지 않도록 주의한다.<br /> 
 </p>
 
-<h2>PATH</h2>
+<h3>PATH</h3>
+
 <p>
 PATH는 운영체제가 실행 프로그램을 찾을 때 참조하는 환경변수이다.<br />
 명령 프롬프트에서 <strong>echo %PATH%</strong>를 실행하면 PATH의 설정값을 확인할 수 있다.<br />
@@ -45,7 +46,7 @@ PATH에 JDK의 bin디렉토리를 추가하는 이유는 어느 디렉토리에�
 실행 프로그램(javac.exe,java.exe,jar.exe 등)을 실행할 수 있도록 하기 위해서이다.<br />
 </p>
 
-<h2>테스트</h2>
+<h3>테스트</h3>
 <p>
 아래 내용을 메모장에 작성하고 파일명을 Test.java로 저장한다.<br />
 </p>
@@ -70,8 +71,6 @@ C:\&gt;javac Test.java
 C:\&gt;java Test
 Hello World!
 </pre>
-
-<!-- 본문 끝 -->
 		
 		</div>
     </div>

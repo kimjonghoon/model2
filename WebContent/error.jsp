@@ -45,7 +45,7 @@ if (loginUser == null) {
 <%
 } else {
 %>
-			<input type="button" value="로그아웃" onclick="location.href='<%=contextPath %>/users/logout_proc.do'" />
+			<input type="button" value="로그아웃" onclick="location.href='<%=contextPath %>/users/logout.do'" />
 			<input type="button" value="내정보수정" onclick="location.href='<%=contextPath %>/users/editAccount.do'" />
 <%
 }
@@ -67,11 +67,11 @@ if (loginUser == null) {
     </div>
     
 	<div id="container">
-		<div id="content" style="min-height: 800px;">
+		<div id="content">
 			<div id="url-navi">Error</div>
 
-<!-- 본문 시작 -->
-<h1>Error Page</h1>
+<h2>Error Page</h2>
+
 <%
 if(statusCode != 500){
     out.write("<h3>Error Details</h3>");
@@ -87,7 +87,6 @@ if (throwable != null) {
     out.write("</ul>");
 }
 %>
-<!--  본문 끝 -->
 		
 		</div>
     </div>
