@@ -708,9 +708,8 @@ public class BoardDao {
 		String sql = "SELECT "
 				+ "commentno, articleno, c.email, NVL(name,'Anonymous') name, memo, regdate "
 				+ "FROM "
-				+ "comments c, member m "
+				+ "comments c LEFT JOIN member m ON c.email = m.email "
 				+ "WHERE "
-				+ "c.email = m.email(+) AND "
 				+ "articleno = ? "
 				+ "ORDER BY commentno DESC"; 
 
