@@ -12,11 +12,12 @@ import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.board.Article;
 import net.java_school.board.BoardService;
-import net.java_school.commons.PagingHelper;
+import net.java_school.commons.NumbersForPaging;
+import net.java_school.commons.Paginator;
 import net.java_school.commons.WebContants;
 import net.java_school.user.User;
 
-public class ListAction implements Action {
+public class ListAction extends Paginator implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
@@ -45,19 +46,22 @@ public class ListAction implements Action {
 		
 		BoardService service = new BoardService();
 		
-		int totalRecord = service.getTotalRecord(boardCd, searchWord);
-		int numPerPage = 10;
+		int numPerPage = 20;
 		int pagePerBlock = 10;
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 		
-		service.setPagingHelper(pagingHelper);
+		int totalRecord = service.getTotalRecord(boardCd, searchWord);
+		NumbersForPaging numbers = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
 		
-		List<Article> list = service.getArticleList(boardCd, searchWord);
-		int listItemNo = service.getListItemNo();
-		int prevPage = service.getPrevPage();
-		int firstPage = service.getFirstPage();
-		int lastPage = service.getLastPage();
-		int nextPage = service.getNextPage();
+		int startRecord = (page - 1) * numPerPage + 1;
+		int endRecord = page * numPerPage;
+		
+		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
+		int listItemNo = numbers.getListItemNo();
+		int prevPage = numbers.getPrevBlock();
+		int firstPage = numbers.getFirstPage();
+		int lastPage = numbers.getLastPage();
+		int nextPage = numbers.getNextBlock();
+		int totalPage = numbers.getTotalPage();
 		String boardNm = service.getBoardNm(boardCd);
 		
 		req.setAttribute("list", list);
@@ -66,6 +70,7 @@ public class ListAction implements Action {
 		req.setAttribute("firstPage", firstPage);
 		req.setAttribute("lastPage", lastPage);
 		req.setAttribute("nextPage", nextPage);
+		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
 		
 		forward.setView("/bbs/list.jsp");

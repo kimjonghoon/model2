@@ -2,6 +2,7 @@ package net.java_school.board.action;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +16,12 @@ import net.java_school.board.Article;
 import net.java_school.board.AttachFile;
 import net.java_school.board.BoardService;
 import net.java_school.board.Comment;
-import net.java_school.commons.PagingHelper;
+import net.java_school.commons.NumbersForPaging;
+import net.java_school.commons.Paginator;
 import net.java_school.commons.WebContants;
 import net.java_school.user.User;
 
-public class ViewAction implements Action {
+public class ViewAction extends Paginator implements Action  {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
@@ -49,39 +51,51 @@ public class ViewAction implements Action {
 		
 		BoardService service = new BoardService();
 		
-		int totalRecord = service.getTotalRecord(boardCd, searchWord);
-		int numPerPage = 10;
+		int numPerPage = 20;
 		int pagePerBlock = 10;
-		PagingHelper pagingHelper = 
-				new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 		
-		service.setPagingHelper(pagingHelper);
+		int totalRecord = service.getTotalRecord(boardCd, searchWord);
 		
-		service.increaseHit(articleNo);
+		NumbersForPaging numbers = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
+
+		//articleNo, user'ip, yearMonthDayHour
+		String ip = req.getRemoteAddr();
+		LocalDateTime now = LocalDateTime.now();
+		Integer year = now.getYear();
+		Integer month = now.getMonthValue();
+		Integer day = now.getDayOfMonth();
+		Integer hour = now.getHour();
+		String yearMonthDayHour = year.toString() + month.toString() + day.toString() + hour.toString();
+
+		service.increaseHit(articleNo, ip, yearMonthDayHour);
 		
 		Article article = service.getArticle(articleNo);
 		List<AttachFile> attachFileList = service.getAttachFileList(articleNo);
 		Article nextArticle = service.getNextArticle(articleNo, boardCd, searchWord);
 		Article prevArticle = service.getPrevArticle(articleNo, boardCd, searchWord);
-		List<Article> list = service.getArticleList(boardCd, searchWord);
+		
+		int startRecord = (page - 1) * numPerPage + 1;
+		int endRecord = page * numPerPage;
+		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
 		List<Comment> commentList = service.getCommentList(articleNo);
 		String boardNm = service.getBoardNm(boardCd);
 		
 		String title = article.getTitle();
 		String content = article.getContent();
 		content = content.replaceAll(WebContants.LINE_SEPARATOR, "<br />");
-		int hit = article.getHit();
+		int hit = service.getTotalViews(articleNo);
 		String name = article.getName();
 		String email = article.getEmail();
 		Date regdate = article.getRegdate();
 		String contextPath = req.getContextPath();
 		String uploadPath = contextPath + "/upload/";
 		
-		int listItemNo = service.getListItemNo();
-		int prevPage = service.getPrevPage();
-		int firstPage = service.getFirstPage();
-		int lastPage = service.getLastPage();
-		int nextPage = service.getNextPage();
+		int listItemNo = numbers.getListItemNo();
+		int prevPage = numbers.getPrevBlock();
+		int firstPage = numbers.getFirstPage();
+		int lastPage = numbers.getLastPage();
+		int nextPage = numbers.getNextBlock();
+		int totalPage = numbers.getTotalPage();
 		
 		req.setAttribute("title", title);
 		req.setAttribute("content", content);
@@ -101,6 +115,7 @@ public class ViewAction implements Action {
 		req.setAttribute("firstPage", firstPage);
 		req.setAttribute("lastPage", lastPage);
 		req.setAttribute("nextPage", nextPage);
+		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
 
 		forward.setView("/bbs/view.jsp");

@@ -75,6 +75,7 @@ function goWrite() {
 <div id="paging">
 
 	<c:if test="${prevPage > 0 }">
+		<a href="javascript:goList('1')">1</a>
 		<a href="javascript:goList('${prevPage }')">[이전]</a>
 	</c:if>
 	
@@ -91,6 +92,7 @@ function goWrite() {
 	
 	<c:if test="${nextPage > 0 }">
 		<a href="javascript:goList('${nextPage }')">[다음]</a>
+		<a href="javascript:goList('${totalPage }')">[마지막]</a>
 	</c:if>
 </div>
 
