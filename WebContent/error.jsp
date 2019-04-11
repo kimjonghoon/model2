@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="net.java_school.user.User" %>
-<%
-String contextPath = request.getContextPath();
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="Keywords" content="Error" />
 <meta name="Description" content="Error" />
 <title>Error</title>
-<link rel="stylesheet" href="<%=contextPath %>/css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
 <%
@@ -34,44 +30,18 @@ if (requestUri == null) {
 <div id="wrap">
 
     <div id="header">
-    	<h1 style="float: left; width:150px;"><a href="<%=contextPath %>/"><img src="<%=contextPath %>/images/ci.gif" alt="java-school logo" /></a></h1>
-    	<div id="memberMenu" style="float: right;position: relative; top: 7px;">
-<%
-User loginUser = (User) session.getAttribute("user");
-if (loginUser == null) {
-%>
-			<input type="button" value="로그인" onclick="location.href='<%=contextPath %>/users/login.do'" />
-			<input type="button" value="회원가입" onclick="location.href='<%=contextPath %>/users/signUp.do'" />
-<%
-} else {
-%>
-			<input type="button" value="로그아웃" onclick="location.href='<%=contextPath %>/users/logout.do'" />
-			<input type="button" value="내정보수정" onclick="location.href='<%=contextPath %>/users/editAccount.do'" />
-<%
-}
-%>
-    	</div>
+		<%@ include file="./inc/header.jsp" %>
     </div>
     
     <div id="main-menu">
-        <ul id="nav">
-            <li><a href="<%=contextPath %>/java/">Java</a></li>
-            <li><a href="<%=contextPath %>/jdbc/">JDBC</a></li>
-            <li><a href="<%=contextPath %>/jsp/">JSP</a></li>
-            <li><a href="<%=contextPath %>/css-layout/">CSS Layout</a></li>
-            <li><a href="<%=contextPath %>/jsp-project/">JSP Project</a></li>
-            <li><a href="<%=contextPath %>/spring/">Spring</a></li>
-            <li><a href="<%=contextPath %>/javascript/">JavaScript</a></li>
-            <li><a href="<%=contextPath %>/bbs/list.do?boardCd=free&amp;page=1">BBS</a></li>
-        </ul>
+		<%@ include file="./inc/main-menu.jsp" %>
     </div>
     
 	<div id="container">
 		<div id="content">
-			<div id="url-navi">Error</div>
-
-<h2>Error Page</h2>
-
+<!-- content begin -->		
+<div id="content-categories">Error</div>
+<h3>Error Page</h3>
 <%
 if(statusCode != 500){
     out.write("<h3>Error Details</h3>");
@@ -87,24 +57,20 @@ if (throwable != null) {
     out.write("</ul>");
 }
 %>
-		
+<!-- content end -->		
 		</div>
     </div>
     
 	<div id="sidebar">
-		<h1>Main</h1>
+		<h1>Error</h1>
 	</div>
     
 	<div id="extra">
-		<a href="http://www.youtube.com"><img src="<%=contextPath %>/images/youtube.png" alt="youtube.com" /></a>
-		<a href="http://www.twitter.com"><img src="<%=contextPath %>/images/twitter.png" alt="twitter.com" /></a>
-		<a href="http://www.facebook.com"><img src="<%=contextPath %>/images/facebook.png" alt="facebook.com" /></a>
-		<a href="http://www.gmail.com"><img src="<%=contextPath %>/images/gmail.png" alt="gmail.com" /></a>
-		<a href="http://www.java-school.net"><img src="<%=contextPath %>/images/java-school.png" alt="java-school.net" /></a>    
+		<%@ include file="./inc/extra.jsp" %>    
 	</div>
     
     <div id="footer">
-		<%@ include file="inc/footer.jsp" %>
+		<%@ include file="./inc/footer.jsp" %>
     </div>
         
 </div>

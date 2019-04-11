@@ -8,7 +8,7 @@
 <meta name="Keywords" content="로그인" />
 <meta name="Description" content="로그인" />
 <title>로그인</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
 	//var form = document.getElementById("loginForm");
@@ -31,15 +31,12 @@ function check() {
     
 	<div id="container">
 		<div id="content">
-
-<div id="url-navi">회원</div>
-
-<h2>로그인</h2>
-
+<!-- content begin -->
+<div id="content-categories">회원</div>
+<h3>로그인</h3>
 <c:if test="${not empty param.msg }">
 	<p style="color: red;">로그인에 실패했습니다.</p>
 </c:if>
-
 <form id="loginForm" action="login.do" method="post" onsubmit="return check()">
 <p style="margin: 0; padding: 0;">
 <input type="hidden" name="url" value="${param.url }" />
@@ -59,7 +56,7 @@ function check() {
     <input type="button" value="회원가입" onclick="location.href='signUp.do'" />
 </div>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     

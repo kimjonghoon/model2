@@ -20,8 +20,7 @@ public class LogoutAction implements Action {
 		session.removeAttribute(WebContants.USER_KEY);
 		
 		ActionForward forward = new ActionForward();
-		String contextPath = req.getContextPath();
-		forward.setView(contextPath);
+		forward.setView("/");
 		forward.setRedirect(true);
 		
 		return forward;

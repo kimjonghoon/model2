@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -65,7 +66,6 @@ public class BoardDao {
 		}
 	}
 
-	//특정 페이지에 해당하는  게시글 리스트
 	public ArrayList<Article> selectListOfArticles(
 			String boardCd, 
 			String searchWord, 
@@ -146,7 +146,6 @@ public class BoardDao {
 		return articleList;
 	}
 
-	//총게시글수
 	public int selectCountOfArticles(String boardCd, String searchWord) {
 		int totalRecord = 0;
 		Connection con = null;
@@ -180,7 +179,6 @@ public class BoardDao {
 		return totalRecord;
 	}
 
-	//게시글 삽입
 	public void insert(Article article, AttachFile attachFile) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -244,7 +242,6 @@ public class BoardDao {
 
 	}
 
-	//게시글 수정
 	public void update(Article article, AttachFile attachFile) {
 		String sql = "UPDATE article SET title=?, content=? WHERE articleno=?";
 
@@ -303,7 +300,6 @@ public class BoardDao {
 
 	}
 
-	//게시글 삭제
 	public void delete(int articleNo) {
 		Connection con = null;
 		PreparedStatement pstmt1 = null;
@@ -364,7 +360,6 @@ public class BoardDao {
 
 	}
 
-	//P.K 에 해당하는 게시글 조회
 	public Article selectOne(int articleNo) {
 		Article article = null;
 		final String sql = "SELECT "
@@ -409,7 +404,6 @@ public class BoardDao {
 
 	}
 
-	//P.K 에 해당하는 게시글의 다음글 조회
 	public Article selectNextOne(int articleNo, String boardCd, String searchWord) {
 		Article article = null;
 		String sql = "SELECT articleno, title " +
@@ -460,7 +454,6 @@ public class BoardDao {
 
 	}
 
-	//P.K 에 해당하는 게시글의 이전글 조회
 	public Article selectPrevOne(int articleNo, String boardCd, String searchWord) {
 		Article article = null;
 		String sql = "SELECT articleno, title " +
@@ -511,7 +504,6 @@ public class BoardDao {
 
 	}
 
-	//첨부파일 리스트 조회
 	public ArrayList<AttachFile> selectListOfAttachFiles(int articleNo) {
 		ArrayList<AttachFile> attachFileList = new ArrayList<AttachFile>();
 		String sql = "SELECT attachfileno, filename, filetype, filesize, articleno, email " +
@@ -558,7 +550,6 @@ public class BoardDao {
 
 	}
 
-	//첨부파일 삭제
 	public void deleteFile(int attachFileNo) {
 		String sql = "DELETE FROM attachfile WHERE attachfileno=?";
 
@@ -585,13 +576,12 @@ public class BoardDao {
 
 	}
 
-	//게시판 코드로 게시판 이름 조회
 	public String selectOneBoardName(String boardCd) {
 		String boardNm = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT boardNm FROM board WHERE boardcd = ?";
+		String sql = "SELECT boardNm_ko FROM board WHERE boardcd = ?";
 
 		try {
 			con = getConnection();
@@ -599,7 +589,7 @@ public class BoardDao {
 			pstmt.setString(1, boardCd);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				boardNm = rs.getString("boardnm");
+				boardNm = rs.getString("boardnm_ko");
 			}
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
@@ -618,7 +608,6 @@ public class BoardDao {
 
 	}
 
-	//댓글삽입
 	public void insertComment(Comment comment) {
 		String sql = "INSERT INTO comments (commentno, articleno, email, memo, regdate) "
 				+ "VALUES (SEQ_COMMENTS.nextval, ?, ?, ?, sysdate)";
@@ -648,7 +637,6 @@ public class BoardDao {
 
 	}
 
-	//댓글수정
 	public void updateComment(Comment comment) {
 		String sql = "UPDATE comments SET memo = ? WHERE commentno = ?";
 		Connection con = null;
@@ -674,7 +662,6 @@ public class BoardDao {
 		}
 	}
 
-	//댓글삭제
 	public void deleteComment(int commentNo) {
 		String sql = "DELETE FROM comments WHERE commentno = ?";
 
@@ -701,7 +688,6 @@ public class BoardDao {
 
 	}
 
-	//댓글리스트 조회
 	public ArrayList<Comment> selectListOfComments(int articleNo) {
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 
@@ -751,7 +737,6 @@ public class BoardDao {
 		return commentList;
 	}
 
-	//P.K로 첨부파일 찾기
 	public AttachFile selectOneAttachFile(int attachFileNo) {
 		AttachFile attachFile = null;
 		Connection con = null;
@@ -791,7 +776,6 @@ public class BoardDao {
 		return attachFile;
 	}
 
-	//P.K로 댓글 찾기
 	public Comment selectOneComment(int commentNo) {
 		Comment comment = null;
 
@@ -833,7 +817,6 @@ public class BoardDao {
 		return comment;
 	}
 	
-	//조회수 증가
 	public void insertOneViews(int aritcleNo, String ip, String yearMonthDayHour) {
 		String sql = "INSERT INTO views values (seq_views.nextval, ?, ?, ?)";
 
@@ -861,7 +844,6 @@ public class BoardDao {
 		}
 	}
 	
-	//조회수
 	public int selectCountOfViews(int articleNo) {
 		String sql = "SELECT count(*) FROM views WHERE articleNo = ?";
 		
@@ -894,6 +876,44 @@ public class BoardDao {
 
 	}
 
+	public List<Board> selectAllBoard() {
+		List<Board> boards = new ArrayList<Board>();
+		String sql = "SELECT boardcd,boardnm_ko FROM board ORDER BY boardnm_ko ASC";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				Board board = new Board();
+				String boardCd = rs.getString("boardcd");
+				String boardNm = rs.getString("boardnm_ko");
+				board.setBoardCd(boardCd);
+				board.setBoardNm(boardNm);
+				boards.add(board);
+			}
+		} catch (SQLException e) {
+			if (log.isDebugEnabled()) {
+				StringBuilder msg = new StringBuilder();
+				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
+				msg.append("Message : " + e.getMessage() + NEW_LINE);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
+				msg.append("sql : " + sql + NEW_LINE);
+				log.debug(msg);
+			}
+		} finally {
+			close(rs, pstmt, con);  
+		}
+
+		return boards;
+
+	}
+	
 }
 
 

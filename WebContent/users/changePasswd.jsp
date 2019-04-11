@@ -8,7 +8,7 @@
 <meta name="Keywords" content="비밀번호 변경" />
 <meta name="Description" content="비밀번호 변경" />
 <title>비밀번호 변경</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
     var form = document.getElementById("changePassworddForm");
@@ -35,16 +35,14 @@ function check() {
     
 	<div id="container">
 		<div id="content">
-
-<div id="url-navi">회원</div>
-
-<h2>비밀번호 변경</h2>
-
+<!-- content begin -->
+<div id="content-categories">회원</div>
+<h3>비밀번호 변경</h3>
+<p>
 ${user.name }<br />
-${user.mobile }<br />
-
+${user.mobile }
+</p>
 <form id="changePassworddForm" action="changePasswd.do" method="post" onsubmit="return check()">
-
 <table>
 <tr>
 	<td>현재 비밀번호</td>
@@ -63,7 +61,7 @@ ${user.mobile }<br />
 </tr>
 </table>
 </form>
-
+<!-- content end -->
 		</div>
     </div>
     

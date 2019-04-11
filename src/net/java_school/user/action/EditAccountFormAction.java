@@ -28,10 +28,8 @@ public class EditAccountFormAction implements Action {
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;
 			url = URLEncoder.encode(url, "UTF-8");
-			String contextPath = req.getContextPath();
+			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
-			forward.setView(contextPath + "/users/login.do?url=" + url);
-			
 			return forward;
 		}
 		

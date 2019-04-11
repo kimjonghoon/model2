@@ -8,7 +8,7 @@
 <meta name="Keywords" content="게시판 목록" />
 <meta name="Description" content="게시판 목록" />
 <title>BBS</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function goList(page) {
     var form = document.getElementById("listForm");
@@ -40,11 +40,8 @@ function goWrite() {
     
     <div id="container">
 		<div id="content">
-			
-<div id="url-navi">BBS</div>
-
-<h2>${boardNm }</h2>
-
+<!-- content begin -->
+<div id="content-categories">${boardNm }</div>
 <table class="bbs-table">
 <tr>
 	<th style="width: 60px;">NO</th>
@@ -71,14 +68,11 @@ function goWrite() {
 </c:forEach>
 <!--  bbs list end -->
 </table>
-               
 <div id="paging">
-
 	<c:if test="${prevPage > 0 }">
 		<a href="javascript:goList('1')">1</a>
 		<a href="javascript:goList('${prevPage }')">[이전]</a>
 	</c:if>
-	
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
 			<c:when test="${param.page == i }">
@@ -89,17 +83,14 @@ function goWrite() {
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-	
 	<c:if test="${nextPage > 0 }">
 		<a href="javascript:goList('${nextPage }')">[다음]</a>
 		<a href="javascript:goList('${totalPage }')">[마지막]</a>
 	</c:if>
 </div>
-
 <div id="list-menu">
 	<input type="button" value="새글쓰기" onclick="goWrite()" />
 </div>
-
 <div id="search">
 	<form action="list.do" method="get">
 	<div>
@@ -110,9 +101,9 @@ function goWrite() {
 	</div>
 	</form>
 </div>
-
-		</div><!-- content end -->
-	</div><!-- container end -->
+<!-- content end -->
+		</div>
+	</div>
    
 	<div id="sidebar">
 		<%@ include file="bbs-menu.jsp" %>
@@ -126,30 +117,24 @@ function goWrite() {
 		<%@ include file="../inc/footer.jsp" %>
 	</div>
 
-</div><!-- wrap end -->
+</div>
 
 <div id="form-group" style="display: none">
     <form id="listForm" action="list.do" method="get">
-    <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="viewForm" action="view.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="writeForm" action="write.do" method="get">
-    <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
 </div>
 

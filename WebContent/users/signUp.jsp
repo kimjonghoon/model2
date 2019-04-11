@@ -7,14 +7,7 @@
 <meta name="Keywords" content="회원가입" />
 <meta name="Description" content="회원가입" />
 <title>회원가입</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
-<script type="text/javascript">
-function check() {
-    //var form = document.getElementById("signUpForm");
-    //TODO 유효성 검사 
-    return true;
-}
-</script>
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
 
@@ -30,20 +23,18 @@ function check() {
     
 	<div id="container">
 		<div id="content">
-
-<div id="url-navi">회원</div>
-
-<h2>회원가입</h2>
-
-<form id="signUpForm" action="signUp.do" method="post" onsubmit="return check()">
+<!-- content begin -->
+<div id="content-categories">회원</div>
+<h3>회원가입</h3>
+<form id="signUpForm" action="signUp.do" method="post">
 <table>
 <tr>
 	<td style="width: 200px;">이름(Full Name)</td>
-	<td style="width: 390px;"><input type="text" name="name" /></td>
+	<td style="width: 390px;"><input type="text" name="name" value="tester" /></td>
 </tr>
 <tr>
 	<td>비밀번호(Password)</td>
-	<td><input type="password" name="passwd" /></td>
+	<td><input type="password" name="passwd" value="1111" /></td>
 </tr>
 <tr>
 	<td colspan="2" style="text-align: center;font-weight: bold;">
@@ -52,22 +43,22 @@ function check() {
 </tr>
 <tr>
 	<td>비밀번호 확인(Confirm)</td>
-	<td><input type="password" name="confirm" /></td>
+	<td><input type="password" name="confirm" value="1111" /></td>
 </tr>
 <tr>
 	<td>Email</td>
-	<td><input type="text" name="email" /></td>
+	<td><input type="text" name="email" value="tester@example.com" /></td>
 </tr>
 <tr>
 	<td>손전화(Mobile)</td>
-	<td><input type="text" name="mobile" /></td>
+	<td><input type="text" name="mobile" value="2222" /></td>
 </tr>
 </table>
 <div style="text-align: center;padding-bottom: 15px;">
 	<input type="submit" value="확인" />
 </div>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.board.Article;
+import net.java_school.board.Board;
 import net.java_school.board.BoardService;
 import net.java_school.commons.NumbersForPaging;
 import net.java_school.commons.Paginator;
@@ -33,8 +34,7 @@ public class ListAction extends Paginator implements Action {
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;
 			url = URLEncoder.encode(url, "UTF-8");
-			String contextPath = req.getContextPath();
-			forward.setView(contextPath + "/users/login.do?url=" + url);
+			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
 			
 			return forward;
@@ -63,6 +63,7 @@ public class ListAction extends Paginator implements Action {
 		int nextPage = numbers.getNextBlock();
 		int totalPage = numbers.getTotalPage();
 		String boardNm = service.getBoardNm(boardCd);
+		List<Board> boards = service.getAllBoard();
 		
 		req.setAttribute("list", list);
 		req.setAttribute("listItemNo", listItemNo);
@@ -72,6 +73,7 @@ public class ListAction extends Paginator implements Action {
 		req.setAttribute("nextPage", nextPage);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
+		req.setAttribute("boards", boards);
 		
 		forward.setView("/bbs/list.jsp");
 		

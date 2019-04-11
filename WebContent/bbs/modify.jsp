@@ -7,7 +7,7 @@
 <meta name="Keywords" content="게시판 수정하기 폼" />
 <meta name="Description" content="게시판 수정하기 폼" />
 <title>BBS</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
     //var form = document.getElementById("modifyForm");
@@ -34,13 +34,9 @@ function goView() {
     
 	<div id="container">
 		<div id="content">
-
-<div id="url-navi">BBS</div>
-
-<h2>${boardNm }</h2>
-
+<!-- content begin -->
+<div id="content-categories">${boardNm }</div>
 <h3>수정</h3>
-
 <form id="modifyForm" action="modify.do" method="post" enctype="multipart/form-data" onsubmit="return check()">
 <p style="margin: 0;padding: 0;">
 <input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -68,7 +64,7 @@ function goView() {
     <input type="button" value="상세보기" onclick="goView()" />
 </div>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     
@@ -88,12 +84,10 @@ function goView() {
 
 <div id="form-group" style="display: none">
     <form id="viewForm" action="view.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
 </div>
 

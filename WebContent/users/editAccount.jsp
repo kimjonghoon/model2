@@ -8,7 +8,7 @@
 <meta name="Keywords" content="내 정보 수정" />
 <meta name="Description" content="내 정보 수정" />
 <title>내 정보 수정</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
     //var form = document.getElementById("editAccountForm");
@@ -31,10 +31,9 @@ function check() {
     
 	<div id="container">
 		<div id="content">
-		
-<div id="url-navi">회원</div>
-
-<h2>내 정보 수정</h2>
+<!-- content begin -->		
+<div id="content-categories">회원</div>
+<h3>내 정보 수정</h3>
 <p>
 비밀번호외의 자신의 계정 정보를 수정할 수 있습니다.<br />
 비밀번호는 <a href="changePasswd.do">비밀번호 변경</a>메뉴를 이용하세요.<br />
@@ -58,7 +57,7 @@ function check() {
 </tr>
 </table>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     

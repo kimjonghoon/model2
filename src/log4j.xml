@@ -6,7 +6,7 @@
     </appender>
     
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/home/kim/upload/model2.log" />
+        <param name="File" value="/home/kim/다운로드/model2/WebContent/WEB-INF/model2.log" />
         <param name="datePattern" value="'.'yyyy-MM-dd" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d]%5p [%t] (%F:%L) - %m%n"/>

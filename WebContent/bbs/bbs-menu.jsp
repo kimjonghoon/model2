@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>게시판</h1>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<h1>BBS</h1>
 <ul>
-	<li><a href="list.do?boardCd=free&page=1">자유게시판</a></li>
-	<li><a href="list.do?boardCd=qna&page=1">QnA게시판</a></li>
-	<li><a href="list.do?boardCd=data&page=1">자료실</a></li>
+<c:forEach var="board" items="${boards }" varStatus="status">
+	<li><a href="list.do?boardCd=${board.boardCd }&page=1">${board.boardNm }</a></li>
+</c:forEach>	
 </ul>

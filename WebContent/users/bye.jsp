@@ -8,7 +8,7 @@
 <meta name="Keywords" content="탈퇴" />
 <meta name="Description" content="탈퇴" />
 <title>탈퇴</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
     //var form = document.getElementById("byeForm");
@@ -31,11 +31,9 @@ function check() {
     
 	<div id="container">
 		<div id="content">
-		
-<div id="url-navi">회원</div>
-
-<h2>탈퇴</h2>
-
+<!-- content begin -->		
+<div id="content-categories">회원</div>
+<h3>탈퇴</h3>
 <form id="byeForm" action="bye.do" method="post" onsubmit="return check()">
 <table>
 <tr>
@@ -51,7 +49,7 @@ function check() {
 </tr>
 </table>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     

@@ -14,6 +14,7 @@ import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.board.Article;
 import net.java_school.board.AttachFile;
+import net.java_school.board.Board;
 import net.java_school.board.BoardService;
 import net.java_school.board.Comment;
 import net.java_school.commons.NumbersForPaging;
@@ -37,8 +38,7 @@ public class ViewAction extends Paginator implements Action  {
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;
 			url = URLEncoder.encode(url, "UTF-8");
-			String contextPath = req.getContextPath();
-			forward.setView(contextPath + "/users/login.do?url=" + url);
+			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
 			
 			return forward;
@@ -79,7 +79,8 @@ public class ViewAction extends Paginator implements Action  {
 		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
 		List<Comment> commentList = service.getCommentList(articleNo);
 		String boardNm = service.getBoardNm(boardCd);
-		
+		List<Board> boards = service.getAllBoard();
+
 		String title = article.getTitle();
 		String content = article.getContent();
 		content = content.replaceAll(WebContants.LINE_SEPARATOR, "<br />");
@@ -87,8 +88,7 @@ public class ViewAction extends Paginator implements Action  {
 		String name = article.getName();
 		String email = article.getEmail();
 		Date regdate = article.getRegdate();
-		String contextPath = req.getContextPath();
-		String uploadPath = contextPath + "/upload/";
+		String uploadPath = "/upload/";
 		
 		int listItemNo = numbers.getListItemNo();
 		int prevPage = numbers.getPrevBlock();
@@ -117,7 +117,8 @@ public class ViewAction extends Paginator implements Action  {
 		req.setAttribute("nextPage", nextPage);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
-
+		req.setAttribute("boards", boards);
+		
 		forward.setView("/bbs/view.jsp");
 		
 		return forward;

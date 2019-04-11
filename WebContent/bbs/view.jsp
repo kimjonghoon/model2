@@ -8,7 +8,7 @@
 <meta name="Keywords" content="게시판 상세보기" />
 <meta name="Description" content="게시판 상세보기" />
 <title>BBS</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function modifyCommentToggle(articleNo) {
 	var p_id = "comment" + articleNo;
@@ -95,11 +95,8 @@ function deleteComment(commentNo) {
     
     <div id="container">
             <div id="content">
-
-<div id="url-navi">BBS</div>
-
-<h2>${boardNm }</h2>
-
+<!-- content begin -->
+<div id="content-categories">${boardNm }</div>
 <div class="view-menu" style="margin-bottom: 5px;">
     <c:if test="${user.email == email }">
     <div class="fl">
@@ -118,7 +115,6 @@ function deleteComment(commentNo) {
         <input type="button" value="새글쓰기" onclick="goWrite()" />
     </div>
 </div>
-
 <table class="bbs-table">
 <tr>
     <th style="width: 37px;text-align: left;vertical-align: top;">TITLE</th>
@@ -138,7 +134,6 @@ function deleteComment(commentNo) {
 		</c:forEach>
     </p>
 </div>
-
 <form id="addCommentForm" action="addComment.do" method="post">
 <p style="margin: 0;padding: 0">
 	<input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -153,7 +148,6 @@ function deleteComment(commentNo) {
        <input type="submit" value="덧글남기기" />
    </div>
 </form>
-
 <!-- comments begin -->
 <c:forEach var="comment" items="${commentList }" varStatus="status">
 <div class="comments">
@@ -185,8 +179,7 @@ function deleteComment(commentNo) {
 </div>
 </c:forEach>
 <!--  comments end -->
-
-<div class="next-prev">
+<div id="next-prev">
     <c:if test="${nextArticle != null }">
     <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
     </c:if>
@@ -194,7 +187,6 @@ function deleteComment(commentNo) {
     <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
     </c:if>
 </div>
-
 <div class="view-menu">
     <c:if test="${user.email == email }">
     <div class="fl">
@@ -213,7 +205,6 @@ function deleteComment(commentNo) {
         <input type="button" value="새글쓰기" onclick="goWrite()" />
     </div>
 </div>
-
 <!-- BBS List in detailed Article -->
 <table id="list-table" class="bbs-table">
 <tr>
@@ -222,7 +213,6 @@ function deleteComment(commentNo) {
 	<th style="width: 84px;">DATE</th>
 	<th style="width: 60px;">HIT</th>
 </tr>
-
 <c:forEach var="article" items="${list }" varStatus="status">        
 <tr>
 	<td style="text-align: center;">
@@ -249,13 +239,11 @@ function deleteComment(commentNo) {
 </tr>
 </c:forEach>
 </table>
-                
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
 		<a href="javascript:golist('1')">1</a>
 		<a href="javascript:golist('${prevPage }')">[이전]</a>
 	</c:if>
-	
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
 			<c:when test="${param.page == i }">
@@ -266,17 +254,14 @@ function deleteComment(commentNo) {
 			</c:otherwise>
 		</c:choose>			
 	</c:forEach>
-	
 	<c:if test="${nextPage > 0 }">	
 		<a href="javascript:goList('${nextPage }')">[다음]</a>
 		<a href="javascript:goList('${totalPage }')">[마지막]</a>
 	</c:if>
 </div>
-
 <div id="list-menu">
 	<input type="button" value="새글쓰기" onclick="goWrite()" />
 </div>
-
 <div id="search">
 	<form action="list.do" method="get">
 	<p style="margin: 0;padding: 0;">
@@ -287,9 +272,9 @@ function deleteComment(commentNo) {
 	</p>
 	</form>
 </div>
-
-		</div><!-- content 끝 -->
-	</div><!-- container 끝 -->
+<!-- content end -->
+		</div>
+	</div>
     
 	<div id="sidebar">
 		<%@ include file="bbs-menu.jsp" %>
@@ -306,61 +291,47 @@ function deleteComment(commentNo) {
 
 <div id="form-group">
     <form id="listForm" action="list.do" method="get">
-    <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="viewForm" action="view.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="writeForm" action="write.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="modifyForm" action="modify.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="delForm" action="del.do" method="post">
-    <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="deleteCommentForm" action="deleteComment.do" method="post">
-    <p>
         <input type="hidden" name="commentNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>   
     <form id="deleteAttachFileForm" action="deleteAttachFile.do" method="post">
-    <p>
         <input type="hidden" name="attachFileNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>       
 </div>
 

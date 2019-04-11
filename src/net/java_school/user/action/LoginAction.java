@@ -27,10 +27,8 @@ public class LoginAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
-		String contextPath = req.getContextPath();
-		
 		if (user == null) {
-			forward.setView(contextPath + "/users/login.do?url=" + url + "&msg=Login-Failed");
+			forward.setView("/users/login.do?url=" + url + "&msg=Login-Failed");
 			forward.setRedirect(true);
 		} else {
 			HttpSession session = req.getSession();
@@ -39,7 +37,7 @@ public class LoginAction implements Action {
 				forward.setView(url);
 				forward.setRedirect(true);
 			} else {
-				forward.setView(contextPath + "/bbs/list.do?boardCd=free&page=1");
+				forward.setView("/bbs/list.do?boardCd=free&page=1");
 				forward.setRedirect(true);
 			}
 		}

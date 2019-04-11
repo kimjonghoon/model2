@@ -8,7 +8,7 @@
 <meta name="Keywords" content="글쓰기 화면" />
 <meta name="Description" content="글쓰기 화면" />
 <title>BBS</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css" />
+<link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
 function check() {
     //var form = document.getElementById("writeForm");
@@ -39,13 +39,9 @@ function goView() {
     
 	<div id="container">
 		<div id="content">
-
-<div id="url-navi">BBS</div>
-
-<h2>${boardNm }</h2>
-
+<!-- content begin -->
+<div id="content-categories">${boardNm }</div>
 <h3>글쓰기</h3>
-
 <form id="writeForm" action="write.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
 <input type="hidden" name="articleNo" value="${param.articleNo }" />
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -74,7 +70,7 @@ function goView() {
 	</c:if>
 </div>
 </form>
-		
+<!-- content end -->		
 		</div>
     </div>
     
@@ -94,19 +90,15 @@ function goView() {
 
 <div id="form-group" style="display: none">
     <form id="viewForm" action="view.do" method="get">
-    <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>
     <form id="listForm" action="list.do" method="get">
-    <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
     </form>   
 </div>
 

@@ -65,7 +65,6 @@ public class UserDao {
 		}
 	}
 
-	//회원가입
 	public void insert(User user) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -96,7 +95,6 @@ public class UserDao {
 		}
 	}
 
-	//로그인
 	public User login(String email, String passwd) {
 		User user = null;
 		Connection con = null;
@@ -136,7 +134,6 @@ public class UserDao {
 		return user;
 	}
 
-	//회원정보 수정
 	public int update(User user) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -168,7 +165,6 @@ public class UserDao {
 		return ret;
 	}
 
-	//비밀번호 변경
 	public int update(String currentPasswd, String newPasswd, String email) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -198,7 +194,6 @@ public class UserDao {
 		return ret;
 	}
 
-	//탈퇴
 	public int delete(String email, String passwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -228,7 +223,6 @@ public class UserDao {
 		return ret;
 	}
 
-	//P.K 로 회원찾기
 	public User selectOne(String email) {
 		User user = null;
 		Connection con = null;

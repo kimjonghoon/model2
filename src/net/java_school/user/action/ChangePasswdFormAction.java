@@ -28,8 +28,7 @@ public class ChangePasswdFormAction implements Action {
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;
 			url = URLEncoder.encode(url, "UTF-8");
-			String contextPath = req.getContextPath();
-			forward.setView(contextPath + "/users/login.do?url=" + url);
+			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
 			return forward;
 		}

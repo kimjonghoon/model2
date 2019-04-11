@@ -23,7 +23,6 @@ public class SignUpAction implements Action {
 		String name = req.getParameter("name");
 		String mobile = req.getParameter("mobile");
 
-		//email,passwd,name,mobile 순으로
 		User user = new User(email, passwd, name, mobile);
 		
 		UserService service = new UserService();
