@@ -28,7 +28,7 @@
 	    title varchar2(200) NOT NULL,
 	    content clob NOT NULL,
 	    email varchar2(60),
-	    hit number,    
+	    hit number,
 	    regdate date,
 	    constraint PK_ARTICLE PRIMARY KEY(articleno),
 	    constraint FK_ARTICLE FOREIGN KEY(boardcd) REFERENCES board(boardcd)
@@ -40,8 +40,8 @@
 	
 	create table comments (
 	    commentno number,
-	    articleno number,    
-	    email varchar2(60),    
+	    articleno number,
+	    email varchar2(60),
 	    memo varchar2(4000) NOT NULL,
 	    regdate date, 
 	    constraint PK_COMMENTS PRIMARY KEY(commentno)
@@ -73,50 +73,46 @@
 	
 	CREATE UNIQUE INDEX ix_authorities ON authorities(email, authority); 
 	
-	-- for test records  
-	insert into board values ('free', 'Free', '자유게시판');
-	insert into board values ('qna', 'Q and A', '묻고 답하기');
-	insert into board values ('data', 'Data', '자료실');
+	-- for test records
+	insert into board values ('chat', 'Chat', '수다');
 	
-	INSERT INTO member VALUES ('hong@gmail.org','1111','홍길동','010-1111-1111');
-	INSERT INTO member VALUES ('im@gmail.org','1111','임꺽정','010-1111-2222');
+	INSERT INTO member VALUES ('john@gmail.org','1111','John Doe','111-1111-1111');
 	
-	INSERT INTO authorities VALUES ('hong@gmail.org','ROLE_USER');
-	INSERT INTO authorities VALUES ('hong@gmail.org','ROLE_ADMIN');
-	INSERT INTO authorities VALUES ('im@gmail.org','ROLE_USER');
+	INSERT INTO authorities VALUES ('john@gmail.org','ROLE_USER');
+	INSERT INTO authorities VALUES ('john@gmail.org','ROLE_ADMIN');
 	
 	commit;
 	
 	create table views (
-		no number,
-		articleNo number,
-		ip varchar(60),
-		yearMonthDayHour char(10),
-		constraint PK_VIEWS PRIMARY KEY(no),
-		constraint UNIQUE_VIEWS UNIQUE(articleNo, ip, yearMonthDayHour)
+	  no number,
+	  articleNo number,
+	  ip varchar(60),
+	  yearMonthDayHour char(10),
+	  constraint PK_VIEWS PRIMARY KEY(no),
+	  constraint UNIQUE_VIEWS UNIQUE(articleNo, ip, yearMonthDayHour)
 	);
-
 	create sequence SEQ_VIEWS
-		increment by 1
-		start with 1;
+	  increment by 1
+	  start with 1;
 
 ## SetUp
 
-1. $ git clone https://github.com/kimjonghoon/model2
+* $ git clone https://github.com/kimjonghoon/model2
 
-2. Eclipse
+* Eclipse
    File - New - Dynamic Web Project - Project name: model2
    
    >> refer to http://www.java-school.net/jsp-pjt/Dynamic-Web-Project-Set-Up and http://www.java-school.net/jsp-pjt/bbs-model-2
    
-3. Eclipse
+* Eclipse
    Project Explorer - model2 - Build Path - Configure Build Path...
    Libraries tab - Add External JARs - Add {TOMCAT_HOME}/lib/servlet-api.jar
 
-4. Create {TOMCAT_HOME}/Catalina/localhost/model2.xml
+* Create {TOMCAT_HOME}/Catalina/localhost/ROOT.xml 
+   >> you have to edit {** your path **}/model2/WebContent
 
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Context docBase="{** your path **}/model2/WebContent" reloadable="true">
+		<Context docBase="{your path}/model2/WebContent" reloadable="true">
 			<Resource
 				name="jdbc/jsppjt"
 				auth="Container"
@@ -128,15 +124,10 @@
 				maxActive="8"
 				maxIdle="4" />
 		</Context>
-	                                                                             
-you have to edit {** your path **}/model2/WebContent
 
-5. copy ojdbc6.jar to {TOMCAT_HOME}/lib/
+* copy ojdbc6.jar to {TOMCAT_HOME}/lib/
 
-6. database design
-	>> refer to http://www.java-school.net/jsp-pjt/database-design
-
-7. Have to edit in model2/src/log4j.xml 
+* Have to edit in model2/src/log4j2.xml 
 	>> &lt;param name="File" value="{** Full path of your log file **}"/&gt;
 
-8. Tomcat restart and visit http://localhost:port/model2
+* Tomcat restart and visit http://localhost:8080
