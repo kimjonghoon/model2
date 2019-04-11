@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="로그인" />
-<meta name="Description" content="로그인" />
-<title>로그인</title>
+<meta name="Keywords" content="Login" />
+<meta name="Description" content="Login" />
+<title>Login</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
 	//var form = document.getElementById("loginForm");
-	//TODO 유효성 검사 
+	//TODO 
 	return true;
 }
 </script>
@@ -32,10 +32,10 @@ function check() {
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
-<div id="content-categories">회원</div>
-<h3>로그인</h3>
+<div id="content-categories">Membership</div>
+<h3>Login</h3>
 <c:if test="${not empty param.msg }">
-	<p style="color: red;">로그인에 실패했습니다.</p>
+	<p style="color: red;">Login failed</p>
 </c:if>
 <form id="loginForm" action="login.do" method="post" onsubmit="return check()">
 <p style="margin: 0; padding: 0;">
@@ -47,13 +47,13 @@ function check() {
     <td style="width: 390px"><input type="text" name="email" style="width: 99%;" /></td>
 </tr>
 <tr>
-    <td>비밀번호(Password)</td>
+    <td>Password</td>
     <td><input type="password" name="passwd" style="width: 99%;" /></td>
 </tr>
 </table>
 <div style="text-align: center;padding: 15px 0;">
-    <input type="submit" value="확인" />
-    <input type="button" value="회원가입" onclick="location.href='signUp.do'" />
+    <input type="submit" value="Submit" />
+    <input type="button" value="Sign Up" onclick="location.href='signUp.do'" />
 </div>
 </form>
 <!-- content end -->		

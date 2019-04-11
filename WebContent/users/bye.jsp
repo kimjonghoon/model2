@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/loginCheck.jsp" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="탈퇴" />
-<meta name="Description" content="탈퇴" />
-<title>탈퇴</title>
+<meta name="Keywords" content="Bye" />
+<meta name="Description" content="Bye" />
+<title>Bye</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
     //var form = document.getElementById("byeForm");
-    //TODO 유효성 검사
+    //TODO
     return true;
 }
 </script>
@@ -32,20 +32,20 @@ function check() {
 	<div id="container">
 		<div id="content">
 <!-- content begin -->		
-<div id="content-categories">회원</div>
-<h3>탈퇴</h3>
+<div id="content-categories">Membership</div>
+<h3>Bye</h3>
 <form id="byeForm" action="bye.do" method="post" onsubmit="return check()">
 <table>
 <tr>
-	<td>이메일</td>
+	<td>Email</td>
 	<td><input type="text" name="email" /></td>
 </tr>
 <tr>
-	<td>비밀번호</td>
+	<td>Password</td>
 	<td><input type="password" name="passwd" /></td>
 </tr>
 <tr>
-	<td colspan="2"><input type="submit" value="확인" /></td>
+	<td colspan="2"><input type="submit" value="Submit" /></td>
 </tr>
 </table>
 </form>

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="탈퇴 확인" />
-<meta name="Description" content="탈퇴 확인" />
-<title>탈퇴 확인</title>
+<meta name="Keywords" content="Confirm membership withdrawal" />
+<meta name="Description" content="Confirm membership withdrawal" />
+<title>Confirm membership withdrawal</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
@@ -24,10 +24,10 @@
 	<div id="container">
 		<div id="content">
 <!-- content begin -->		
-<div id="content-categories">회원</div>
-<h2>회원 탈퇴 확인</h2>
+<div id="content-categories">Membership</div>
+<h2>Confirm membership withdrawal</h2>
 <p>
-회원님의 모든 정보가 삭제되었습니다.
+All of your information has been deleted.
 </p>
 <!-- content end -->		
 		</div>

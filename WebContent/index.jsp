@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="net.java_school.user.User"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="홈페이지" />
-<meta name="Description" content="홈페이지" />
-<title>홈페이지</title>
+<meta name="Keywords" content="Homepage" />
+<meta name="Description" content="Homepage" />
+<title>Homepage</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
@@ -25,7 +25,7 @@
 		<div id="container">
 			<div id="content">
 				<!-- content begin -->
-				<div id="content-categories">홈페이지</div>
+				<div id="content-categories">Homepage</div>
 				<!-- content end -->
 			</div>
 		</div>

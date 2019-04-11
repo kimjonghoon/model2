@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="비밀번호 변경 확인" />
-<meta name="Description" content="비밀번호 변경 확인" />
-<title>비밀번호 변경 확인</title>
+<meta name="Keywords" content="Confirm password change" />
+<meta name="Description" content="Confirm password change" />
+<title>Confirm password change</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
@@ -24,11 +24,11 @@
 	<div id="container">
 		<div id="content">
 <!-- content begin -->		
-<div id="content-categories">회원</div>
-<h3>비밀번호가 변경되었습니다.</h3>
+<div id="content-categories">Membership</div>
+<h3>Your password has been changed.</h3>
 <p>
-변경된 비밀번호로 다시 로그인하실 수 있습니다.<br />
-<input type="button" value="로그인" onclick="javascript:location.href='login.do'" />
+You can login with the changed password.<br />
+<input type="button" value="Login" onclick="javascript:location.href='login.do'" />
 </p>
 <!-- content end -->		
 		</div>

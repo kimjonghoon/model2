@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/loginCheck.jsp" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="내 정보 수정" />
-<meta name="Description" content="내 정보 수정" />
-<title>내 정보 수정</title>
+<meta name="Keywords" content="Edit Account" />
+<meta name="Description" content="Edit Account" />
+<title>Edit Account</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
     //var form = document.getElementById("editAccountForm");
-    //TODO 유효성 검사 
+    //TODO 
     return true;
 }
 </script>
@@ -32,28 +32,28 @@ function check() {
 	<div id="container">
 		<div id="content">
 <!-- content begin -->		
-<div id="content-categories">회원</div>
-<h3>내 정보 수정</h3>
+<div id="content-categories">Membership</div>
+<h3>Edit Account</h3>
 <p>
-비밀번호외의 자신의 계정 정보를 수정할 수 있습니다.<br />
-비밀번호는 <a href="changePasswd.do">비밀번호 변경</a>메뉴를 이용하세요.<br />
+You can edit all your information except your password in this page.<br />
+Visit <a href="changePasswd.do">Change Password</a> for changing password.<br />
 </p>
 <form id="editAccountForm" action="editAccount.do" method="post" onsubmit="return check()">
 <table>
 <tr>
-	<td>이름</td>
+	<td>Full Name</td>
 	<td><input type="text" name="name" value="${user.name }" /></td>
 </tr>
 <tr>
-	<td>손전화</td>
+	<td>Mobile</td>
 	<td><input type="text" name="mobile" value="${user.mobile }" /></td>
 </tr>
 <tr>
-	<td>현재 비밀번호</td>
+	<td>Current Password</td>
 	<td><input type="password" name="passwd" /></td>
 </tr>
 <tr>
-	<td colspan="2"><input type="submit" value="전송" /></td>
+	<td colspan="2"><input type="submit" value="Submit" /></td>
 </tr>
 </table>
 </form>

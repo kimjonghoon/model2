@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="회원가입 환영" />
-<meta name="Description" content="회원가입 환영" />
-<title>회원가입이 완료되었습니다.</title>
+<meta name="Keywords" content="welcome" />
+<meta name="Description" content="welcome" />
+<title>welcome</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>
@@ -24,11 +24,10 @@
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
-<div id="content-categories">회원</div>
-<h3>환영합니다.</h3>
+<div id="content-categories">Membership</div>
+<h3>Welcome</h3>
 <p>
-회원가입시 입력한 Email이 아이디로 사용됩니다.<br />
-<input type="button" value="로그인" onclick="javascript:location.href='login.do'" />
+<input type="button" value="Login" onclick="javascript:location.href='login.do'" />
 </p>
 <!-- content end -->
 		</div>

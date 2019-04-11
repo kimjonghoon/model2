@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class BoardDao {
 	private Log log = LogFactory.getLog(BoardDao.class);
+	
 	private static BoardDao instance = new BoardDao();
 	private DataSource ds;
 	public static String NEW_LINE = System.getProperty("line.separator");
@@ -581,7 +582,7 @@ public class BoardDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT boardNm_ko FROM board WHERE boardcd = ?";
+		String sql = "SELECT boardNm FROM board WHERE boardcd = ?";
 
 		try {
 			con = getConnection();
@@ -589,7 +590,7 @@ public class BoardDao {
 			pstmt.setString(1, boardCd);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				boardNm = rs.getString("boardnm_ko");
+				boardNm = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
@@ -878,7 +879,7 @@ public class BoardDao {
 
 	public List<Board> selectAllBoard() {
 		List<Board> boards = new ArrayList<Board>();
-		String sql = "SELECT boardcd,boardnm_ko FROM board ORDER BY boardnm_ko ASC";
+		String sql = "SELECT boardcd,boardnm FROM board ORDER BY boardnm_ko ASC";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -891,8 +892,8 @@ public class BoardDao {
 
 			while(rs.next()) {
 				Board board = new Board();
-				String boardCd = rs.getString("boardcd");
-				String boardNm = rs.getString("boardnm_ko");
+				String boardCd = rs.getString(1);
+				String boardNm = rs.getString(2);
 				board.setBoardCd(boardCd);
 				board.setBoardNm(boardNm);
 				boards.add(board);
@@ -915,5 +916,3 @@ public class BoardDao {
 	}
 	
 }
-
-

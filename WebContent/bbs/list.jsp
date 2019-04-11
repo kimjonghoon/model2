@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="게시판 목록" />
-<meta name="Description" content="게시판 목록" />
+<meta name="Keywords" content="List" />
+<meta name="Description" content="List" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
@@ -56,7 +56,7 @@ function goWrite() {
 	<td>
 		<a href="javascript:goView('${article.articleNo }')">${article.title }</a>
 		<c:if test="${article.attachFileNum > 0 }">
-		<img src="../images/attach.png" alt="첨부파일" />
+		<img src="../images/attach.png" alt="Attach File" />
 		</c:if>
 		<c:if test="${article.commentNum > 0 }">
 		<span class="bbs-strong">[${article.commentNum }]</span>
@@ -71,7 +71,7 @@ function goWrite() {
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
 		<a href="javascript:goList('1')">1</a>
-		<a href="javascript:goList('${prevPage }')">[이전]</a>
+		<a href="javascript:goList('${prevPage }')">[Prev]</a>
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
@@ -84,12 +84,12 @@ function goWrite() {
 		</c:choose>
 	</c:forEach>
 	<c:if test="${nextPage > 0 }">
-		<a href="javascript:goList('${nextPage }')">[다음]</a>
-		<a href="javascript:goList('${totalPage }')">[마지막]</a>
+		<a href="javascript:goList('${nextPage }')">[Next]</a>
+		<a href="javascript:goList('${totalPage }')">[Last]</a>
 	</c:if>
 </div>
 <div id="list-menu">
-	<input type="button" value="새글쓰기" onclick="goWrite()" />
+	<input type="button" value="New" onclick="goWrite()" />
 </div>
 <div id="search">
 	<form action="list.do" method="get">
@@ -97,7 +97,7 @@ function goWrite() {
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="page" value="1" />
 		<input type="text" name="searchWord" size="15" maxlength="30" />
-		<input type="submit" value="검색" />
+		<input type="submit" value="Submit" />
 	</div>
 	</form>
 </div>

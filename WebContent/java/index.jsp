@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="net.java_school.user.User"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="자바 홈" />
-<meta name="Description" content="자바 홈" />
-<title>자바 홈</title>
+<meta name="Keywords" content="Java Home" />
+<meta name="Description" content="Java Home" />
+<title>Java Home</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 </head>
 <body>

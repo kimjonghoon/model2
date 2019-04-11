@@ -2,20 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="비밀번호 변경" />
-<meta name="Description" content="비밀번호 변경" />
-<title>비밀번호 변경</title>
+<meta name="Keywords" content="Change password" />
+<meta name="Description" content="Change Password" />
+<title>Change Password</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
     var form = document.getElementById("changePassworddForm");
     if (form.passwd.value == form.confirm.value) {
     	return true;
     } else {
-    	alert("[변경 비밀번호]와 [변경 비밀번호 확인]값이 같지 않습니다.");
+    	alert("[New Password] and [New Password Confirm] values are not the same!");
     	return false;
     }
 }
@@ -36,8 +36,8 @@ function check() {
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
-<div id="content-categories">회원</div>
-<h3>비밀번호 변경</h3>
+<div id="content-categories">Member</div>
+<h3>Change Password</h3>
 <p>
 ${user.name }<br />
 ${user.mobile }
@@ -45,19 +45,19 @@ ${user.mobile }
 <form id="changePassworddForm" action="changePasswd.do" method="post" onsubmit="return check()">
 <table>
 <tr>
-	<td>현재 비밀번호</td>
+	<td>Current Password</td>
 	<td><input type="password" name="currentPasswd" /></td>
 </tr>
 <tr>
-	<td>변경 비밀번호</td>
+	<td>New Password</td>
 	<td><input type="password" name="newPasswd" /></td>
 </tr>
 <tr>
-	<td>변경 비밀번호 확인</td>
+	<td>New Password Confirm</td>
 	<td><input type="password" name="confirm" /></td>
 </tr>
 <tr>
-	<td colspan="2"><input type="submit" value="확인" /></td>
+	<td colspan="2"><input type="submit" value="Submit" /></td>
 </tr>
 </table>
 </form>

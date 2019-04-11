@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="게시판 상세보기" />
-<meta name="Description" content="게시판 상세보기" />
+<meta name="Keywords" content="Detailed View" />
+<meta name="Description" content="Detailed View" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script type="text/javascript">
@@ -55,7 +55,7 @@ function goModify() {
 }
 
 function goDelete() {
-    var check = confirm("정말로 삭제하시겠습니까?");
+    var check = confirm("Are you sure you want to delete it?");
     if (check) {
         var form = document.getElementById("delForm");
         form.submit();
@@ -63,7 +63,7 @@ function goDelete() {
 }
 
 function deleteAttachFile(attachFileNo) {
-    var check = confirm("첨부파일을 정말로 삭제하시겠습니까?");
+    var check = confirm("Are you sure you want to delete it?");
     if (check) {
         var form = document.getElementById("deleteAttachFileForm");
         form.attachFileNo.value = attachFileNo;
@@ -72,7 +72,7 @@ function deleteAttachFile(attachFileNo) {
 }
 
 function deleteComment(commentNo) {
-    var check = confirm("댓글을 정말로 삭제하시겠습니까?");
+    var check = confirm("Are you sure you want to delete it?");
     if (check) {
         var form = document.getElementById("deleteCommentForm");
         form.commentNo.value = commentNo;
@@ -100,19 +100,19 @@ function deleteComment(commentNo) {
 <div class="view-menu" style="margin-bottom: 5px;">
     <c:if test="${user.email == email }">
     <div class="fl">
-        <input type="button" value="수정" onclick="goModify()" />
-        <input type="button" value="삭제" onclick="goDelete()" />
+        <input type="button" value="Modify" onclick="goModify()" />
+        <input type="button" value="Del" onclick="goDelete()" />
     </div>
     </c:if>        
     <div class="fr">
 		<c:if test="${nextArticle != null }">    
-        <input type="button" value="다음글" onclick="goView('${nextArticle.articleNo }')" />
+        <input type="button" value="Next Article" onclick="goView('${nextArticle.articleNo }')" />
 		</c:if>
 		<c:if test="${prevArticle != null }">        
-        <input type="button" value="이전글" onclick="goView('${prevArticle.articleNo}')" />
+        <input type="button" value="Prev Article" onclick="goView('${prevArticle.articleNo}')" />
 		</c:if>        
-        <input type="button" value="목록" onclick="goList('${param.page }')" />
-        <input type="button" value="새글쓰기" onclick="goWrite()" />
+        <input type="button" value="List" onclick="goList('${param.page }')" />
+        <input type="button" value="New" onclick="goWrite()" />
     </div>
 </div>
 <table class="bbs-table">
@@ -145,7 +145,7 @@ function deleteComment(commentNo) {
        <textarea name="memo" rows="7" cols="50"></textarea>
    </div>
    <div style="text-align: right;">
-       <input type="submit" value="덧글남기기" />
+       <input type="submit" value="Submit" />
    </div>
 </form>
 <!-- comments begin -->
@@ -155,54 +155,52 @@ function deleteComment(commentNo) {
     <span class="date">${comment.regdate }</span>
 	<c:if test="${user.email == comment.email }">    
     <span class="modify-del">
-        <a href="javascript:modifyCommentToggle('${comment.commentNo }')">수정</a>
-         | <a href="javascript:deleteComment('${comment.commentNo }')">삭제</a>
+        <a href="javascript:modifyCommentToggle('${comment.commentNo }')">Modify</a>
+         | <a href="javascript:deleteComment('${comment.commentNo }')">Del</a>
     </span>
 	</c:if>    
     <p id="comment${comment.commentNo }" class="view-comment">${comment.memo }</p>
-    <form class="modify-comment" id="modifyCommentForm${comment.commentNo }" action="updateComment.do" method="post" style="display: none;">
-    <p>
+    <form id="modifyCommentForm${comment.commentNo }" class="comment-form" action="updateComment.do" method="post" style="display: none;">
         <input type="hidden" name="commentNo" value="${comment.commentNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </p>
-    <div class="fr">
-            <a href="javascript:document.forms.modifyCommentForm${comment.commentNo }.submit()">수정하기</a>
-            | <a href="javascript:modifyCommentToggle('${comment.commentNo }')">취소</a>
-    </div>
-    <div>
-        <textarea class="modify-comment-ta" name="memo" rows="7" cols="50">${comment.memo }</textarea>
-    </div>
+	    <div class="fr">
+	            <a href="javascript:document.forms.modifyCommentForm${comment.commentNo }.submit()">Submit</a>
+	            | <a href="javascript:modifyCommentToggle('${comment.commentNo }')">Cancel</a>
+	    </div>
+	    <div>
+	        <textarea class="comment-textarea" name="memo" rows="7" cols="50">${comment.memo }</textarea>
+	    </div>
     </form>
 </div>
 </c:forEach>
 <!--  comments end -->
 <div id="next-prev">
     <c:if test="${nextArticle != null }">
-    <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
+    <p>Next Article : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
     </c:if>
     <c:if test="${prevArticle != null }">
-    <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
+    <p>Prev Article : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
     </c:if>
 </div>
 <div class="view-menu">
     <c:if test="${user.email == email }">
     <div class="fl">
-        <input type="button" value="수정" onclick="goModify()" />
-        <input type="button" value="삭제" onclick="goDelete()" />
+        <input type="button" value="Modify" onclick="goModify()" />
+        <input type="button" value="Del" onclick="goDelete()" />
     </div>
     </c:if>        
     <div class="fr">
 		<c:if test="${nextArticle != null }">    
-        <input type="button" value="다음글" onclick="goView('${nextArticle.articleNo }')" />
+        <input type="button" value="Next Article" onclick="goView('${nextArticle.articleNo }')" />
 		</c:if>
 		<c:if test="${prevArticle != null }">        
-        <input type="button" value="이전글" onclick="goView('${prevArticle.articleNo}')" />
+        <input type="button" value="Prev Article" onclick="goView('${prevArticle.articleNo}')" />
 		</c:if>        
-        <input type="button" value="목록" onclick="goList('${param.page }')" />
-        <input type="button" value="새글쓰기" onclick="goWrite()" />
+        <input type="button" value="List" onclick="goList('${param.page }')" />
+        <input type="button" value="New" onclick="goWrite()" />
     </div>
 </div>
 <!-- BBS List in detailed Article -->
@@ -218,7 +216,7 @@ function deleteComment(commentNo) {
 	<td style="text-align: center;">
 	<c:choose>
 		<c:when test="${param.articleNo == article.articleNo }">	
-		<img src="../images/arrow.gif" alt="현재글" />
+		<img src="../images/arrow.gif" alt="Current Page" />
 		</c:when>
 		<c:otherwise>
 		${listItemNo - status.index }
@@ -228,7 +226,7 @@ function deleteComment(commentNo) {
 	<td>
 		<a href="javascript:goView('${article.articleNo }')">${article.title }</a>
 		<c:if test="${article.attachFileNum > 0 }">		
-		<img src="../images/attach.png" alt="첨부파일" />
+		<img src="../images/attach.png" alt="Attach File" />
 		</c:if>
 		<c:if test="${article.commentNum > 0 }">		
 		<span class="bbs-strong">[${article.commentNum }]</span>
@@ -242,7 +240,7 @@ function deleteComment(commentNo) {
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
 		<a href="javascript:golist('1')">1</a>
-		<a href="javascript:golist('${prevPage }')">[이전]</a>
+		<a href="javascript:golist('${prevPage }')">[Prev]</a>
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
@@ -255,12 +253,12 @@ function deleteComment(commentNo) {
 		</c:choose>			
 	</c:forEach>
 	<c:if test="${nextPage > 0 }">	
-		<a href="javascript:goList('${nextPage }')">[다음]</a>
-		<a href="javascript:goList('${totalPage }')">[마지막]</a>
+		<a href="javascript:goList('${nextPage }')">[Next]</a>
+		<a href="javascript:goList('${totalPage }')">[Last]</a>
 	</c:if>
 </div>
 <div id="list-menu">
-	<input type="button" value="새글쓰기" onclick="goWrite()" />
+	<input type="button" value="New" onclick="goWrite()" />
 </div>
 <div id="search">
 	<form action="list.do" method="get">
@@ -268,7 +266,7 @@ function deleteComment(commentNo) {
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="page" value="1" />
 		<input type="text" name="searchWord" size="15" maxlength="30" />
-		<input type="submit" value="검색" />
+		<input type="submit" value="Search" />
 	</p>
 	</form>
 </div>
