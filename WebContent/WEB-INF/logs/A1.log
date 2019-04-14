@@ -1,0 +1,6 @@
+http-nio-8080-exec-5 DEBUG board.BoardDao - SQLState : 23000
+Message : ORA-00001: unique constraint (JAVA.UNIQUE_VIEWS) violated
+
+Oracle Error Code : 1
+sql : INSERT INTO views values (seq_views.nextval, ?, ?, ?)
+

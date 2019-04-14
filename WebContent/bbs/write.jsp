@@ -43,10 +43,7 @@ function goView() {
 <div id="content-categories">${boardNm }</div>
 <h3>New</h3>
 <form id="writeForm" action="write.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
-<input type="hidden" name="articleNo" value="${param.articleNo }" />
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
-<input type="hidden" name="page" value="${param.page }" />
-<input type="hidden" name="searchWord" value="${param.searchWord }" />
 <table id="write-form" class="bbs-table">
 <tr>
     <td>Title</td>
