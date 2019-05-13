@@ -9,7 +9,7 @@
 <meta name="Description" content="Board Write" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
     //var form = document.getElementById("writeForm");
     //TODO 

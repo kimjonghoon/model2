@@ -9,7 +9,7 @@
 <meta name="Description" content="Detailed View" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function modifyCommentToggle(articleNo) {
 	var p_id = "comment" + articleNo;
 	var p = document.getElementById(p_id);
