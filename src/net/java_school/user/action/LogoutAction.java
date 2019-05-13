@@ -15,14 +15,14 @@ public class LogoutAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		HttpSession session = req.getSession();
 		session.removeAttribute(WebContants.USER_KEY);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setView("/");
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

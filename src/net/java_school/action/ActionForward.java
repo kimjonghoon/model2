@@ -3,7 +3,7 @@ package net.java_school.action;
 public class ActionForward {
 	private boolean isRedirect;
 	private String view;
-	
+
 	public boolean isRedirect() {
 		return isRedirect;
 	}
@@ -16,5 +16,5 @@ public class ActionForward {
 	public void setView(String view) {
 		this.view = view;
 	}
-	
+
 }

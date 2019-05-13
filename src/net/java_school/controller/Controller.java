@@ -33,7 +33,6 @@ import net.java_school.user.action.LogoutAction;
 import net.java_school.user.action.SignUpAction;
 
 public class Controller extends HttpServlet {
-
 	private static final long serialVersionUID = -904167838225890202L;
 
 	@Override

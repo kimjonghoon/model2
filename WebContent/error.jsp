@@ -45,16 +45,15 @@ if (requestUri == null) {
 <%
 if(statusCode != 500){
     out.write("<h3>Error Details</h3>");
-    out.write("<strong>Status Code</strong>:" + statusCode + "<br>");
-    out.write("<strong>Requested URI</strong>:"+requestUri);
+    out.write("<ul><li>Status Code</strong>:" + statusCode + "</li>");
+    out.write("<li>Requested URI</strong>:"+requestUri + "</li></ul>");
 }    
 if (throwable != null) {
     out.write("<h3>Exception Details</h3>");
     out.write("<ul><li>Servlet Name:" + servletName + "</li>");
     out.write("<li>Exception Name:" + throwable.getClass().getName() + "</li>");
     out.write("<li>Requested URI:" + requestUri + "</li>");
-    out.write("<li>Exception Message:" + throwable.getMessage() + "</li>");
-    out.write("</ul>");
+    out.write("<li>Exception Message:" + throwable.getMessage() + "</li></ul>");
 }
 %>
 <!-- content end -->		

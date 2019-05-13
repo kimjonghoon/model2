@@ -22,10 +22,10 @@ public class AddCommentAction implements Action {
 			HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
@@ -35,19 +35,19 @@ public class AddCommentAction implements Action {
 		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
 		String memo = req.getParameter("memo");
-		
+
 		Comment comment = new Comment();
 		comment.setArticleNo(articleNo);
 		comment.setEmail(user.getEmail());
 		comment.setMemo(memo);
-		
+
 		BoardService service = new BoardService();
 		service.addComment(comment);
-		
+
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

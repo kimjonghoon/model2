@@ -27,12 +27,12 @@ public class ViewAction extends Paginator implements Action  {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
@@ -40,22 +40,22 @@ public class ViewAction extends Paginator implements Action  {
 			url = URLEncoder.encode(url, "UTF-8");
 			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
-			
+
 			return forward;
 		}
-		
+
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
-		
+
 		BoardService service = new BoardService();
-		
+
 		int numPerPage = 20;
 		int pagePerBlock = 10;
-		
+
 		int totalRecord = service.getTotalRecord(boardCd, searchWord);
-		
+
 		NumbersForPaging numbers = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
 
 		//articleNo, user'ip, yearMonthDayHour
@@ -68,12 +68,12 @@ public class ViewAction extends Paginator implements Action  {
 		String yearMonthDayHour = year.toString() + month.toString() + day.toString() + hour.toString();
 
 		service.increaseHit(articleNo, ip, yearMonthDayHour);
-		
+
 		Article article = service.getArticle(articleNo);
 		List<AttachFile> attachFileList = service.getAttachFileList(articleNo);
 		Article nextArticle = service.getNextArticle(articleNo, boardCd, searchWord);
 		Article prevArticle = service.getPrevArticle(articleNo, boardCd, searchWord);
-		
+
 		int startRecord = (page - 1) * numPerPage + 1;
 		int endRecord = page * numPerPage;
 		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
@@ -89,14 +89,14 @@ public class ViewAction extends Paginator implements Action  {
 		String email = article.getEmail();
 		Date regdate = article.getRegdate();
 		String uploadPath = "/upload/";
-		
+
 		int listItemNo = numbers.getListItemNo();
 		int prevPage = numbers.getPrevBlock();
 		int firstPage = numbers.getFirstPage();
 		int lastPage = numbers.getLastPage();
 		int nextPage = numbers.getNextBlock();
 		int totalPage = numbers.getTotalPage();
-		
+
 		req.setAttribute("title", title);
 		req.setAttribute("content", content);
 		req.setAttribute("hit", hit);
@@ -108,7 +108,7 @@ public class ViewAction extends Paginator implements Action  {
 		req.setAttribute("nextArticle", nextArticle);
 		req.setAttribute("prevArticle", prevArticle);
 		req.setAttribute("commentList", commentList);
-		
+
 		req.setAttribute("list", list);
 		req.setAttribute("listItemNo", listItemNo);
 		req.setAttribute("prevPage", prevPage);
@@ -118,9 +118,9 @@ public class ViewAction extends Paginator implements Action  {
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
 		req.setAttribute("boards", boards);
-		
+
 		forward.setView("/bbs/view.jsp");
-		
+
 		return forward;
 	}
 

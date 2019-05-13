@@ -17,16 +17,16 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		String url = req.getParameter("url");
 		String email = req.getParameter("email");
 		String passwd = req.getParameter("passwd");
-		
+
 		UserService service = new UserService();
 		User user = service.login(email, passwd);
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		if (user == null) {
 			forward.setView("/users/login.do?url=" + url + "&msg=Login-Failed");
 			forward.setRedirect(true);
@@ -41,7 +41,7 @@ public class LoginAction implements Action {
 				forward.setRedirect(true);
 			}
 		}
-		
+
 		return forward;
 	}
 

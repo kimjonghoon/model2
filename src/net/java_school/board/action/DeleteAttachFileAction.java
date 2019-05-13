@@ -22,15 +22,15 @@ public class DeleteAttachFileAction implements Action {
 			HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		int attachFileNo = Integer.parseInt(req.getParameter("attachFileNo"));
-		
+
 		BoardService service = new BoardService();
 		AttachFile attachFile = service.getAttachFile(attachFileNo);
-		
+
 		if (user == null || !user.getEmail().equals(attachFile.getEmail())) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
@@ -39,14 +39,14 @@ public class DeleteAttachFileAction implements Action {
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
-		
+
 		service.removeAttachFile(attachFileNo);
-		
+
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
-		
+
 		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

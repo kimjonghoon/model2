@@ -20,32 +20,32 @@ public class DeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
-		
+
 		BoardService service = new BoardService();
 		Article article = service.getArticle(articleNo);
-		
+
 		if (user == null || !user.getEmail().equals(article.getEmail())) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
-		
+
 		service.removeArticle(articleNo);
-		
+
 		String boardCd = req.getParameter("boardCd");
 		String page = req.getParameter("page");
 		String searchWord = req.getParameter("searchWord");
-		
+
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
-		
+
 		forward.setView("list.do?boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

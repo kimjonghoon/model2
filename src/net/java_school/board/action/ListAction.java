@@ -23,12 +23,12 @@ public class ListAction extends Paginator implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
@@ -36,25 +36,25 @@ public class ListAction extends Paginator implements Action {
 			url = URLEncoder.encode(url, "UTF-8");
 			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
-			
+
 			return forward;
 		}
-		
+
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
-		
+
 		BoardService service = new BoardService();
-		
+
 		int numPerPage = 20;
 		int pagePerBlock = 10;
-		
+
 		int totalRecord = service.getTotalRecord(boardCd, searchWord);
 		NumbersForPaging numbers = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
-		
+
 		int startRecord = (page - 1) * numPerPage + 1;
 		int endRecord = page * numPerPage;
-		
+
 		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
 		int listItemNo = numbers.getListItemNo();
 		int prevPage = numbers.getPrevBlock();
@@ -64,7 +64,7 @@ public class ListAction extends Paginator implements Action {
 		int totalPage = numbers.getTotalPage();
 		String boardNm = service.getBoardNm(boardCd);
 		List<Board> boards = service.getAllBoard();
-		
+
 		req.setAttribute("list", list);
 		req.setAttribute("listItemNo", listItemNo);
 		req.setAttribute("prevPage", prevPage);
@@ -74,9 +74,9 @@ public class ListAction extends Paginator implements Action {
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("boardNm", boardNm);
 		req.setAttribute("boards", boards);
-		
+
 		forward.setView("/bbs/list.jsp");
-		
+
 		return forward;
 	}
 

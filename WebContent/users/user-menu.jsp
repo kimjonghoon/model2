@@ -21,4 +21,4 @@
 			<li><a href="bye.do">Bye</a></li>
 		</ul>
 	</c:otherwise>
-</c:choose>
+</c:choose>	

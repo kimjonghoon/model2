@@ -17,12 +17,12 @@ public class ByeFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
@@ -30,12 +30,12 @@ public class ByeFormAction implements Action {
 			url = URLEncoder.encode(url, "UTF-8");
 			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
-			
+
 			return forward;
 		}
-		
+
 		forward.setView("/users/bye.jsp");
-		
+
 		return forward;
 	}
 

@@ -23,32 +23,32 @@ public class ModifyFormAction implements Action {
 			HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
-		
+
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		BoardService service = new BoardService();
 		Article article = service.getArticle(articleNo);
-		
+
 		if (user == null || !user.getEmail().equals(article.getEmail())) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
-		
+
 		String title = article.getTitle();
 		String content = article.getContent();
 		String boardNm = service.getBoardNm(boardCd);
 		List<Board> boards = service.getAllBoard();
-		
+
 		req.setAttribute("title", title);
 		req.setAttribute("content", content);
 		req.setAttribute("boardNm", boardNm);
 		req.setAttribute("boards", boards);
-		
+
 		forward.setView("/bbs/modify.jsp");
-		
+
 		return forward;
 	}
 

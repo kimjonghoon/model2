@@ -69,7 +69,7 @@ public class UserDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		//email,passwd,name,mobile
+		//email, passwd, name, mobile
 		String sql = "insert into member values (?, ?, ?, ?)";
 
 		try {

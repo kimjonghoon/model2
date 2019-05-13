@@ -22,10 +22,10 @@ public class WriteFormAction implements Action {
 			HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
@@ -33,21 +33,21 @@ public class WriteFormAction implements Action {
 			url = URLEncoder.encode(url, "UTF-8");
 			forward.setView("/users/login.do?url=" + url);
 			forward.setRedirect(true);
-			
+
 			return forward;
 		}
-		
+
 		String boardCd = req.getParameter("boardCd");
-		
+
 		BoardService service = new BoardService();
 		String boardNm = service.getBoardNm(boardCd);
 		List<Board> boards = service.getAllBoard();
-		
+
 		req.setAttribute("boardNm", boardNm);
 		req.setAttribute("boards", boards);
-		
+
 		forward.setView("/bbs/write.jsp");
-		
+
 		return forward;
 	}
 

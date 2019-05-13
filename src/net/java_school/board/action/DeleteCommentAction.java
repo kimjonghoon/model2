@@ -20,31 +20,31 @@ public class DeleteCommentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
-		
+
 		BoardService service = new BoardService();
 		Comment comment = service.getComment(commentNo);
 		if (user == null || !user.getEmail().equals(comment.getEmail())) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
-		
+
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
 		String searchWord = req.getParameter("searchWord");
-		
+
 		service.removeComment(commentNo);
-		
+
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		forward.setView("view.do?articleNo=" + articleNo + "&boardCd=" + boardCd + "&page=" + page + "&searchWord=" + searchWord);
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

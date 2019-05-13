@@ -15,22 +15,22 @@ public class SignUpAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		String email = req.getParameter("email");
 		String passwd = req.getParameter("passwd");
 		String name = req.getParameter("name");
 		String mobile = req.getParameter("mobile");
 
 		User user = new User(email, passwd, name, mobile);
-		
+
 		UserService service = new UserService();
 		service.addUser(user);
-		
+
 		forward.setView("welcome.do");
 		forward.setRedirect(true);
-		
+
 		return forward;
 	}
 

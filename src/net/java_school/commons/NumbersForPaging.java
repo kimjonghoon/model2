@@ -7,7 +7,7 @@ public class NumbersForPaging {
 	private int prevBlock;
 	private int nextBlock;
 	private int listItemNo;
-	
+
 	public int getTotalPage() {
 		return totalPage;
 	}
@@ -44,5 +44,5 @@ public class NumbersForPaging {
 	public void setListItemNo(int listItemNo) {
 		this.listItemNo = listItemNo;
 	}
-	
+
 }

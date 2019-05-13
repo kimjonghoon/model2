@@ -20,24 +20,24 @@ public class ByeAction implements Action {
 			HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
-		
+
 		String email = req.getParameter("email");
 		String passwd = req.getParameter("passwd");
-		
+
 		UserService service = new UserService();
-		
+
 		service.bye(email, passwd);
 		session.removeAttribute(WebContants.USER_KEY);
-		
+
 		forward.setView("/users/bye_confirm.jsp");
-		
+
 		return forward;
 	}
 

@@ -34,7 +34,7 @@ public class BoardService {
 	public int getTotalViews(int articleNo) {
 		return dao.selectCountOfViews(articleNo);
 	}
-	
+
 	public Article getArticle(int articleNo) {
 		return dao.selectOne(articleNo);
 	}
@@ -82,9 +82,9 @@ public class BoardService {
 	public Comment getComment(int commentNo) {
 		return dao.selectOneComment(commentNo);
 	}
-	
+
 	public List<Board> getAllBoard() {
 		return dao.selectAllBoard();
 	}
-	
+
 }

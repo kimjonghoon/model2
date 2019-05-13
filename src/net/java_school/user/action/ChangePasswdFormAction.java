@@ -17,12 +17,12 @@ public class ChangePasswdFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
-		
+
 		ActionForward forward = new ActionForward();
-		
+
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute(WebContants.USER_KEY);
-		
+
 		if (user == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
@@ -32,9 +32,9 @@ public class ChangePasswdFormAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
-		
+
 		forward.setView("/users/changePasswd.jsp");
-		
+
 		return forward;
 	}
 

@@ -5,14 +5,14 @@ public class User {
 	private String passwd;
 	private String name;
 	private String mobile;
-	
+
 	public User() {}
-	
+
 	public User(String email, String passwd) {
 		this.email = email;
 		this.passwd = passwd;
 	}
-	
+
 	public User(String email, String passwd, String name, String mobile) {
 		this.email = email;
 		this.passwd = passwd;
@@ -44,6 +44,6 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
-	
+
+
 }

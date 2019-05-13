@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class BoardDao {
 	private Log log = LogFactory.getLog(BoardDao.class);
-	
+
 	private static BoardDao instance = new BoardDao();
 	private DataSource ds;
 	public static String NEW_LINE = System.getProperty("line.separator");
@@ -817,7 +817,7 @@ public class BoardDao {
 
 		return comment;
 	}
-	
+
 	public void insertOneViews(int aritcleNo, String ip, String yearMonthDayHour) {
 		String sql = "INSERT INTO views values (seq_views.nextval, ?, ?, ?)";
 
@@ -844,10 +844,10 @@ public class BoardDao {
 			close(null, pstmt, con);
 		}
 	}
-	
+
 	public int selectCountOfViews(int articleNo) {
 		String sql = "SELECT count(*) FROM views WHERE articleNo = ?";
-		
+
 		int totalRecord = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -914,5 +914,5 @@ public class BoardDao {
 		return boards;
 
 	}
-	
+
 }
