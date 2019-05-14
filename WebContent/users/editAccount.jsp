@@ -11,9 +11,29 @@
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
 function check() {
-    //var form = document.getElementById("editAccountForm");
-    //TODO 
-    return true;
+	var form = document.getElementById("editAccountForm");
+	var name = form.name.value;
+	name = name.trim();
+	if (name.length == 0) {
+		alert('Name is empty!');
+		form.name.value = '';
+		return false;
+	}
+	var mobile = form.mobile.value;
+	mobile = mobile.trim();
+	if (mobile.length == 0) {
+		alert('Mobile is empty!');
+		form.mobile.value = '';
+		return false;
+	}
+	var passwd = form.passwd.value;
+	passwd = passwd.trim();
+	if (passwd.length == 0) {
+		alert('Password is empty!');
+		form.passwd.value = '';
+		return false;
+	}
+	return true;
 }
 </script>
 </head>

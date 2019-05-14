@@ -8,15 +8,29 @@
 <meta name="Description" content="Modify Article" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function check() {
-    //var form = document.getElementById("modifyForm");
-    //TODO 
-    return true;
+	var form = document.getElementById("modifyForm");
+	var title = form.title.value;
+	title = title.trim();
+	if (title.length == 0) {
+		alert("Title is empty!");
+		form.title.value = '';
+		return false;
+	}
+	var content = form.content.value;
+	content = content.trim();
+	if (content.length == 0) {
+		alert("Content is empty!");
+		form.content.value = '';
+		return false;
+	}
+	return true;
 }
+
 function goView() {
-    var form = document.getElementById("viewForm");
-    form.submit();
+	var form = document.getElementById("viewForm");
+	form.submit();
 }
 </script>
 </head>

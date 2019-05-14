@@ -37,7 +37,7 @@ public class LoginAction implements Action {
 				forward.setView(url);
 				forward.setRedirect(true);
 			} else {
-				forward.setView("/bbs/list.do?boardCd=free&page=1");
+				forward.setView("/bbs/list.do?boardCd=chat&page=1");
 				forward.setRedirect(true);
 			}
 		}

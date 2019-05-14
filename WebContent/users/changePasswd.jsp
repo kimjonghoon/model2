@@ -5,19 +5,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="Change password" />
+<meta name="Keywords" content="Change Password" />
 <meta name="Description" content="Change Password" />
 <title>Change Password</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
 function check() {
-    var form = document.getElementById("changePassworddForm");
-    if (form.passwd.value == form.confirm.value) {
-    	return true;
-    } else {
-    	alert("[New Password] and [New Password Confirm] values are not the same!");
-    	return false;
-    }
+	var form = document.getElementById("changePassworddForm");
+	//currentPasswd,	newPasswd, confirm
+	var currentPasswd = form.currentPasswd.value;
+	currentPasswd = currentPasswd.trim();
+	if (currentPasswd.length == 0) {
+		alert('Current Password is empty!');
+		form.currentPasswd.value = '';
+		return false;
+	}
+	var newPasswd = form.newPasswd.value;
+	newPasswd = newPasswd.trim();
+	if (newPasswd.length == 0) {
+		alert('New Password is empty!');
+		form.newPasswd.value = '';
+		return false;
+	}
+	var confirm = form.confirm.value;
+	confirm = confirm.trim();
+	if (confirm.length == 0) {
+		alert('New Password confirm is empty!');
+		form.confirm.value = '';
+		return false;
+	}
+	if (newPasswd != confirm) {
+		alert("[New Password] and [New Password Confirm] are not the same!");
+		form.newPasswd.value = '';
+		form.confirm.value = '';
+		return false;
+	}
+	return true;
+	
 }
 </script>
 </head>

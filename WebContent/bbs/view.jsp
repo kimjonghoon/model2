@@ -130,7 +130,7 @@ function deleteComment(commentNo) {
 			<c:if test="${user.email == file.email }">
 	    	<a href="javascript:deleteAttachFile('${file.attachFileNo }')">x</a>
 			</c:if>
-			<br />    	
+			<br />
 		</c:forEach>
     </p>
 </div>
@@ -177,7 +177,7 @@ function deleteComment(commentNo) {
 </div>
 </c:forEach>
 <!--  comments end -->
-<div id="next-prev">
+<div class="next-prev">
     <c:if test="${nextArticle != null }">
     <p>Next Article : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
     </c:if>

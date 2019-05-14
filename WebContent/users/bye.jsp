@@ -11,9 +11,22 @@
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
 function check() {
-    //var form = document.getElementById("byeForm");
-    //TODO
-    return true;
+	var form = document.getElementById("byeForm");
+	var email = form.email.value;
+	email = email.trim();
+	if (email.length == 0) {
+		alert('Email is empty!');
+		form.email.value = '';
+		return false;
+	}
+	var passwd = form.passwd.value;
+	passwd = passwd.trim();
+	if (passwd.length == 0) {
+		alert('Password is empty!');
+		form.passwd.value = '';
+		return false;
+	}
+	return true;
 }
 </script>
 </head>

@@ -8,6 +8,48 @@
 <meta name="Description" content="Sign Up" />
 <title>Sign Up</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
+<script>
+function check() {
+	var form = document.getElementById("signUpForm");
+	//name,passwd,confirm,email,mobile
+	var name = form.name.value;
+	name = name.trim();
+	if (name.length == 0) {
+		alert('Full Name is empty!');
+		form.name.value = '';
+		return false;
+	}
+	var passwd = form.passwd.value;
+	passwd = passwd.trim();
+	if (passwd.length == 0) {
+		alert('Password is empty!');
+		form.passwd.value = '';
+		return false;
+	}
+	var confirm = form.confirm.value;
+	confirm = confirm.trim();
+	if (confirm.length == 0) {
+		alert('Password confirm is empty!');
+		form.confirm.value = '';
+		return false;
+	}
+	var email = form.email.value;
+	email = email.trim();
+	if (email.length == 0) {
+		alert('Email is empty!');
+		form.email.value = '';
+		return false;
+	}
+	var mobile = form.mobile.value;
+	mobile = mobile.trim();
+	if (mobile.length == 0) {
+		alert('Mobile is empty!');
+		form.mobile.value = '';
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
 
@@ -26,27 +68,27 @@
 <!-- content begin -->
 <div id="content-categories">Membership</div>
 <h3>Sign Up</h3>
-<form id="signUpForm" action="signUp.do" method="post">
+<form id="signUpForm" action="signUp.do" method="post" onsubmit="return check()">
 <table>
 <tr>
 	<td style="width: 200px;">Full Name</td>
-	<td style="width: 390px;"><input type="text" name="name" value="tester" /></td>
+	<td style="width: 390px;"><input type="text" name="name" /></td>
 </tr>
 <tr>
 	<td>Password</td>
-	<td><input type="password" name="passwd" value="1111" /></td>
+	<td><input type="password" name="passwd" /></td>
 </tr>
 <tr>
 	<td>Password Confirm</td>
-	<td><input type="password" name="confirm" value="1111" /></td>
+	<td><input type="password" name="confirm" /></td>
 </tr>
 <tr>
 	<td>Email</td>
-	<td><input type="text" name="email" value="tester@example.com" /></td>
+	<td><input type="text" name="email" /></td>
 </tr>
 <tr>
 	<td>Mobile</td>
-	<td><input type="text" name="mobile" value="2222" /></td>
+	<td><input type="text" name="mobile" /></td>
 </tr>
 </table>
 <div style="text-align: center;padding-bottom: 15px;">

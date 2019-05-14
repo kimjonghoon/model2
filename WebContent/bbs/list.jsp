@@ -9,7 +9,7 @@
 <meta name="Description" content="List" />
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
-<script type="text/javascript">
+<script>
 function goList(page) {
     var form = document.getElementById("listForm");
     form.page.value = page;
