@@ -53,6 +53,9 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+### Java ###
+*.class
+
 # Package Files #
 *.war
 *.ear
