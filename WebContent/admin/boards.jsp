@@ -5,10 +5,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Boards</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="Keywords" content="Boards" />
 <meta name="Description" content="Boards" />
+<title>Boards</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
 window.onload = initPage;
@@ -40,13 +39,14 @@ function initPage() {
 		<%@ include file="../inc/header.jsp" %>
 	</div>
 	
-	<div id="main-menu" lang="en">
+	<div id="main-menu">
 		<%@ include file="../inc/main-menu.jsp" %>
 	</div>
 	
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
+<div id="content-categories">Admin</div>
 <h3>Boards</h3>
 <table class="bbs-table" id="board-list">
     <tr>
@@ -63,7 +63,7 @@ function initPage() {
     </c:forEach>
 </table>
 
-<h2>Edit Board</h2>
+<h3>Edit Board</h3>
 
 <form id="editBoard" action="/admin/editBoard.do" method="post">
     <table class="bbs-table">
@@ -85,7 +85,7 @@ function initPage() {
     </div>
 </form>
 
-<h2>New Board</h2>
+<h3>New Board</h3>
 
 <form id="createBoard" action="/admin/createBoard.do" method="post">
     <table class="bbs-table">
@@ -110,7 +110,7 @@ function initPage() {
 		</div>
 	</div>
 
-	<div id="sidebar" lang="en">
+	<div id="sidebar">
 		<%@ include file="menu.jsp" %>
 	</div>
 

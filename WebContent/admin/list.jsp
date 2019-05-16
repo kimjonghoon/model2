@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="Keywords" content="Admin - Users" />
-<meta name="Description" content="Admin - Users" />
+<meta name="Keywords" content="Users" />
+<meta name="Description" content="Users" />
 <title>Users</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
@@ -110,7 +110,7 @@ function initPage() {
 			</div>
 		</div>
 
-		<div id="sidebar" lang="en">
+		<div id="sidebar">
 			<%@ include file="menu.jsp" %>
 		</div>
 

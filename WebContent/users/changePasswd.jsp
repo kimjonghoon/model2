@@ -60,7 +60,7 @@ function check() {
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
-<div id="content-categories">Member</div>
+<div id="content-categories">Membership</div>
 <h3>Change Password</h3>
 <p>
 ${userInfo.user.name }<br />

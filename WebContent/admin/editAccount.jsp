@@ -5,10 +5,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Edit Account</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="Keywords" content="Edit Account" />
 <meta name="Description" content="Edit Account" />
+<title>Edit Account</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
 window.onload = initPage;
@@ -39,15 +39,15 @@ function initPage() {
 		<%@ include file="../inc/header.jsp" %>
 	</div>
 	
-	<div id="main-menu" lang="en">
+	<div id="main-menu">
 		<%@ include file="../inc/main-menu.jsp" %>
 	</div>
 	
 	<div id="container">
 		<div id="content">
 <!-- content begin -->
+<div id="content-categories">Admin</div>
 <h3>Edit Account</h3>
-
 <form id="editAccountForm" action="editAccount.do" method="post">
     <input type="hidden" name="email" value="${user.email }" />
     <input type="hidden" name="page" value="${param.page }" />
@@ -132,7 +132,7 @@ function initPage() {
 		</div>
 	</div>
 
-	<div id="sidebar" lang="en">
+	<div id="sidebar">
 		<%@ include file="menu.jsp" %>
 	</div>
 

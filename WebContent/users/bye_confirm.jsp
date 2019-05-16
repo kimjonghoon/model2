@@ -25,7 +25,7 @@
 		<div id="content">
 <!-- content begin -->		
 <div id="content-categories">Membership</div>
-<h2>Confirm membership withdrawal</h2>
+<h3>Confirm membership withdrawal</h3>
 <p>
 All of your information has been deleted.
 </p>
