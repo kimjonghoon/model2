@@ -5,8 +5,8 @@ import java.util.Date;
 public class Comment {
 	private int commentNo;
 	private int articleNo;
-	private String email;//댓글 작성자ID에 해당하는 email
-	private String name;//댓글 작성자 이름
+	private String email;
+	private String name;
 	private String memo;
 	private Date regdate;
 

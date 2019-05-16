@@ -130,4 +130,5 @@
 * Have to edit in model2/src/log4j2.xml 
 	>> &lt;param name="File" value="{** Full path of your log file **}"/&gt;
 
-* Tomcat restart and visit http://localhost:8080
+* Everything in the src directory needs to be changed so that Eclipse creates a Java class file and a configuration file in WEB-INF/classes.
+* If you have confirmed that there are no errors in all the files in Eclipse, restart Tomcat  and visit http://localhost:8080.
