@@ -33,8 +33,8 @@ import net.java_school.user.action.ChangeMyPasswordFormAction;
 import net.java_school.user.action.ChangeUserPasswdAction;
 import net.java_school.user.action.DelAuthorityAction;
 import net.java_school.user.action.DelUserAction;
-import net.java_school.user.action.EditAccountFormAction;
 import net.java_school.user.action.EditMyAccountAction;
+import net.java_school.user.action.EditMyAccountFormAction;
 import net.java_school.user.action.EditUserAccountAction;
 import net.java_school.user.action.EditUserAccountFormAction;
 import net.java_school.user.action.LoginAction;
@@ -118,7 +118,7 @@ public class Controller extends HttpServlet {
 				forward = new ActionForward();
 				forward.setView("/users/welcome.jsp");              
 			} else if (command.equals("/users/editAccount.do") && req.getMethod().equals("GET")) {
-				action = new EditAccountFormAction();
+				action = new EditMyAccountFormAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/editAccount.do") && req.getMethod().equals("POST")) {
 				action = new EditMyAccountAction();

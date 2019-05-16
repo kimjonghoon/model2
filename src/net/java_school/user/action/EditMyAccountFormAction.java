@@ -12,7 +12,7 @@ import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
 import net.java_school.user.UserInfo;
 
-public class EditAccountFormAction implements Action {
+public class EditMyAccountFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,

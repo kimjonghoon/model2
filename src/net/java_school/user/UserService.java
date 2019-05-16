@@ -14,29 +14,11 @@ public class UserService {
 	}
 
 	public void editMyAccount(User user) {
-		String email = user.getEmail();
-		String passwd = user.getPasswd();
-		int  check = dao.authentication(email, passwd);
-		if (check == 1) {
-			dao.update(user);
-		}
+		dao.update(user);
 	}
 
-	//Change My Password
-	public void changeMyPasswd(String email, String currentPasswd, String newPasswd) {
-		int check = dao.authentication(email, currentPasswd);
-		if (check == 1) {
-			dao.updatePasswd(email, newPasswd);
-		}
-	}
-
-	//Bye
-	public void bye(String email, String passwd) {
-		int check = dao.authentication(email, passwd);
-		if (check == 1) {
-			dao.deleteAllAuthorities(email);
-			dao.delete(email);
-		}
+	public void changeMyPasswd(String email, String newPasswd) {
+		dao.updatePasswd(email, newPasswd);
 	}
 
 	public User getUser(String email) {
@@ -47,33 +29,32 @@ public class UserService {
 		return dao.selectRoles(email);
 	}
 	
-	//for admin
+	//admin menu
 	public int getTotalUser(String search) {
 		return dao.selectCountOfUsers(search);
 	}
 	
-	//for admin
+	//admin menu
 	public List<UserInfo> getUserInfos(String search, int startRecord, int endRecord) {
 		return dao.selectListOfUserInfos(search, startRecord, endRecord);
 	}
 	
-	//for admin
+	//admin menu
 	public void addAuthority(String email, String authority) {
 		dao.insertAuthority(email, authority);
 	}
 	
-	//for admin
-	public void deleteUser(String email) {
+	public void removeUser(String email) {
 		dao.deleteAllAuthorities(email);
 		dao.delete(email);
 	}
 	
-	//for admin
+	//admin menu
 	public void removeAuthority(String email, String authority) {
 		dao.deleteAuthority(email, authority);
 	}
 	
-	//for admin
+	//admin menu
 	public void editUserAccount(User user) {
 		dao.update(user);
 	}
@@ -83,5 +64,8 @@ public class UserService {
 		dao.updatePasswd(email, passwd);
 	}
 	
+	public int authentication(String email, String passwd) {
+		return dao.authentication(email, passwd);
+	}
 
 }

@@ -33,7 +33,13 @@ public class ChangeMyPasswordAction implements Action {
 		String email = userInfo.getUser().getEmail();
 
 		UserService service = new UserService();
-		service.changeMyPasswd(email, currentPasswd, newPasswd);
+		
+		int check = service.authentication(email, currentPasswd);
+		
+		if (check != 1) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+		service.changeMyPasswd(email, newPasswd);
 
 		forward.setView("changePasswd_confirm.do");
 		forward.setRedirect(true);

@@ -25,7 +25,6 @@ public class EditMyAccountAction implements Action {
 		HttpSession session = req.getSession();
 		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		//전달되는 파라미터 name, mobile, passwd
 		String name = req.getParameter("name");
 		String mobile = req.getParameter("mobile");
 		String passwd = req.getParameter("passwd");
@@ -35,19 +34,22 @@ public class EditMyAccountAction implements Action {
 		}
 
 		String email = userInfo.getUser().getEmail();
-
 		UserService service = new UserService();
-
-		if (service.login(email, passwd) == null) {
+		
+		int check = service.authentication(email, passwd);
+		if (check != 1) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
 		User user = userInfo.getUser();
-		user.setPasswd(passwd);
+		
+		user.setEmail(email);
 		user.setName(name);
 		user.setMobile(mobile);
-
+		
 		service.editMyAccount(user);
+		
+		
 		forward.setView("/users/changePasswd.do");
 		forward.setRedirect(true);
 

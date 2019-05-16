@@ -24,15 +24,15 @@ public class DelUserAction implements Action {
 		HttpSession session = req.getSession();
 		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (userInfo.isAdmin() == false) {
-			throw new AuthenticationException("You are not Admin!");
+		if (userInfo == null || userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.NOT_ADMIN);
 		}
 
 		String email = req.getParameter("email");
 
 		UserService service = new UserService();
 
-		service.deleteUser(email);
+		service.removeUser(email);
 
 		String page = req.getParameter("page");
 		String search = req.getParameter("search");

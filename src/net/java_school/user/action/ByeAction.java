@@ -32,8 +32,12 @@ public class ByeAction implements Action {
 		String passwd = req.getParameter("passwd");
 
 		UserService service = new UserService();
-
-		service.bye(email, passwd);
+		int check = service.authentication(email, passwd);
+		if (check != 1) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+		service.removeUser(email);
+		
 		session.removeAttribute(WebContants.USER_KEY);
 
 		forward.setView("/users/bye_confirm.jsp");
