@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class EditAccountFormAction implements Action {
 
@@ -21,9 +21,9 @@ public class EditAccountFormAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
+		if (userInfo == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;

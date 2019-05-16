@@ -13,7 +13,7 @@ import net.java_school.board.BoardService;
 import net.java_school.board.Comment;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class UpdateCommentAction implements Action {
 
@@ -24,17 +24,21 @@ public class UpdateCommentAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
 
 		BoardService service = new BoardService();
 		Comment comment = service.getComment(commentNo);
 
-		if (user == null || !user.getEmail().equals(comment.getEmail())) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
+		if (!userInfo.getUser().getEmail().equals(comment.getEmail()) && userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+		
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
@@ -44,7 +48,7 @@ public class UpdateCommentAction implements Action {
 
 		comment.setCommentNo(commentNo);
 		comment.setArticleNo(articleNo);
-		comment.setEmail(user.getEmail());
+		comment.setEmail(userInfo.getUser().getEmail());
 		comment.setMemo(memo);
 
 		service.modifyComment(comment);

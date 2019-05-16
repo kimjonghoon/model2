@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.board.action.AddCommentAction;
+import net.java_school.board.action.BoardAction;
+import net.java_school.board.action.CreateBoardAction;
 import net.java_school.board.action.DeleteAction;
 import net.java_school.board.action.DeleteAttachFileAction;
 import net.java_school.board.action.DeleteCommentAction;
+import net.java_school.board.action.EditBoardAction;
 import net.java_school.board.action.ListAction;
 import net.java_school.board.action.ModifyAction;
 import net.java_school.board.action.ModifyFormAction;
@@ -22,15 +25,22 @@ import net.java_school.board.action.ViewAction;
 import net.java_school.board.action.WriteAction;
 import net.java_school.board.action.WriteFormAction;
 import net.java_school.exception.AuthenticationException;
+import net.java_school.user.action.AddAuthorityAction;
 import net.java_school.user.action.ByeAction;
 import net.java_school.user.action.ByeFormAction;
-import net.java_school.user.action.ChangePasswdAction;
-import net.java_school.user.action.ChangePasswdFormAction;
-import net.java_school.user.action.EditAccountAction;
+import net.java_school.user.action.ChangeMyPasswordAction;
+import net.java_school.user.action.ChangeMyPasswordFormAction;
+import net.java_school.user.action.ChangeUserPasswdAction;
+import net.java_school.user.action.DelAuthorityAction;
+import net.java_school.user.action.DelUserAction;
 import net.java_school.user.action.EditAccountFormAction;
+import net.java_school.user.action.EditMyAccountAction;
+import net.java_school.user.action.EditUserAccountAction;
+import net.java_school.user.action.EditUserAccountFormAction;
 import net.java_school.user.action.LoginAction;
 import net.java_school.user.action.LogoutAction;
 import net.java_school.user.action.SignUpAction;
+import net.java_school.user.action.UserListAction;
 
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = -904167838225890202L;
@@ -90,28 +100,28 @@ public class Controller extends HttpServlet {
 				action = new DeleteAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/changePasswd.do") && req.getMethod().equals("GET")) {
-				action = new ChangePasswdFormAction();
+				action = new ChangeMyPasswordFormAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/changePasswd.do") && req.getMethod().equals("POST")) {
-				action = new ChangePasswdAction();
+				action = new ChangeMyPasswordAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/changePasswd_confirm.do") && req.getMethod().equals("GET")) {
-				forward = new ActionForward();  //단순 포워딩일때는 액션이 필요없다.
+				forward = new ActionForward();
 				forward.setView("/users/changePasswd_confirm.jsp");             
 			} else if (command.equals("/users/signUp.do") && req.getMethod().equals("GET")) {
-				forward = new ActionForward(); //단순 포워딩
+				forward = new ActionForward();
 				forward.setView("/users/signUp.jsp");
 			} else if (command.equals("/users/signUp.do") && req.getMethod().equals("POST")) {
 				action = new SignUpAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/welcome.do") && req.getMethod().equals("GET")) {
-				forward = new ActionForward(); //단순 포워딩
+				forward = new ActionForward();
 				forward.setView("/users/welcome.jsp");              
 			} else if (command.equals("/users/editAccount.do") && req.getMethod().equals("GET")) {
 				action = new EditAccountFormAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/editAccount.do") && req.getMethod().equals("POST")) {
-				action = new EditAccountAction();
+				action = new EditMyAccountAction();
 				forward = action.execute(req, resp);
 			} else if (command.equals("/users/bye.do") && req.getMethod().equals("GET")) {
 				action = new ByeFormAction();
@@ -128,6 +138,36 @@ public class Controller extends HttpServlet {
 			} else if (command.equals("/users/logout.do") && req.getMethod().equals("GET")) {
 				action = new LogoutAction();
 				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/list.do") && req.getMethod().equals("GET")) {
+				action = new UserListAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/delUser.do") && req.getMethod().equals("POST")) {
+				action = new DelUserAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/editAccount.do") && req.getMethod().equals("GET")) {
+				action = new EditUserAccountFormAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/editAccount.do") && req.getMethod().equals("POST")) {
+				action = new EditUserAccountAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/delAuthority.do") && req.getMethod().equals("GET")) {
+				action = new DelAuthorityAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/addAuthority.do") && req.getMethod().equals("POST")) {
+				action = new AddAuthorityAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/changePasswd.do") && req.getMethod().equals("POST")) {
+				action = new ChangeUserPasswdAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/boards.do") && req.getMethod().equals("GET")) {
+				action = new BoardAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/editBoard.do") && req.getMethod().equals("POST")) {
+				action = new EditBoardAction();
+				forward = action.execute(req, resp);
+			} else if (command.equals("/admin/createBoard.do") && req.getMethod().equals("POST")) {
+				action = new CreateBoardAction();
+				forward = action.execute(req, resp);
 			}
 
 			view = forward.getView();
@@ -139,10 +179,8 @@ public class Controller extends HttpServlet {
 				resp.sendRedirect(view);
 			}
 		} catch (AuthenticationException e) {
-			//컨트롤러에 인증실패 익셉션이 전달되면, 컨트롤러는 에러를 컨테이너에 전달한다.
 			resp.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
 		}
-
 
 	}
 

@@ -4,14 +4,16 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
-import net.java_school.user.User;
+import net.java_school.exception.AuthenticationException;
+import net.java_school.user.UserInfo;
 import net.java_school.user.UserService;
 
-public class SignUpAction implements Action {
+public class ChangeUserPasswdAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
@@ -19,18 +21,22 @@ public class SignUpAction implements Action {
 
 		ActionForward forward = new ActionForward();
 
+		HttpSession session = req.getSession();
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
+
+		if (userInfo == null || userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.NOT_ADMIN);
+		}
+
+		String page = req.getParameter("page");
+		String search = req.getParameter("search");
 		String email = req.getParameter("email");
 		String passwd = req.getParameter("passwd");
-		String name = req.getParameter("name");
-		String mobile = req.getParameter("mobile");
-
-		User user = new User(email, passwd, name, mobile);
 
 		UserService service = new UserService();
-		service.addUser(user);
-		service.addAuthority(user.getEmail(), WebContants.ROLE_USER);
+		service.changeUserPasswd(email, passwd);
 
-		forward.setView("welcome.do");
+		forward.setView("editAccount.do?email=" + email + "&page=" + page + "&search=" + search);
 		forward.setRedirect(true);
 
 		return forward;

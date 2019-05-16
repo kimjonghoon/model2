@@ -1,6 +1,7 @@
 package net.java_school.user.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,13 +11,13 @@ import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
 import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 import net.java_school.user.UserService;
 
 public class LoginAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		String url = req.getParameter("url");
 		String email = req.getParameter("email");
@@ -31,8 +32,12 @@ public class LoginAction implements Action {
 			forward.setView("/users/login.do?url=" + url + "&msg=Login-Failed");
 			forward.setRedirect(true);
 		} else {
+			List<String> roles = service.getRoles(email);
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUser(user);
+			userInfo.setRoles(roles);
 			HttpSession session = req.getSession();
-			session.setAttribute(WebContants.USER_KEY, user);
+			session.setAttribute(WebContants.USER_KEY, userInfo);
 			if (url != null && !url.equals("")) {
 				forward.setView(url);
 				forward.setRedirect(true);

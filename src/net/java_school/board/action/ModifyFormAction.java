@@ -14,7 +14,7 @@ import net.java_school.board.Board;
 import net.java_school.board.BoardService;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class ModifyFormAction implements Action {
 
@@ -28,19 +28,23 @@ public class ModifyFormAction implements Action {
 		String boardCd = req.getParameter("boardCd");
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		BoardService service = new BoardService();
 		Article article = service.getArticle(articleNo);
 
-		if (user == null || !user.getEmail().equals(article.getEmail())) {
+		if (userInfo == null) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+
+		if (!userInfo.getUser().getEmail().equals(article.getEmail()) && userInfo.isAdmin() == false) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
 		String title = article.getTitle();
 		String content = article.getContent();
 		String boardNm = service.getBoardNm(boardCd);
-		List<Board> boards = service.getAllBoard();
+		List<Board> boards = service.getBoards();
 
 		req.setAttribute("title", title);
 		req.setAttribute("content", content);

@@ -98,7 +98,7 @@ function deleteComment(commentNo) {
 <!-- content begin -->
 <div id="content-categories">${boardNm }</div>
 <div class="view-menu" style="margin-bottom: 5px;">
-    <c:if test="${user.email == email }">
+    <c:if test="${(userInfo.user.email == email) || (userInfo.admin) }">
     <div class="fl">
         <input type="button" value="Modify" onclick="goModify()" />
         <input type="button" value="Del" onclick="goDelete()" />
@@ -186,7 +186,7 @@ function deleteComment(commentNo) {
     </c:if>
 </div>
 <div class="view-menu">
-    <c:if test="${user.email == email }">
+    <c:if test="${(userInfo.user.email == email) || (userInfo.admin) }">
     <div class="fl">
         <input type="button" value="Modify" onclick="goModify()" />
         <input type="button" value="Del" onclick="goDelete()" />

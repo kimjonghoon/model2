@@ -13,7 +13,7 @@ import net.java_school.board.Article;
 import net.java_school.board.BoardService;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class DeleteAction implements Action {
 
@@ -24,14 +24,18 @@ public class DeleteAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 
 		BoardService service = new BoardService();
 		Article article = service.getArticle(articleNo);
 
-		if (user == null || !user.getEmail().equals(article.getEmail())) {
+		if (userInfo == null) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+
+		if (!userInfo.getUser().getEmail().equals(article.getEmail()) && userInfo.isAdmin() == false) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 

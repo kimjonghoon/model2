@@ -1,4 +1,4 @@
-package net.java_school.board.action;
+package net.java_school.user.action;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -10,19 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
-import net.java_school.board.Article;
-import net.java_school.board.Board;
-import net.java_school.board.BoardService;
 import net.java_school.commons.NumbersForPaging;
 import net.java_school.commons.Paginator;
 import net.java_school.commons.WebContants;
+import net.java_school.exception.AuthenticationException;
 import net.java_school.user.UserInfo;
+import net.java_school.user.UserService;
 
-public class ListAction extends Paginator implements Action {
+public class UserListAction extends Paginator implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		ActionForward forward = new ActionForward();
 
@@ -39,31 +37,33 @@ public class ListAction extends Paginator implements Action {
 
 			return forward;
 		}
+		
+		if (userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
 
-		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));
-		String searchWord = req.getParameter("searchWord");
+		String search = req.getParameter("search");
 
-		BoardService service = new BoardService();
+		UserService service = new UserService();
 
 		int numPerPage = 20;
 		int pagePerBlock = 10;
 
-		int totalRecord = service.getTotalRecord(boardCd, searchWord);
-		NumbersForPaging numbers = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
+		int total = service.getTotalUser(search);
+		NumbersForPaging numbers = this.getNumbersForPaging(total, page, numPerPage, pagePerBlock);
 
 		int startRecord = (page - 1) * numPerPage + 1;
 		int endRecord = page * numPerPage;
 
-		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
+		List<UserInfo> list = service.getUserInfos(search, startRecord, endRecord);
+		
 		int listItemNo = numbers.getListItemNo();
 		int prevPage = numbers.getPrevBlock();
 		int firstPage = numbers.getFirstPage();
 		int lastPage = numbers.getLastPage();
 		int nextPage = numbers.getNextBlock();
 		int totalPage = numbers.getTotalPage();
-		String boardNm = service.getBoardNm(boardCd);
-		List<Board> boards = service.getBoards();
 
 		req.setAttribute("list", list);
 		req.setAttribute("listItemNo", listItemNo);
@@ -72,10 +72,8 @@ public class ListAction extends Paginator implements Action {
 		req.setAttribute("lastPage", lastPage);
 		req.setAttribute("nextPage", nextPage);
 		req.setAttribute("totalPage", totalPage);
-		req.setAttribute("boardNm", boardNm);
-		req.setAttribute("boards", boards);
 
-		forward.setView("/bbs/list.jsp");
+		forward.setView("/admin/list.jsp");
 
 		return forward;
 	}

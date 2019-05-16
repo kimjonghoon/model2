@@ -3,8 +3,8 @@
 <%@ page import="net.java_school.user.*"%>
 <%@page import="java.net.URLEncoder"%>
 <%   
-User user = (User) session.getAttribute("user");
-if (user == null) {
+UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+if (userInfo == null) {
     String uri = request.getRequestURI();
     String query = request.getQueryString();
     String url = uri;

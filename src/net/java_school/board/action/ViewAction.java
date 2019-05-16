@@ -20,7 +20,7 @@ import net.java_school.board.Comment;
 import net.java_school.commons.NumbersForPaging;
 import net.java_school.commons.Paginator;
 import net.java_school.commons.WebContants;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class ViewAction extends Paginator implements Action  {
 
@@ -31,9 +31,9 @@ public class ViewAction extends Paginator implements Action  {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
+		if (userInfo == null) {
 			String url = req.getRequestURI();
 			String query = req.getQueryString();
 			if (query != null) url += "?" + query;
@@ -79,7 +79,7 @@ public class ViewAction extends Paginator implements Action  {
 		List<Article> list = service.getArticleList(boardCd, searchWord, startRecord, endRecord);
 		List<Comment> commentList = service.getCommentList(articleNo);
 		String boardNm = service.getBoardNm(boardCd);
-		List<Board> boards = service.getAllBoard();
+		List<Board> boards = service.getBoards();
 
 		String title = article.getTitle();
 		String content = article.getContent();

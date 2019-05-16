@@ -83,8 +83,16 @@ public class BoardService {
 		return dao.selectOneComment(commentNo);
 	}
 
-	public List<Board> getAllBoard() {
-		return dao.selectAllBoard();
+	public List<Board> getBoards() {
+		return dao.selectBoards();
+	}
+	
+	public void editBoard(Board board) {
+		dao.updateBoard(board);
+	}
+	
+	public void createBoard(Board board) {
+		dao.insertBoard(board);
 	}
 
 }

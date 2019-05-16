@@ -63,8 +63,8 @@ function check() {
 <div id="content-categories">Member</div>
 <h3>Change Password</h3>
 <p>
-${user.name }<br />
-${user.mobile }
+${userInfo.user.name }<br />
+${userInfo.user.mobile }
 </p>
 <form id="changePassworddForm" action="changePasswd.do" method="post" onsubmit="return check()">
 <table>

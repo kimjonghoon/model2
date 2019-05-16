@@ -18,7 +18,7 @@ import net.java_school.board.AttachFile;
 import net.java_school.board.BoardService;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class WriteAction implements Action {
 
@@ -29,9 +29,9 @@ public class WriteAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
 
@@ -55,13 +55,13 @@ public class WriteAction implements Action {
 			attachFile.setFilename(filename);
 			attachFile.setFiletype(filetype);
 			attachFile.setFilesize(filesize);
-			attachFile.setEmail(user.getEmail());
+			attachFile.setEmail(userInfo.getUser().getEmail());
 		}
 
 		String boardCd = multi.getParameter("boardCd");
 
 		Article article = new Article();
-		article.setEmail(user.getEmail());
+		article.setEmail(userInfo.getUser().getEmail());
 		article.setTitle(title);
 		article.setContent(content);
 		article.setBoardCd(boardCd);

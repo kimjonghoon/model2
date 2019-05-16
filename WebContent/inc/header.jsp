@@ -4,7 +4,7 @@
 <h1 style="float: left; width:150px;"><a href="/"><img src="/images/ci.gif" alt="" /></a></h1>
 <div id="memberMenu" style="float: right;position: relative; top: 7px;">
 <c:choose>
-	<c:when test="${empty user }">
+	<c:when test="${empty userInfo }">
 		<input type="button" value="Login" onclick="location.href='/users/login.do'" />
 		<input type="button" value="Sign Up" onclick="location.href='/users/signUp.do'" />
 	</c:when>

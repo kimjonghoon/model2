@@ -13,7 +13,7 @@ import net.java_school.board.BoardService;
 import net.java_school.board.Comment;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class AddCommentAction implements Action {
 
@@ -24,9 +24,9 @@ public class AddCommentAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
 
@@ -38,7 +38,7 @@ public class AddCommentAction implements Action {
 
 		Comment comment = new Comment();
 		comment.setArticleNo(articleNo);
-		comment.setEmail(user.getEmail());
+		comment.setEmail(userInfo.getUser().getEmail());
 		comment.setMemo(memo);
 
 		BoardService service = new BoardService();

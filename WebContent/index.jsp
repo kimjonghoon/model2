@@ -256,7 +256,7 @@ cp 옵션 다음은 클래스 파일이 있는 디렉터리다.<br />
 		</div>
 
 		<div id="sidebar" lang="en">
-<h1>Home</h1>
+			<h1>Home</h1>
 		</div>
 
 		<div id="extra">

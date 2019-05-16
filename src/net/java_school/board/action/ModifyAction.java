@@ -19,7 +19,7 @@ import net.java_school.board.AttachFile;
 import net.java_school.board.BoardService;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class ModifyAction implements Action {
 
@@ -30,7 +30,7 @@ public class ModifyAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		ServletContext servletContext = req.getServletContext();
 		String dir = servletContext.getRealPath("/upload");
@@ -40,7 +40,7 @@ public class ModifyAction implements Action {
 		BoardService service = new BoardService();
 		int articleNo = Integer.parseInt(multi.getParameter("articleNo"));
 
-		if (!service.getArticle(articleNo).getEmail().equals(user.getEmail())) {
+		if (!service.getArticle(articleNo).getEmail().equals(userInfo.getUser().getEmail()) && userInfo.isAdmin() == false) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
@@ -64,7 +64,7 @@ public class ModifyAction implements Action {
 			attachFile.setFilename(filename);
 			attachFile.setFiletype(filetype);
 			attachFile.setFilesize(filesize);
-			attachFile.setEmail(user.getEmail());
+			attachFile.setEmail(userInfo.getUser().getEmail());
 			attachFile.setArticleNo(articleNo);
 		}
 
@@ -73,7 +73,7 @@ public class ModifyAction implements Action {
 		article.setBoardCd(boardCd);
 		article.setTitle(title);
 		article.setContent(content);
-		article.setEmail(user.getEmail());
+		article.setEmail(userInfo.getUser().getEmail());
 
 		service.modifyArticle(article, attachFile);
 

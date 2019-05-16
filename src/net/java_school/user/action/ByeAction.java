@@ -10,7 +10,7 @@ import net.java_school.action.Action;
 import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 import net.java_school.user.UserService;
 
 public class ByeAction implements Action {
@@ -22,9 +22,9 @@ public class ByeAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
 

@@ -16,12 +16,13 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import net.java_school.commons.WebContants;
+
 public class BoardDao {
 	private Log log = LogFactory.getLog(BoardDao.class);
 
 	private static BoardDao instance = new BoardDao();
 	private DataSource ds;
-	public static String NEW_LINE = System.getProperty("line.separator");
 
 	public static BoardDao getInstance() {
 		return instance;
@@ -134,10 +135,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -167,10 +168,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -201,10 +202,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -231,10 +232,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -259,10 +260,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -289,10 +290,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -329,10 +330,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 
@@ -392,10 +393,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -441,10 +442,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -491,10 +492,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -537,10 +538,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -565,10 +566,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -595,10 +596,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -626,10 +627,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -652,10 +653,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -677,10 +678,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -725,10 +726,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -764,10 +765,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -805,10 +806,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -834,10 +835,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -863,10 +864,10 @@ public class BoardDao {
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -877,9 +878,9 @@ public class BoardDao {
 
 	}
 
-	public List<Board> selectAllBoard() {
+	public List<Board> selectBoards() {
 		List<Board> boards = new ArrayList<Board>();
-		String sql = "SELECT boardcd,boardnm FROM board ORDER BY boardnm_ko ASC";
+		String sql = "SELECT * FROM board ORDER BY boardcd";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -894,17 +895,19 @@ public class BoardDao {
 				Board board = new Board();
 				String boardCd = rs.getString(1);
 				String boardNm = rs.getString(2);
+				String boardNm_ko = rs.getString(3);
 				board.setBoardCd(boardCd);
 				board.setBoardNm(boardNm);
+				board.setBoardNm_ko(boardNm_ko);
 				boards.add(board);
 			}
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
 				StringBuilder msg = new StringBuilder();
-				msg.append("SQLState : " + e.getSQLState() + NEW_LINE);
-				msg.append("Message : " + e.getMessage() + NEW_LINE);
-				msg.append("Oracle Error Code : " + e.getErrorCode() + NEW_LINE);
-				msg.append("sql : " + sql + NEW_LINE);
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
 				log.debug(msg);
 			}
 		} finally {
@@ -913,6 +916,58 @@ public class BoardDao {
 
 		return boards;
 
+	}
+	
+	public void updateBoard(Board board) {
+		String sql = "UPDATE board SET boardNm = ?, boardNm_ko = ? WHERE boardCd = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBoardNm());
+			pstmt.setString(2, board.getBoardNm_ko());
+			pstmt.setString(3, board.getBoardCd());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			if (log.isDebugEnabled()) {
+				StringBuilder msg = new StringBuilder();
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
+				log.debug(msg);
+			}
+		} finally {
+			close(null, pstmt, con);
+		}
+	}
+
+	public void insertBoard(Board board) {
+		String sql = "INSERT INTO board VALUES (?, ?, ?)";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBoardCd());
+			pstmt.setString(2, board.getBoardNm());
+			pstmt.setString(3, board.getBoardNm_ko());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			if (log.isDebugEnabled()) {
+				StringBuilder msg = new StringBuilder();
+				msg.append("SQLState : " + e.getSQLState() + WebContants.LINE_SEPARATOR);
+				msg.append("Message : " + e.getMessage() + WebContants.LINE_SEPARATOR);
+				msg.append("Oracle Error Code : " + e.getErrorCode() + WebContants.LINE_SEPARATOR);
+				msg.append("sql : " + sql + WebContants.LINE_SEPARATOR);
+				log.debug(msg);
+			}
+		} finally {
+			close(null, pstmt, con);
+		}
 	}
 
 }

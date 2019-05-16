@@ -11,9 +11,10 @@ import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
 import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 import net.java_school.user.UserService;
 
-public class EditAccountAction implements Action {
+public class EditMyAccountAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
@@ -22,18 +23,18 @@ public class EditAccountAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		//전달되는 파라미터 name, mobile, passwd
 		String name = req.getParameter("name");
 		String mobile = req.getParameter("mobile");
 		String passwd = req.getParameter("passwd");
 
-		if (user == null) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.NOT_LOGIN);
 		}
 
-		String email = user.getEmail();
+		String email = userInfo.getUser().getEmail();
 
 		UserService service = new UserService();
 
@@ -41,20 +42,14 @@ public class EditAccountAction implements Action {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
-		//user.setEmail(email);
+		User user = userInfo.getUser();
 		user.setPasswd(passwd);
 		user.setName(name);
 		user.setMobile(mobile);
 
-		int check = service.editAccount(user);
-
-		if (check > 0) {
-			session.setAttribute(WebContants.USER_KEY, user);
-			forward.setView("changePasswd.do");
-			forward.setRedirect(true);
-		} else {
-			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
-		}
+		service.editMyAccount(user);
+		forward.setView("/users/changePasswd.do");
+		forward.setRedirect(true);
 
 		return forward;
 	}

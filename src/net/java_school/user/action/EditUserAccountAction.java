@@ -11,9 +11,10 @@ import net.java_school.action.ActionForward;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
 import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 import net.java_school.user.UserService;
 
-public class ChangePasswdAction implements Action {
+public class EditUserAccountAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req,
@@ -22,26 +23,27 @@ public class ChangePasswdAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
-		if (user == null) {
-			throw new AuthenticationException(WebContants.NOT_LOGIN);
+		if (userInfo == null || userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.NOT_ADMIN);
 		}
 
-		//currentPasswd(현재 비밀번호),newPasswd(변경 비밀번호)
-		String currentPasswd = req.getParameter("currentPasswd");
-		String newPasswd = req.getParameter("newPasswd");
-		String email = user.getEmail();
+		String page = req.getParameter("page");
+		String search = req.getParameter("search");
 
+		String email = req.getParameter("email");
+		String name = req.getParameter("name");
+		String mobile = req.getParameter("mobile");
+		User user = new User();
+		user.setEmail(email);
+		user.setName(name);
+		user.setMobile(mobile);
+		
 		UserService service = new UserService();
-		int check = service.changePasswd(currentPasswd, newPasswd, email);
+		service.editUserAccount(user);
 
-		if (check < 1) {
-			session.removeAttribute(WebContants.USER_KEY);
-			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
-		}
-
-		forward.setView("changePasswd_confirm.do");
+		forward.setView("editAccount.do?email=" + email + "&page=" + page + "&searchWord=" + search);
 		forward.setRedirect(true);
 
 		return forward;

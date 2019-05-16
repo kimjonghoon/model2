@@ -13,7 +13,7 @@ import net.java_school.board.AttachFile;
 import net.java_school.board.BoardService;
 import net.java_school.commons.WebContants;
 import net.java_school.exception.AuthenticationException;
-import net.java_school.user.User;
+import net.java_school.user.UserInfo;
 
 public class DeleteAttachFileAction implements Action {
 
@@ -24,17 +24,21 @@ public class DeleteAttachFileAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute(WebContants.USER_KEY);
+		UserInfo userInfo = (UserInfo) session.getAttribute(WebContants.USER_KEY);
 
 		int attachFileNo = Integer.parseInt(req.getParameter("attachFileNo"));
 
 		BoardService service = new BoardService();
 		AttachFile attachFile = service.getAttachFile(attachFileNo);
 
-		if (user == null || !user.getEmail().equals(attachFile.getEmail())) {
+		if (userInfo == null) {
 			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 		}
 
+		if (!userInfo.getUser().getEmail().equals(attachFile.getEmail()) && userInfo.isAdmin() == false) {
+			throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
+		}
+		
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 		String boardCd = req.getParameter("boardCd");
 		int page = Integer.parseInt(req.getParameter("page"));

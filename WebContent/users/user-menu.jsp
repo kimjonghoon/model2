@@ -5,7 +5,7 @@
 <h1>Membership</h1>
 
 <c:choose>
-	<c:when test="${empty user }">
+	<c:when test="${empty userInfo }">
 		<ul>
 			<li><a href="login.do">Login</a></li>
 			<li><a href="signUp.do">SignUp</a></li>

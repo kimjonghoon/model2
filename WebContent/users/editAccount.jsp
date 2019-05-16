@@ -62,11 +62,11 @@ Visit <a href="changePasswd.do">Change Password</a> for changing password.<br />
 <table>
 <tr>
 	<td>Full Name</td>
-	<td><input type="text" name="name" value="${user.name }" /></td>
+	<td><input type="text" name="name" value="${userInfo.user.name }" /></td>
 </tr>
 <tr>
 	<td>Mobile</td>
-	<td><input type="text" name="mobile" value="${user.mobile }" /></td>
+	<td><input type="text" name="mobile" value="${userInfo.user.mobile }" /></td>
 </tr>
 <tr>
 	<td>Current Password</td>
