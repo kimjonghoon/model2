@@ -19,192 +19,220 @@ function initPage() {
 	for (var i = 0; i < fileLinks.length; i++) {
 		var fileLink = fileLinks[i];
 		if (fileLink.className != "download") {
-			fileLink.onclick = function() {
+			fileLink.onclick = function(e) {
+				e.preventDefault();
 				var attachFileNo = this.title;
 				var chk = confirm("Are you sure you want to delete it?");
 				if (chk === true) {
 					var form = document.getElementById("deleteAttachFileForm");
 					form.attachFileNo.value = attachFileNo;
 					form.submit();
-					return false;
 				}
 			};
 		}
 	}
 
-  function commentUpdate(e) {
-	  var me = getActivatedObject(e);
-	  var form = me.parentNode;
-	  while (form.className != "comment-form") {
-	    form = form.parentNode;
-	  }
-	  form.submit();
-	  return false;
+	function commentUpdate(e) {
+		e.preventDefault();
+		var me = getActivatedObject(e);
+		var form = me.parentNode;
+		while (form.className != "comment-form") {
+			form = form.parentNode;
+		}
+		form.submit();
 	}
+	
 	function modifyCommentToggle(e) {
-	  var me = getActivatedObject(e);
-	  var comments = me.parentNode;
-	  while (comments.className != "comments") {
-	    comments = comments.parentNode;
-	  }
-	  var div = comments.getElementsByTagName("div")[0];
-	  var form = comments.getElementsByTagName("form")[0];
-	  if (div.style.display) {
-	    div.style.display = '';
-	    form.style.display = 'none';
-	  } else {
-	    div.style.display = 'none';
-	    form.style.display = '';
-	  }
-	  return false; 
+		e.preventDefault();
+		var me = getActivatedObject(e);
+		var comments = me.parentNode;
+		while (comments.className != "comments") {
+			comments = comments.parentNode;
+		}
+		var div = comments.getElementsByTagName("div")[0];
+		var form = comments.getElementsByTagName("form")[0];
+		if (div.style.display) {
+			div.style.display = '';
+			form.style.display = 'none';
+		} else {
+			div.style.display = 'none';
+			form.style.display = '';
+		}
 	}
 
 	function getActivatedObject(e) {
-	  var obj;
-	  if (!e) {
-	    obj = window.event.srcElement;
-	  } else if (e.srcElement) {
-	    obj = e.srcElement;
-	  } else {
-	    obj = e.target;
-	  }
-	  return obj;
+		var obj;
+		if (!e) {
+			obj = window.event.srcElement;
+		} else if (e.srcElement) {
+			obj = e.srcElement;
+		} else {
+			obj = e.target;
+		}
+		return obj;
 	}  
 
 	var allComments = document.getElementById("all-comments");
 	var divs = allComments.getElementsByTagName("div");
 
 	for (i = 0; i < divs.length; i++) {
-	  if (divs[i].className == "comments") {
-	    var comments = divs[i];
-	    var spans = comments.getElementsByTagName("span");
-	    for (var j = 0; j < spans.length; j++) {
-	      if (spans[j].className === "modify-del") {
-	        var md = spans[j];
-	        var commentModifyLink = md.getElementsByTagName("a")[0];
-	        commentModifyLink.onclick = modifyCommentToggle;
-	        var commentDelLink = md.getElementsByTagName("a")[1];
-	        commentDelLink.onclick = function() {
-	          var commentNo = this.title;
-	          var chk = confirm("Are you sure you want to delete it?");
-	          if (chk === true) {
-	            var form = document.getElementById("deleteCommentForm");
-	            form.commentNo.value = commentNo;
-	            form.submit();
-	            return false;
-	           }
-	         };
-	      }
-	      var form = comments.getElementsByTagName("form")[0];
-	      var div = form.getElementsByTagName("div")[0];
-	      commentModifyLink = div.getElementsByTagName("a")[0];
-	      commentModifyLink.onclick = commentUpdate;
-	      var cancelLink = div.getElementsByTagName("a")[1];
-	      cancelLink.onclick = modifyCommentToggle;
-	    }
-	  }  
+		if (divs[i].className == "comments") {
+			var comments = divs[i];
+			var spans = comments.getElementsByTagName("span");
+			for (var j = 0; j < spans.length; j++) {
+				if (spans[j].className === "modify-del") {
+					var md = spans[j];
+					var commentModifyLink = md.getElementsByTagName("a")[0];
+					commentModifyLink.onclick = modifyCommentToggle;
+					var commentDelLink = md.getElementsByTagName("a")[1];
+					commentDelLink.onclick = function(e) {
+						e.preventDefault();
+						var commentNo = this.title;
+						var chk = confirm("Are you sure you want to delete it?");
+						if (chk === true) {
+							var form = document.getElementById("deleteCommentForm");
+							form.commentNo.value = commentNo;
+							form.submit();
+						}
+					};
+				}
+				var form = comments.getElementsByTagName("form")[0];
+				var div = form.getElementsByTagName("div")[0];
+				commentModifyLink = div.getElementsByTagName("a")[0];
+				commentModifyLink.onclick = commentUpdate;
+				var cancelLink = div.getElementsByTagName("a")[1];
+				cancelLink.onclick = modifyCommentToggle;
+			}
+		}
 	}
-
+	
 	var next_prev_links = document.getElementById("next-prev-links");
 	links = next_prev_links.getElementsByTagName("a");
+
 	for (i = 0; i < links.length; i++) {
-	  links[i].onclick = function() {
-	    var form = document.getElementById("viewForm");
-	    form.articleNo.value = this.title;
-	    form.submit();
-	    return false;      
-	  };
+		links[i].onclick = function(e) {
+			e.preventDefault();
+			var form = document.getElementById("viewForm");
+			form.articleNo.value = this.title;
+			form.submit();
+		};
 	}
 
 	var modifyBtns = document.getElementsByClassName("goModify");
 	i = modifyBtns.length;
+	
 	while (i--) {
-	  modifyBtns[i].onclick = function() {
-	    var form = document.getElementById("modifyForm");
-	    form.submit();
-	  };
+		modifyBtns[i].onclick = function() {
+			var form = document.getElementById("modifyForm");
+			form.submit();
+		};
 	}
 
 	var deleteBtns = document.getElementsByClassName("goDelete");
 	i = deleteBtns.length;
+	
 	while (i--) {
-	  deleteBtns[i].onclick = function() {
-	    var chk = confirm('Are you suer you want to delete it?');
-	    if (chk === true) {
-	      var form = document.getElementById("delForm");
-	      form.submit();
-	    }
-	  };
+		deleteBtns[i].onclick = function() {
+			var chk = confirm('Are you suer you want to delete it?');
+			if (chk === true) {
+				var form = document.getElementById("delForm");
+				form.submit();
+			}
+		};
 	}
 
 	var nextArticleBtns = document.getElementsByClassName("next-article");
 	i = nextArticleBtns.length;
+	
 	while (i--) {
-	  nextArticleBtns[i].onclick = function() {
-	          var form = document.getElementById("viewForm");
-	          form.articleNo.value = this.title;
-	          form.submit();
-	  };
+		nextArticleBtns[i].onclick = function() {
+			var form = document.getElementById("viewForm");
+			form.articleNo.value = this.title;
+			form.submit();
+		};
 	}
 
 	var prevArticleBtns = document.getElementsByClassName("prev-article");
 	i = prevArticleBtns.length;
+	
 	while (i--) {
-	  prevArticleBtns[i].onclick = function() {
-	    var form = document.getElementById("viewForm");
-	    form.articleNo.value = this.title;
-	    form.submit();
-	  };
+		prevArticleBtns[i].onclick = function() {
+			var form = document.getElementById("viewForm");
+			form.articleNo.value = this.title;
+			form.submit();
+		};
 	}
 
 	var listBtns = document.getElementsByClassName("goList");
 	i = listBtns.length
+	
 	while (i--) {
-	  listBtns[i].onclick = function() {
-	    var form = document.getElementById("listForm");
-	    form.page.value = this.title;
-	    form.submit();
-	  };
+		listBtns[i].onclick = function() {
+			var form = document.getElementById("listForm");
+			form.page.value = this.title;
+			form.submit();
+		};
 	}  
 
 	var writeBtns = document.getElementsByClassName("goWrite");
 	i = writeBtns.length;
+	
 	while(i--) {
-	  writeBtns[i].onclick = function() {
-	      var form = document.getElementById("writeForm");
-	      form.submit();
-	  };
+		writeBtns[i].onclick = function() {
+			var form = document.getElementById("writeForm");
+			form.submit();
+		};
 	}
 
 	var listTable = document.getElementById("list-table");
 	links = listTable.getElementsByTagName("a");
+	
 	for (i = 0; i < links.length; i++) {
-	  links[i].onclick = function() {
-	    var form = document.getElementById("viewForm");
-	    form.articleNo.value = this.title;
-	    form.submit();
-	    return false;
-	  };
+		links[i].onclick = function(e) {
+			e.preventDefault();
+			var form = document.getElementById("viewForm");
+			form.articleNo.value = this.title;
+			form.submit();
+		};
 	}
 
 	var paging = document.getElementById("paging");
 	links = paging.getElementsByTagName("a");
+	
 	for (i = 0; i < links.length; i++) {
-	  links[i].onclick = function() {
-	    var form = document.getElementById("listForm");
-	    form.page.value = this.title;
-	    form.submit();
-	    return false;
-	  };
+		links[i].onclick = function(e) {
+			e.preventDefault();
+			var form = document.getElementById("listForm");
+			form.page.value = this.title;
+			form.submit();
+		};
 	}
 
 	var listMenu = document.getElementById("list-menu");
 	writeBtn = listMenu.getElementsByTagName("input")[0];
 	writeBtn.onclick = function() {
-	  var form = document.getElementById("writeForm");
-	  form.submit();
+		var form = document.getElementById("writeForm");
+		form.submit();
 	};
 	
+	//for youtube begin
+	var articleContent = document.getElementById("article-content");
+	var width = articleContent.offsetWidth;
+	var iframes = articleContent.getElementsByTagName("iframe");
+	i = iframes.length;
+
+	while(i--) {
+		var originWidth = iframes[i].width;
+		if (originWidth != '100%') {
+			var originHeight = iframes[i].height;
+			var height = originHeight * width / originWidth;
+			iframes[i].width = width;
+			iframes[i].height = height;
+		}
+		iframes[i].allowFullScreen = '';
+	}
+	//for youtube end
+
 }
 </script>
 </head>
