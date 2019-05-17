@@ -10,74 +10,201 @@
 <title>BBS</title>
 <link rel="stylesheet" href="/css/screen.css" type="text/css" />
 <script>
-function modifyCommentToggle(articleNo) {
-	var p_id = "comment" + articleNo;
-	var p = document.getElementById(p_id);
-	
-	var form_id = "modifyCommentForm" + articleNo;
-	var form = document.getElementById(form_id);
+window.onload = initPage;
 
-	var p_display;
-	var form_display;
-	
-	if (p.style.display) {
-		p_display = '';
-		form_display = 'none';
-	} else {
-		p_display = 'none';
-		form_display = '';
+function initPage() {
+	var file_list = document.getElementById("file-list");
+	var fileLinks = file_list.getElementsByTagName("a");
+  
+	for (var i = 0; i < fileLinks.length; i++) {
+		var fileLink = fileLinks[i];
+		if (fileLink.className != "download") {
+			fileLink.onclick = function() {
+				var attachFileNo = this.title;
+				var chk = confirm("Are you sure you want to delete it?");
+				if (chk === true) {
+					var form = document.getElementById("deleteAttachFileForm");
+					form.attachFileNo.value = attachFileNo;
+					form.submit();
+					return false;
+				}
+			};
+		}
 	}
 
-	p.style.display = p_display;
-	form.style.display = form_display;
-}
+  function commentUpdate(e) {
+	  var me = getActivatedObject(e);
+	  var form = me.parentNode;
+	  while (form.className != "comment-form") {
+	    form = form.parentNode;
+	  }
+	  form.submit();
+	  return false;
+	}
+	function modifyCommentToggle(e) {
+	  var me = getActivatedObject(e);
+	  var comments = me.parentNode;
+	  while (comments.className != "comments") {
+	    comments = comments.parentNode;
+	  }
+	  var div = comments.getElementsByTagName("div")[0];
+	  var form = comments.getElementsByTagName("form")[0];
+	  if (div.style.display) {
+	    div.style.display = '';
+	    form.style.display = 'none';
+	  } else {
+	    div.style.display = 'none';
+	    form.style.display = '';
+	  }
+	  return false; 
+	}
 
-function goList(page) {
-    var form = document.getElementById("listForm");
-    form.page.value = page;
-    form.submit();
-}
+	function getActivatedObject(e) {
+	  var obj;
+	  if (!e) {
+	    obj = window.event.srcElement;
+	  } else if (e.srcElement) {
+	    obj = e.srcElement;
+	  } else {
+	    obj = e.target;
+	  }
+	  return obj;
+	}  
 
-function goView(articleNo) {
-    var form = document.getElementById("viewForm");
-    form.articleNo.value = articleNo;
-    form.submit();
-}
+	var allComments = document.getElementById("all-comments");
+	var divs = allComments.getElementsByTagName("div");
 
-function goWrite() {
-    var form = document.getElementById("writeForm");
-    form.submit();
-}
+	for (i = 0; i < divs.length; i++) {
+	  if (divs[i].className == "comments") {
+	    var comments = divs[i];
+	    var spans = comments.getElementsByTagName("span");
+	    for (var j = 0; j < spans.length; j++) {
+	      if (spans[j].className === "modify-del") {
+	        var md = spans[j];
+	        var commentModifyLink = md.getElementsByTagName("a")[0];
+	        commentModifyLink.onclick = modifyCommentToggle;
+	        var commentDelLink = md.getElementsByTagName("a")[1];
+	        commentDelLink.onclick = function() {
+	          var commentNo = this.title;
+	          var chk = confirm("Are you sure you want to delete it?");
+	          if (chk === true) {
+	            var form = document.getElementById("deleteCommentForm");
+	            form.commentNo.value = commentNo;
+	            form.submit();
+	            return false;
+	           }
+	         };
+	      }
+	      var form = comments.getElementsByTagName("form")[0];
+	      var div = form.getElementsByTagName("div")[0];
+	      commentModifyLink = div.getElementsByTagName("a")[0];
+	      commentModifyLink.onclick = commentUpdate;
+	      var cancelLink = div.getElementsByTagName("a")[1];
+	      cancelLink.onclick = modifyCommentToggle;
+	    }
+	  }  
+	}
 
-function goModify() {
-    var form = document.getElementById("modifyForm");
-    form.submit();
-}
+	var next_prev_links = document.getElementById("next-prev-links");
+	links = next_prev_links.getElementsByTagName("a");
+	for (i = 0; i < links.length; i++) {
+	  links[i].onclick = function() {
+	    var form = document.getElementById("viewForm");
+	    form.articleNo.value = this.title;
+	    form.submit();
+	    return false;      
+	  };
+	}
 
-function goDelete() {
-    var check = confirm("Are you sure you want to delete it?");
-    if (check) {
-        var form = document.getElementById("delForm");
-        form.submit();
-    }
-}
+	var modifyBtns = document.getElementsByClassName("goModify");
+	i = modifyBtns.length;
+	while (i--) {
+	  modifyBtns[i].onclick = function() {
+	    var form = document.getElementById("modifyForm");
+	    form.submit();
+	  };
+	}
 
-function deleteAttachFile(attachFileNo) {
-    var check = confirm("Are you sure you want to delete it?");
-    if (check) {
-        var form = document.getElementById("deleteAttachFileForm");
-        form.attachFileNo.value = attachFileNo;
-        form.submit();
-    }
-}
+	var deleteBtns = document.getElementsByClassName("goDelete");
+	i = deleteBtns.length;
+	while (i--) {
+	  deleteBtns[i].onclick = function() {
+	    var chk = confirm('Are you suer you want to delete it?');
+	    if (chk === true) {
+	      var form = document.getElementById("delForm");
+	      form.submit();
+	    }
+	  };
+	}
 
-function deleteComment(commentNo) {
-    var check = confirm("Are you sure you want to delete it?");
-    if (check) {
-        var form = document.getElementById("deleteCommentForm");
-        form.commentNo.value = commentNo;
-        form.submit();
-    }
+	var nextArticleBtns = document.getElementsByClassName("next-article");
+	i = nextArticleBtns.length;
+	while (i--) {
+	  nextArticleBtns[i].onclick = function() {
+	          var form = document.getElementById("viewForm");
+	          form.articleNo.value = this.title;
+	          form.submit();
+	  };
+	}
+
+	var prevArticleBtns = document.getElementsByClassName("prev-article");
+	i = prevArticleBtns.length;
+	while (i--) {
+	  prevArticleBtns[i].onclick = function() {
+	    var form = document.getElementById("viewForm");
+	    form.articleNo.value = this.title;
+	    form.submit();
+	  };
+	}
+
+	var listBtns = document.getElementsByClassName("goList");
+	i = listBtns.length
+	while (i--) {
+	  listBtns[i].onclick = function() {
+	    var form = document.getElementById("listForm");
+	    form.page.value = this.title;
+	    form.submit();
+	  };
+	}  
+
+	var writeBtns = document.getElementsByClassName("goWrite");
+	i = writeBtns.length;
+	while(i--) {
+	  writeBtns[i].onclick = function() {
+	      var form = document.getElementById("writeForm");
+	      form.submit();
+	  };
+	}
+
+	var listTable = document.getElementById("list-table");
+	links = listTable.getElementsByTagName("a");
+	for (i = 0; i < links.length; i++) {
+	  links[i].onclick = function() {
+	    var form = document.getElementById("viewForm");
+	    form.articleNo.value = this.title;
+	    form.submit();
+	    return false;
+	  };
+	}
+
+	var paging = document.getElementById("paging");
+	links = paging.getElementsByTagName("a");
+	for (i = 0; i < links.length; i++) {
+	  links[i].onclick = function() {
+	    var form = document.getElementById("listForm");
+	    form.page.value = this.title;
+	    form.submit();
+	    return false;
+	  };
+	}
+
+	var listMenu = document.getElementById("list-menu");
+	writeBtn = listMenu.getElementsByTagName("input")[0];
+	writeBtn.onclick = function() {
+	  var form = document.getElementById("writeForm");
+	  form.submit();
+	};
+	
 }
 </script>
 </head>
@@ -100,19 +227,19 @@ function deleteComment(commentNo) {
 <div class="view-menu" style="margin-bottom: 5px;">
     <c:if test="${(userInfo.user.email == email) || (userInfo.admin) }">
     <div class="fl">
-        <input type="button" value="Modify" onclick="goModify()" />
-        <input type="button" value="Del" onclick="goDelete()" />
+        <input type="button" value="Modify" class="goModify" />
+        <input type="button" value="Del" class="goDelete" />
     </div>
     </c:if>        
     <div class="fr">
 		<c:if test="${nextArticle != null }">    
-        <input type="button" value="Next Article" onclick="goView('${nextArticle.articleNo }')" />
+        <input type="button" value="Next Article" title="${nextArticle.articleNo }" class="next-article" />
 		</c:if>
 		<c:if test="${prevArticle != null }">        
-        <input type="button" value="Prev Article" onclick="goView('${prevArticle.articleNo}')" />
+        <input type="button" value="Prev Article" title="${prevArticle.articleNo }" class="prev-article" />
 		</c:if>        
-        <input type="button" value="List" onclick="goList('${param.page }')" />
-        <input type="button" value="New" onclick="goWrite()" />
+        <input type="button" value="List" title="${param.page }" class="goList" />
+        <input type="button" value="New" class="goWrite" />
     </div>
 </div>
 <table class="bbs-table">
@@ -123,16 +250,17 @@ function deleteComment(commentNo) {
 </table>
 <div id="detail">
     <span id="date-writer-hit">edited ${regdate } by ${name } hit ${hit }</span>
-    <p>${content }</p>
-    <p id="file-list" style="text-align: right">
+    <div id="article-content">${content }</div>
+    <div id="file-list" style="text-align: right">
     	<c:forEach var="file" items="${attachFileList }" varStatus="status">
-	    	<a href="${uploadPath }${file.filename }">${file.filename }</a>
-			<c:if test="${user.email == file.email }">
-	    	<a href="javascript:deleteAttachFile('${file.attachFileNo }')">x</a>
-			</c:if>
-			<br />
+	    	<div class="attach-file">
+		    	<a href="${uploadPath }${file.filename }" class="download">${file.filename }</a>
+				<c:if test="${userInfo.user.email == file.email || userInfo.admin }">
+		    	<a href="#" title="${file.attachFileNo }">x</a>
+				</c:if>
+			</div>	
 		</c:forEach>
-    </p>
+    </div>
 </div>
 <form id="addCommentForm" action="addComment.do" method="post">
 <p style="margin: 0;padding: 0">
@@ -149,26 +277,25 @@ function deleteComment(commentNo) {
    </div>
 </form>
 <!-- comments begin -->
+<div id="all-comments">
 <c:forEach var="comment" items="${commentList }" varStatus="status">
 <div class="comments">
     <span class="writer">${comment.name }</span>
     <span class="date">${comment.regdate }</span>
-	<c:if test="${user.email == comment.email }">    
+	<c:if test="${userInfo.user.email == comment.email || userInfo.admin}">    
     <span class="modify-del">
-        <a href="javascript:modifyCommentToggle('${comment.commentNo }')">Modify</a>
-         | <a href="javascript:deleteComment('${comment.commentNo }')">Del</a>
+        <a href="#">Modify</a> | <a href="#" title="${comment.commentNo }">Del</a>
     </span>
 	</c:if>    
-    <p id="comment${comment.commentNo }" class="view-comment">${comment.memo }</p>
-    <form id="modifyCommentForm${comment.commentNo }" class="comment-form" action="updateComment.do" method="post" style="display: none;">
+    <div class="comment-memo">${comment.memo }</div>
+    <form class="comment-form" action="updateComment.do" method="post" style="display: none;">
         <input type="hidden" name="commentNo" value="${comment.commentNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
 	    <div class="fr">
-	            <a href="javascript:document.forms.modifyCommentForm${comment.commentNo }.submit()">Submit</a>
-	            | <a href="javascript:modifyCommentToggle('${comment.commentNo }')">Cancel</a>
+	        <a href="#">Submit</a> | <a href="#">Cancel</a>
 	    </div>
 	    <div>
 	        <textarea class="comment-textarea" name="memo" rows="7" cols="50">${comment.memo }</textarea>
@@ -176,35 +303,36 @@ function deleteComment(commentNo) {
     </form>
 </div>
 </c:forEach>
+</div>
 <!--  comments end -->
-<div class="next-prev">
+<div class="next-prev" id="next-prev-links">
     <c:if test="${nextArticle != null }">
-    <p>Next Article : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
+    <p>Next Article : <a href="#" title="${nextArticle.articleNo }">${nextArticle.title }</a></p>
     </c:if>
     <c:if test="${prevArticle != null }">
-    <p>Prev Article : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
+    <p>Prev Article : <a href="#" title="${prevArticle.articleNo }">${prevArticle.title }</a></p>
     </c:if>
 </div>
 <div class="view-menu">
     <c:if test="${(userInfo.user.email == email) || (userInfo.admin) }">
     <div class="fl">
-        <input type="button" value="Modify" onclick="goModify()" />
-        <input type="button" value="Del" onclick="goDelete()" />
+        <input type="button" value="Modify" class="goModify" />
+        <input type="button" value="Del" class="goDelete" />
     </div>
     </c:if>        
     <div class="fr">
 		<c:if test="${nextArticle != null }">    
-        <input type="button" value="Next Article" onclick="goView('${nextArticle.articleNo }')" />
+        <input type="button" value="Next Article" title="${nextArticle.articleNo }" class="next-article" />
 		</c:if>
 		<c:if test="${prevArticle != null }">        
-        <input type="button" value="Prev Article" onclick="goView('${prevArticle.articleNo}')" />
+        <input type="button" value="Prev Article" title="${prevArticle.articleNo}" class="prev-article" />
 		</c:if>        
-        <input type="button" value="List" onclick="goList('${param.page }')" />
-        <input type="button" value="New" onclick="goWrite()" />
+        <input type="button" value="List" title="${param.page }" class="goList" />
+        <input type="button" value="New" class="goWrite" />
     </div>
 </div>
 <!-- BBS List in detailed Article -->
-<table id="list-table" class="bbs-table">
+<table class="bbs-table" id="list-table">
 <tr>
 	<th style="width: 60px;">NO</th>
 	<th>TITLE</th>
@@ -224,7 +352,7 @@ function deleteComment(commentNo) {
 	</c:choose>	
 	</td>
 	<td>
-		<a href="javascript:goView('${article.articleNo }')">${article.title }</a>
+		<a href="#" title="${article.articleNo }">${article.title }</a>
 		<c:if test="${article.attachFileNum > 0 }">		
 		<img src="../images/attach.png" alt="Attach File" />
 		</c:if>
@@ -239,8 +367,8 @@ function deleteComment(commentNo) {
 </table>
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
-		<a href="javascript:golist('1')">1</a>
-		<a href="javascript:golist('${prevPage }')">[Prev]</a>
+		<a href="#">1</a>
+		<a href="#" title="${prevPage }">[Prev]</a>
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
@@ -248,26 +376,24 @@ function deleteComment(commentNo) {
 				<span class="bbs-strong">${i }</span>
 			</c:when>	
 			<c:otherwise>	
-				<a href="javascript:goList('${i }')">${i }</a>
+				<a href="#" title="${i }">${i }</a>
 			</c:otherwise>
 		</c:choose>			
 	</c:forEach>
 	<c:if test="${nextPage > 0 }">	
-		<a href="javascript:goList('${nextPage }')">[Next]</a>
-		<a href="javascript:goList('${totalPage }')">[Last]</a>
+		<a href="#" title="${nextPage }">[Next]</a>
+		<a href="#" title="${totalPage }">[Last]</a>
 	</c:if>
 </div>
 <div id="list-menu">
-	<input type="button" value="New" onclick="goWrite()" />
+	<input type="button" value="New" />
 </div>
 <div id="search">
 	<form action="list.do" method="get">
-	<p style="margin: 0;padding: 0;">
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="page" value="1" />
 		<input type="text" name="searchWord" size="15" maxlength="30" />
 		<input type="submit" value="Search" />
-	</p>
 	</form>
 </div>
 <!-- content end -->
@@ -330,7 +456,7 @@ function deleteComment(commentNo) {
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
-    </form>       
+    </form>
 </div>
 
 </body>

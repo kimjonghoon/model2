@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="net.java_school.user.*"%>
 <%@page import="java.net.URLEncoder"%>
+
 <%   
 UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 if (userInfo == null) {

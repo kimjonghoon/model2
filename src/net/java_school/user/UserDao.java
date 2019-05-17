@@ -455,6 +455,8 @@ public class UserDao {
 				userInfo.setUser(user);
 				userInfo.setRoles(roles);
 				userInfos.add(userInfo);
+				
+				if (rs != null) rs.close();
 			}
 		} catch (SQLException e) {
 			if (log.isDebugEnabled()) {
